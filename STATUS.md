@@ -1,7 +1,14 @@
 # Status
 
-Phase: exact all-agent ternary public-project frontier theorem, finite
-cross-agent replay, manuscript, and delivery verification.
+Phase: Phase II feasibility gate for certificate-first VCG redistribution
+synthesis/audit; the completed ternary-frontier theorem remains a baseline.
+
+Current Phase II evidence: a three-agent, three-type exact rational LP has six
+anonymous Groves-term variables and 22 finite constraints. Complete vertex
+enumeration checks 74,613 bases and yields uniform-prior objective `10/3`; a
+counterexample-guided run adds five no-deficit witnesses and reaches the same
+candidate. This is pilot evidence only until standalone replay, frozen
+confirmation priors, and comparator audit are complete.
 
 Completed: specification, preregistration, prior-art positioning, antichain
 enumerator, exact n=3/4/5/6 search, all-agent suffix-frontier theorem,

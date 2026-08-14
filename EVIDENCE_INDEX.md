@@ -13,3 +13,5 @@
 | Value-lattice extension has 66 exact rules and 60 independently replayed accepted rows | `scripts/run_value_extension.py`, `artifacts/public_project_value_extension.json` | SUPPORTED exploratory domain |
 | Finite rule generalizes to value 3 | held-out certificate | REFUTED / 207 failures |
 | Continuous values, randomized/subsidized/asymmetric classes, and broader novelty | none | UNKNOWN / explicitly not claimed |
+| Phase II pilot: uniform-prior anonymous VCG redistribution optimum is `10/3` on the 3-agent `{0,1/2,1}` grid | `src/mechanism_discovery/vcg_redistribution.py`, `tests/test_vcg_redistribution.py` | SUPPORTED as an exact pilot only; certificate artifact not yet frozen |
+| Phase II complete-oracle and counterexample-guided paths agree | same test file | SUPPORTED as a pilot only |

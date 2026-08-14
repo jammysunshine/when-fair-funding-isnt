@@ -36,3 +36,18 @@ time and peak memory so the computational boundary is part of the result.
 with a human-checkable all-agent characterization for the declared ternary
 class. Keep n=3..6 exhaustive searches as computational cross-checks and label
 the result post-hoc relative to the frozen three-agent preregistration.
+
+2026-08-15 (Phase II feasibility, before confirmation): do not promote the
+ternary suffix theorem into a general automated-mechanism-design paper.
+Primary-source review found directly overlapping public-project neural/MIP
+redistribution work. Instead, test a certificate-first reproduction/audit
+framework whose contribution would be independently replayable finite
+optimality and concrete failure analysis. This is exploratory until priors and
+comparators are frozen.
+
+2026-08-15 (Phase II feasibility, before confirmation): use the symmetric
+Groves representation with nonnegative h charges, individual rationality, and
+no-deficit constraints on a three-agent `{0, 1/2, 1}` grid. Rationale: DSIC and
+efficient allocation follow from the representation, while exact Fractions
+allow a solver-free global vertex certificate. This is not asserted to cover
+continuous types or the broader literature's neural classes.

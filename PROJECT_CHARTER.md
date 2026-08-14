@@ -1,6 +1,10 @@
 # Project Charter
 
-Status: frozen 2026-08-15. The original binary-table audit is a baseline; the headline study is the public-project frontier below.
+Status: original study frozen 2026-08-15; a separate Phase II feasibility gate is active. The original binary-table audit is a baseline.
+
+## Phase II feasibility question (active; not yet a headline claim)
+
+Can a certificate-first exact finite-grid oracle reproduce and audit automated VCG-redistribution design under the same public-project model, using a counterexample-guided path as a distinct discovery method? The immediate deliverable is a falsifiable reproducibility benchmark: an exact optimality certificate on a frozen three-agent grid, an independent replay, and an explicit account of whether it reveals any failure that sampled/neural search would miss. This phase will not claim a newly discovered redistribution mechanism: prior work already reports neural/MIP mechanisms through five agents.
 
 ## Primary question
 
@@ -21,3 +25,5 @@ Local CPU only, no paid API/cloud/real data, under 10 minutes per complete run a
 ## Evidence target
 
 Candidate contribution/useful artifact: exact narrow all-agent characterization plus independent machine-checkable certificate and finite scaling cross-check. Any broader publication claim requires external novelty review, richer mechanism classes, and independent replication.
+
+Phase II threshold before promotion beyond feasibility: frozen primary/held-out priors, at least two search paths, a complete exact primal-and-optimality replay, canonical and published-method comparators that can be reproduced from public descriptions, and either a pre-specified strict audit failure or a clearly useful negative result. Local CPU only; no claim about continuous types or unshared neural weights.

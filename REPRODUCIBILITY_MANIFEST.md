@@ -13,6 +13,7 @@ python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
+python3 -m unittest tests.test_vcg_redistribution -v
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
