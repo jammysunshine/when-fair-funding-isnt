@@ -369,6 +369,10 @@
       ]
     ]
   },
+  "finite_neutrality_impossibility": {
+    "accepted_and_neutral_count": 0,
+    "statement": "No accepted table in the frozen search space is neutral."
+  },
   "independent_frontier_comparison": {
     "independent_frontier_sha256": "3a729b20545161e401e7689ef4f3b491ce22269c9ecb49ef76e82d38145ab6e2",
     "primary_frontier_sha256": "3a729b20545161e401e7689ef4f3b491ce22269c9ecb49ef76e82d38145ab6e2",
@@ -467,6 +471,7 @@
       ]
     ]
   },
+  "neutral_accepted_tables": [],
   "scope_limits": {
     "coalitions": "all nonempty coalitions of the two fixed identities; Pareto-improving joint report deviations",
     "false_names_and_budget_reports": "out of model: two fixed identities and no budget-report field",

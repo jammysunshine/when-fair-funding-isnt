@@ -1,9 +1,9 @@
 # Status
 
-Phase: lead handoff gate complete; bounded execution queue remains.
+Phase: frozen run and evidence integration; handoff gate is pending final commit.
 
-Evidence level: useful artifact. The repository contains a machine-checkable finite verifier, a separately implemented checker, baseline reproduction, exhaustive enumeration, and seeded proposal loop. It makes no general mechanism-design claim.
+Completed: scope and preregistration; primary and standalone verifiers; canonical baselines and prior-art audit; exhaustive 1,296-table search; seeded evolutionary probe; frozen held-out/adversarial confirmation; independent frontier certificate; tests and machine-readable artifacts.
 
-Completed: primary-source review; frozen scope/preregistration; primary and independent verifiers; six automated tests; baseline run; 1,296-table exhaustive search (16 accepted); seeded evolutionary run (seed 67, 2,560 proposals, 1,598 accepted). Commands: `python3 -m unittest discover -s tests -v`; `python3 scripts/run_experiment.py`.
+Current evidence: exactly 4 accepted tables, identical checker digests, no strict uniform-welfare improver over `anonymous_or`, zero bounded coalition/value-magnitude failures for the baseline, and no accepted neutral table. Evidence level is a candidate finite contribution, not a general or novel result.
 
-Resources: local CPU <1 s for the recorded run; no downloads, data, APIs, cloud, or cost; dataset is the four-profile truth-known fixture. Live risk: the output is intentionally restricted to a very small finite domain. Next: Luna may execute only the frozen reproduction and packaging queue in `HANDOFF.md`.
+Commands and outputs are frozen in `REPRODUCIBILITY_MANIFEST.md`. Handoff remains blocked until all docs, CSV/SVG outputs, checksums, tests, and the final coherent commit are verified together.

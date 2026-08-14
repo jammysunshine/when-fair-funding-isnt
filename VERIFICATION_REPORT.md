@@ -1,7 +1,7 @@
 # Verification Report
 
-Run: `python3 -m unittest discover -s tests -v && python3 scripts/run_experiment.py`.
+Commands: `python3 -m unittest discover -s tests -v`, `python3 scripts/run_experiment.py`, and `python3 scripts/verify_certificates.py`.
 
-The primary verifier and independent checker both accept `priority_majority_agent_0`. Its exact uniform-profile metrics are welfare 1.5, utility disparity 0.5, worst-case regret 0, and description length 2. The exhaustive enumerator visited all 1,296 frozen candidates and primary-verifier accepted 16. The checked result is `artifacts/experiment_67_results.json`.
+The primary and standalone row-table checker each enumerate all 1,296 candidates and accept exactly four tables. Their frontier SHA-256 is `3a729b20545161e401e7689ef4f3b491ce22269c9ecb49ef76e82d38145ab6e2`. The accepted tables are the two constants and the two anonymous monotone rules (AND/OR, equivalent to fixed-tie majority on this domain). The `anonymous_or` baseline passes both checkers; priority-majority/serial dictatorship is rejected by anonymity/fairness.
 
-Coverage is finite and complete only for the configured type, alternative, transfer, determinism, and direct-revelation boundary. The independent checker repeats DSIC/IR/budget/feasibility logic separately; it is not an external research replication.
+The certificate records no strict uniform-welfare improver over the baseline, held-out distributional evaluations, zero bounded coalition witnesses, zero `{0,1,2}` value-magnitude failures, and a minimal DSIC counterexample. The finite audit also records that no accepted table is neutral. These are exact or bounded claims only; the independent checker is a separate implementation, not an external lab replication.

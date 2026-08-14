@@ -1,5 +1,5 @@
 # Prior Art
 
-This experiment is a finite verification artifact, not a novelty assertion. Gibbard (1973) establishes broad manipulation limits for deterministic social choice with unrestricted preferences; the present binary domain is intentionally outside the three-or-more-outcome setting emphasized there. Moulin (1980) characterizes strategy-proof rules on single-peaked domains, demonstrating that strategy-proof design in restricted domains is established prior art. Accordingly, no discovered rule is claimed as new.
+This is a finite verification artifact, not a novelty claim. Strategy-proofness and manipulation limits are established prior art: Gibbard (1973) is a scope boundary for deterministic social choice; Moulin (1980) studies strategy-proof restricted domains; Barberà, Gul and Stacchetti (1993) cover strategy-proofness with indifferences. Vickrey (1961), Clarke (1971), and Green–Laffont (1979) motivate the VCG pivot comparator and its budget-balance boundary.
 
-Sources and retrieval metadata are frozen in `SOURCES.json`. The canonical priority/tie-break baseline is used only as a small-domain checker target, not as a claim of reproducing either result.
+The binary four-profile rules (AND, OR, fixed-tie majority, constants, and serial dictatorships) are canonical comparators, not discoveries. `SOURCES.json` records primary URLs/DOIs and retrieval metadata. The present result supports no claim beyond the explicitly frozen finite domain.

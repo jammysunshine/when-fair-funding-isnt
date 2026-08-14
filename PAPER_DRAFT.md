@@ -1,5 +1,5 @@
 # Paper Draft
 
-## A Tiny Certified Mechanism-Discovery Benchmark
+## A finite certified benchmark for automated mechanism discovery
 
-We present a Python-standard-library benchmark for exhaustive verification of deterministic two-agent binary direct mechanisms with a finite transfer grid. The contribution is executable infrastructure and a complete finite frontier, not a new characterization. The benchmark is suitable as a regression target for future independent symbolic or SAT encodings.
+We implement a standard-library-only benchmark over 1,296 deterministic two-agent binary direct mechanisms. Exact verification and an independently implemented row-table checker agree on four accepted tables under DSIC, ex-post IR, feasibility, exact budget balance, anonymity, bounded fairness, and two-agent coalition strategyproofness. The result is a finite frontier and reproducibility harness, not a new characterization. Held-out distribution/value audits and explicit counterexample witnesses define the evidence boundary.

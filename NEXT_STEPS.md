@@ -1,5 +1,5 @@
 # Next Steps
 
-1. Independently reimplement the verifier in SAT/SMT or another language and compare the 16-table frontier.
-2. If expanding scope, create a new preregistration and holdout boundary before changing agents, types, payments, or acceptance semantics.
-3. Refresh prior-art review before any novelty claim.
+1. Re-run the frozen commands and verify checksums on a second machine.
+2. If extending beyond this domain, create a new charter, preregistration, and confirmation boundary before changing any frozen predicate.
+3. An independently authored SAT/SMT or other-language checker would strengthen replication, but is not required for this finite certificate.

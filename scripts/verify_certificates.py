@@ -70,6 +70,7 @@ def main():
 
     checker_rows = []
     strict_uniform_improvers = []
+    neutral_accepted = []
     for table in sorted(primary_tables):
         mechanism = as_mechanism(table)
         primary = verify(mechanism).as_dict()
@@ -77,6 +78,8 @@ def main():
         if primary["accepted"] != independent["accepted"] or not independent["accepted"]:
             raise SystemExit("accepted table did not survive checker comparison")
         metric = metrics(mechanism)
+        if primary["neutrality"]:
+            neutral_accepted.append(serializable(table))
         if metric["expected_welfare"] > metrics(baseline)["expected_welfare"]:
             strict_uniform_improvers.append(serializable(table))
         checker_rows.append({"table": serializable(table), "primary_accepted": primary["accepted"],
@@ -102,6 +105,11 @@ def main():
         },
         "accepted_tables": checker_rows,
         "strict_uniform_welfare_improvers_over_baseline": strict_uniform_improvers,
+        "neutral_accepted_tables": neutral_accepted,
+        "finite_neutrality_impossibility": {
+            "accepted_and_neutral_count": len(neutral_accepted),
+            "statement": "No accepted table in the frozen search space is neutral.",
+        },
         "minimal_zero_transfer_dsic_counterexample": minimal_zero_transfer_dsic_counterexample(baseline_table),
         "scope_limits": confirmation_config["threat_models"],
     }

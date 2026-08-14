@@ -1,6 +1,6 @@
 # Research Experiment Workspace
 
-This is the independent repository for Experiment 67, **Automated Mechanism Discovery**. Its complete research brief and completion gate are in [`PROMPT.md`](PROMPT.md). The frozen useful artifact is a complete finite search over 1,296 deterministic binary allocation/payment tables; start with [`REPLICATION_GUIDE.md`](REPLICATION_GUIDE.md).
+This is the independent repository for Experiment 67, **Automated Mechanism Discovery**. Its complete research brief and completion gate are in [`PROMPT.md`](PROMPT.md). The frozen artifact exhaustively checks 1,296 deterministic binary allocation/payment tables and certifies a four-table frontier; start with [`REPLICATION_GUIDE.md`](REPLICATION_GUIDE.md).
 
 ## Start here
 
@@ -9,7 +9,7 @@ This is the independent repository for Experiment 67, **Automated Mechanism Disc
 3. Start with Terra as lead and paste the complete `PROMPT.md` as the first message.
 4. Terra owns scope, the exact mechanism/verifier, baseline reproduction, and interpretation. It must not hand off until `HANDOFF.md` says `SAFE FOR LUNA HANDOFF`.
 5. Luna may then execute only the frozen task queue recorded in `HANDOFF.md`; it must not change the specification, verifier semantics, success criteria, or conclusions.
-5. Use worktrees only when multiple sessions need to edit this same experiment. Independent experiments belong in independent repositories.
+6. Use worktrees only when multiple sessions need to edit this same experiment. Independent experiments belong in independent repositories.
 
 ## Working structure
 

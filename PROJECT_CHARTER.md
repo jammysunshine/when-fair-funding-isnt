@@ -1,13 +1,13 @@
 # Project Charter
 
-Status: frozen 2026-08-14 (pre-results).
+Status: frozen 2026-08-14. Experiment 67 is a finite, reproducible mechanism-design audit.
 
-Primary question: in the frozen two-agent, binary-private-value direct-revelation domain, can exhaustive search map every deterministic allocation/payment table satisfying DSIC, ex-post IR, exact budget balance, and feasibility, and can a seeded evolutionary proposal loop rediscover a feasible table?
+Question: within a two-agent binary-type, binary-choice direct-revelation domain, what is the complete deterministic allocation/payment frontier under incentive, feasibility, budget, fairness, and bounded coalition constraints, and can a seeded proposal search rediscover it?
 
-Domain: agents `i∈{0,1}` have types/reports and alternatives in `{0,1}`. Value is one iff the chosen alternative equals type, otherwise zero. Transfers are integer payments in `{-1,0,1}` (positive means paid); utility is value minus payment. A mechanism is four outcomes, one per report profile. The outside option is zero.
+Domain: profiles `(0,0),(0,1),(1,0),(1,1)`; value is `1{type=choice}`; integer payments are in `{-1,0,1}` (positive means paid to the mechanism); utilities are value minus payment; pointwise exact budget balance is required. Thus there are `6^4=1,296` candidate tables.
 
-Acceptance predicate: enumerate all 6^4 = 1,296 budget-balanced candidate tables. Accept only if every truthful profile and unilateral binary deviation passes DSIC and every truthful profile passes ex-post IR; all choices must be binary. The priority-majority baseline must pass the primary and independent checkers. This is an exact finite statement only.
+Acceptance: DSIC, ex-post IR, binary feasibility, exact budget balance, exact anonymity, truthful utility disparity at most `1` on every profile, and no joint report that strictly improves both fixed agents. Neutrality is audited and reported, but is not an acceptance requirement.
 
-Comparator: priority-majority (`choice=report_0`, zero payments); constants are included in enumeration. Experimental unit: one complete mechanism table, evaluated over all four profiles. Primary descriptive objectives: uniform expected welfare, uniform expected utility disparity, worst-case deviation regret, and integer table description length.
+Primary baseline: zero-transfer anonymous OR (`choice=1` iff either report is `1`). Canonical comparators include AND, majority tie rules, constants, serial dictatorships, and VCG pivot; priority-majority is retained as a rejecting fairness diagnostic. Objectives are uniform allocative welfare, utility disparity, regret, revenue, and description length.
 
-Ceiling: local Python standard library only; at most 5 CPU-minutes, 256 MB memory, zero paid/API/cloud cost. Target audience: mechanism-design and formal-methods researchers. Non-goals: continuous types, randomized mechanisms, general theorems, real-world deployment, coalition resistance, or novelty claims. Fallback contribution: a reproducible exhaustive finite frontier and counterexample-witness harness.
+Evidence boundary: exhaustive enumeration plus a separately implemented checker is a complete result only on this frozen finite domain. The evolutionary loop is a rediscovery probe, not a coverage proof. No novelty, general theorem, deployment, randomized mechanism, continuous type, false-name, or real-world claim is made.

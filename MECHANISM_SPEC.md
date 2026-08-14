@@ -1,7 +1,9 @@
 # Mechanism Specification
 
-`Mechanism` in `src/mechanism_discovery/model.py` is a total four-row truth table ordered `(0,0),(0,1),(1,0),(1,1)`. A row is `Outcome(choice, (p0,p1))`. `value(t,c)=1` exactly when `t=c`; `utility(t,o,i)=value(t,o.choice)-o.payments[i]`.
+`src/mechanism_discovery/model.py` defines a total deterministic direct mechanism with four outcomes ordered `(0,0),(0,1),(1,0),(1,1)`. Each outcome is `(choice, (payment_0,payment_1))`; choices and types are in `{0,1}` and payments are in `{-1,0,1}`.
 
-The primary checker exhaustively evaluates both agents, all four truthful profiles, and their only nontruthful report. It reports a witness containing profile, agent, deviation, and utility change for DSIC failures. It separately emits feasibility, budget-balance, IR, and anonymity witnesses. `independent_verifier.py` independently loops by an agent's type and other report, and is used as a checker cross-check for the baseline.
+`value(t,c)=1` iff `t=c`; `utility(t,outcome,i)=value-payment_i`. Feasibility is binary choice. Exact budget balance is `payment_0+payment_1=0` pointwise. DSIC compares truthful utility with the only alternative report for each agent at every true profile. IR is truthful utility `>=0`.
 
-The baseline `priority_majority_agent_0` chooses report 0 on every profile and has payments `(0,0)`. Therefore agent 0 always gets their reported preferred option and agent 1 cannot change the selected option; truthful reporting is weakly dominant. It has no transfers, so it is ex-post IR and exactly budget balanced.
+Fairness is frozen as exact anonymity plus maximum truthful utility disparity `<=1`. The bounded coalition predicate checks every true profile against every alternative joint report and rejects only strict Pareto improvements for both fixed agents. Neutrality complements both types and requires the choice to complement; it is reported for the finite impossibility audit, not accepted.
+
+`verifier.py` emits typed witnesses for every failed predicate. `independent_verifier.py` reconstructs the row-table checks and enumeration without importing the primary verifier. `search.py` exhaustively enumerates all `6^4` tables and runs a seeded zero-transfer evolutionary proposal loop.
