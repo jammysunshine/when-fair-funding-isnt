@@ -73,3 +73,12 @@ continuous cube. Use it as a positive control for the certificate method and
 test functional distinctness from the later AAAI-2024 printed formula. Keep
 this new target outside the frozen Phase II corpus and do not call it a new
 discovery.
+
+2026-08-15 (Phase IV, before adding corpus entries): shift the prospective
+paper contribution from formula-specific scripts to a typed, exact shallow
+max-affine executable-specification engine and a prespecified source census.
+Rationale: prior art already covers automated VCG redistribution,
+computer-aided mechanism verification, and general piecewise-linear network
+verification separately; a credible claim must be the bounded bridge, with
+explicit formula provenance and reproducible certificates rather than an
+unsupported discovery claim.

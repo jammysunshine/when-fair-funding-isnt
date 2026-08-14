@@ -63,6 +63,13 @@ explicit inclusion scope, four independent replays, and clear continuous versus
 grid boundaries. It is still insufficient for a top-tier general-AI claim; the
 next gate is a broader prespecified census or a new certified algorithmic result.
 
+Phase IV (pre-registered before extension): a typed exact shallow max-affine
+executable-specification engine now reproduces both continuous three-agent
+positive controls—Guo (IJCAI 2019) Equation (2) and Guo (AAAI 2024)'s printed
+rule—at every arrangement vertex. Its emitted certificate is
+`artifacts/max_affine_certification.json`. This is a reusable method result
+within the restricted expression class, not a general neural-network verifier.
+
 Delivery gate: the replication lane has frozen certificates and clean
 independent replays. A paper-grade main study still requires a broader,
 prespecified audit corpus or a new certified mechanism-design result. The
