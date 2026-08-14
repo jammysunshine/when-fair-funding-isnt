@@ -1,11 +1,9 @@
-# Decision Log
+# Decision log
 
-| Decision | Timing | Rationale |
-| --- | --- | --- |
-| Freeze two agents, binary types/choices, integer transfer grid | Before implementation | Makes exact 1,296-table coverage possible while retaining transfers |
-| Require DSIC, IR, feasibility, exact BB, anonymity, disparity, coalition predicate | Before frozen run | Machine-checkable incentive, fairness, and bounded robustness gate |
-| Use anonymous OR as primary baseline; retain priority as diagnostic | Before frozen run | Primary baseline must satisfy the frozen fairness predicate; priority remains a meaningful rejecting comparator |
-| Report neutrality but exclude it from acceptance | Before frozen run | Enables an explicit finite empty-intersection certificate without changing the main frontier |
-| Freeze held-out confirmation threats before audit | Before adversarial audit | Prevents tuning against perturbation/distribution outcomes |
-| Use exhaustive enumeration plus seeded evolutionary proposals | Before frozen run | Exact coverage and a genuinely separate discovery approach |
-| Make no novelty/general claim | After prior-art review | Canonical binary rules are established prior art; evidence is finite |
+2026-08-15 (before main run): replace the small binary-table headline with a public-project efficiency/budget-balance frontier. Rationale: it is anchored in primary literature and has a nontrivial cost-indexed objective.
+
+2026-08-15 (before main run): restrict to all anonymous monotone rules on the 10-state three-agent, three-level lattice. Rationale: exact completeness is more defensible than a large sampled mechanism class.
+
+2026-08-15 (before main run): normalize payments to discrete critical values and forbid subsidies when the project is absent. Rationale: fixes a canonical single-parameter DSIC/IR class and makes budget coverage falsifiable.
+
+2026-08-15 (after run): retain the held-out 207 failures. Rationale: they are a boundary result, not an inconvenient subgroup.

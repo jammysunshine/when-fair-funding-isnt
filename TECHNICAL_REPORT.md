@@ -1,3 +1,5 @@
-# Technical Report
+# Technical report
 
-Each candidate is four rows, each row choosing one of two alternatives and one of three zero-sum payment pairs, giving `(2×3)^4=1,296`. The primary verifier checks all unilateral deviations, IR, feasibility, budget, exact anonymity, utility disparity, coalition deviations, and reports neutrality witnesses. The independent verifier reconstructs these predicates over row tables without importing the primary verifier. The exhaustive result and certificate retain every accepted table, metrics, witnesses, frontier digests, confirmation distributions, and minimal failures. A seeded zero-transfer evolutionary loop provides a second discovery approach while the exact enumerator supplies coverage.
+The public-project study reduces a single-parameter DSIC/EPIR search to allocation rules plus critical payments. Anonymous states are sorted report vectors. A coordinatewise monotonicity filter enumerates all Boolean up-sets of the finite state lattice. For each rule and cost, the verifier computes critical payments, tests every deviation, tests budget coverage, and computes welfare regret against the efficient allocation.
+
+The cost frontier is a complete result for this exact class. The independent checker consumes only serialized tables and reproduces the four cost-3 acceptances. A seeded threshold proposal loop demonstrates discovery instrumentation but is not used to establish completeness. The held-out value-magnitude audit intentionally probes the strongest natural extrapolation and records its failures.

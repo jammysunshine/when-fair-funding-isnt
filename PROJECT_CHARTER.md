@@ -1,13 +1,23 @@
 # Project Charter
 
-Status: frozen 2026-08-14. Experiment 67 is a finite, reproducible mechanism-design audit.
+Status: frozen 2026-08-15. The original binary-table audit is a baseline; the headline study is the public-project frontier below.
 
-Question: within a two-agent binary-type, binary-choice direct-revelation domain, what is the complete deterministic allocation/payment frontier under incentive, feasibility, budget, fairness, and bounded coalition constraints, and can a seeded proposal search rediscover it?
+## Primary question
 
-Domain: profiles `(0,0),(0,1),(1,0),(1,1)`; value is `1{type=choice}`; integer payments are in `{-1,0,1}` (positive means paid to the mechanism); utilities are value minus payment; pointwise exact budget balance is required. Thus there are `6^4=1,296` candidate tables.
+Within a finite public-project domain, how much welfare is lost when deterministic anonymous DSIC and ex-post IR mechanisms must cover a known cost without deficit, and does exact automated search reveal a cost-indexed frontier that survives an independent checker and value-magnitude stress test?
 
-Acceptance: DSIC, ex-post IR, binary feasibility, exact budget balance, exact anonymity, truthful utility disparity at most `1` on every profile, and no joint report that strictly improves both fixed agents. Neutrality is audited and reported, but is not an acceptance requirement.
+## Frozen study
 
-Primary baseline: zero-transfer anonymous OR (`choice=1` iff either report is `1`). Canonical comparators include AND, majority tie rules, constants, serial dictatorships, and VCG pivot; priority-majority is retained as a rejecting fairness diagnostic. Objectives are uniform allocative welfare, utility disparity, regret, revenue, and description length.
+Three agents; values `{0,1,2}`; binary project; costs `1..6`; all anonymous monotone Boolean allocation rules; normalized discrete critical payments; uniform finite evaluation distribution. There are 10 anonymous states and 16 rules, exhaustively enumerated at every cost.
 
-Evidence boundary: exhaustive enumeration plus a separately implemented checker is a complete result only on this frozen finite domain. The evolutionary loop is a rediscovery probe, not a coverage proof. No novelty, general theorem, deployment, randomized mechanism, continuous type, false-name, or real-world claim is made.
+Acceptance: feasibility, DSIC, ex-post IR, anonymity, no subsidy when the project is absent, and weak budget balance when it is built. The rule must build at the all-2 profile. Primary metric: worst-case additive welfare regret against the efficient allocation; secondary metric: expected welfare. Threshold: complete enumeration, independent replay, and a held-out audit, with every failure retained.
+
+Strong comparators: efficient critical-payment rule (expected to fail budget balance), all accepted frontier rules, and the seeded sum-threshold proposal probe. The original two-agent and three-agent audits are regression baselines only.
+
+## Resource ceiling and non-goals
+
+Local CPU only, no paid API/cloud/real data, under 10 minutes per complete run and under 100 MB of generated artifacts. No claim is made for continuous values, randomized mechanisms, Bayesian optimality, or a general impossibility theorem. The useful fallback is a complete finite certificate and a falsified generalization boundary.
+
+## Evidence target
+
+Candidate contribution/useful artifact: exact finite frontier plus independent machine-checkable certificate. Any broader publication claim requires external novelty review and independent replication.

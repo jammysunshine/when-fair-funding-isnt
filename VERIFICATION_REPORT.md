@@ -1,7 +1,5 @@
-# Verification Report
+# Verification report
 
-Commands: `python3 -m unittest discover -s tests -v`, `python3 scripts/run_experiment.py`, and `python3 scripts/verify_certificates.py`.
+Primary verification is in `src/mechanism_discovery/public_project.py`; it checks every profile, unilateral report, payment, and anonymity permutation. `public_project_independent.py` reconstructs the table and critical payments without importing the primary verifier.
 
-The primary and standalone row-table checker each enumerate all 1,296 candidates and accept exactly four tables. Their frontier SHA-256 is `3a729b20545161e401e7689ef4f3b491ce22269c9ecb49ef76e82d38145ab6e2`. The accepted tables are the two constants and the two anonymous monotone rules (AND/OR, equivalent to fixed-tie majority on this domain). The `anonymous_or` baseline passes both checkers; priority-majority/serial dictatorship is rejected by anonymity/fairness.
-
-The certificate records no strict uniform-welfare improver over the baseline, held-out distributional evaluations, zero bounded coalition witnesses, zero `{0,1,2}` value-magnitude failures, and a minimal DSIC counterexample. The finite audit also records that no accepted table is neutral. These are exact or bounded claims only; the independent checker is a separate implementation, not an external lab replication.
+The study run enumerates 16 rules and writes the full witness-bearing JSON. The independent replay accepts all 4 serialized cost-3 rows (`independent_failure_count=0`, digest `16e4f8d6f38faf5691a407f1da9bf60af9242b9bdf113465a3a59e6d255143be`). The efficient comparator has budget witnesses including `(0,2,2)` with payments `(0,1,1)` at cost 3. Held-out value-magnitude checks cover all 64 profiles for each threshold 1–6 and report 207 failures.

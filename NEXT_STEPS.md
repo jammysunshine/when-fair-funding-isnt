@@ -1,5 +1,3 @@
-# Next Steps
+# Next steps
 
-1. Re-run the frozen commands and verify checksums on a second machine.
-2. If extending beyond this domain, create a new charter, preregistration, and confirmation boundary before changing any frozen predicate.
-3. An independently authored SAT/SMT or other-language checker would strengthen replication, but is not required for this finite certificate.
+For a genuine paper submission, extend the certificate to larger value lattices, include non-anonymous and subsidy-allowed classes, compare randomized mechanisms, and obtain an independent external replication. The current package is ready as a rigorous finite benchmark, not as evidence that a publishable novelty claim has already been established.

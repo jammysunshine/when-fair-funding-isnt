@@ -1,16 +1,25 @@
-# Reproducibility Manifest
+# Reproducibility manifest
 
-Environment: Python 3 standard library; no downloads, packages, APIs, cloud, or paid compute. Frozen profile order is `(0,0),(0,1),(1,0),(1,1)`. Seed `67`; evolutionary population `64`; generations `40`; candidate count `1,296`.
+Environment: Python 3.14 (stdlib only), local CPU, no network/data download, deterministic integer arithmetic. Repository commit and working-tree state are recorded by Git.
 
-Run:
+Commands:
 
-```sh
+```bash
 python3 -m unittest discover -s tests -v
-python3 scripts/run_experiment.py
-python3 scripts/verify_certificates.py
-sha256sum configs/experiment_67.json configs/confirmation_67.json artifacts/experiment_67_results.json artifacts/experiment_67_independent_certificate.json artifacts/frontier.csv reports/frontier.svg
+python3 scripts/run_public_project_study.py
+python3 scripts/verify_public_project_certificate.py
 ```
 
-Frozen configuration hashes: `configs/experiment_67.json` SHA-256 `cce3d57be6fbcc021c4fa8da9f7785bf2a11a9645b8a15a13176fd9b1894d1d3`; `configs/confirmation_67.json` SHA-256 `3f2553cf3237dc13dd335bc60e672d68749832490cd8ecb8fa9ee15016650f3a`. The run must report 13 passing tests, 1,296 candidates, 4 accepted tables, and a primary/independent frontier digest of `3a729b20545161e401e7689ef4f3b491ce22269c9ecb49ef76e82d38145ab6e2`.
+Expected public-study summary: 16 enumerated rules; cost-3 accepted count 4; accepted counts by cost `4,4,4,1,1,1`; independent failures 0; held-out failures 207.
 
-Generated paths and SHA-256: `artifacts/experiment_67_results.json` (`bfa20cc035bbe22e34502a183cb2dd170043ffed2ad5467c405cc8e0d9fd75cb`), `artifacts/experiment_67_independent_certificate.json` (`d2293e8cda3ec35b2209de2dee4ab371f52c3e4ec29e28cca22f9de0d4313aeb`), `artifacts/frontier.csv` (`e1c7b7d3de33f4b029616b2a524fbe8a220fa899011e2085b479035653ab45b3`), and `reports/frontier.svg` (`898b00d046c6c04eac759a95bba4eada0f13e8700132f370dd08dd381535004f`). No nondeterminism is expected.
+Artifacts are regenerated, not hand-edited: `artifacts/public_project_study.json`, `artifacts/public_project_certificate.json`, `artifacts/public_project_frontier.csv`, `reports/public_project_frontier.svg`. Run `sha256sum` after the final clean run; this manifest is updated with the resulting hashes before commit.
+
+Frozen hashes for the clean run:
+
+```text
+configs/public_project_study.json       57407aea68db75d133521ef03cc80560880a102d7d42821264ee6e53a7d0f68e
+artifacts/public_project_study.json     74c830d7cbf79a1aa966c8cd3acb91f4239d5083747a7ed44862f78a14e78551
+artifacts/public_project_certificate.json 4f4390967fb8223c12bfb63f3df50945fd62eca92ea34ec817a1b5cfdf08037d
+artifacts/public_project_frontier.csv   18bfe664fb845cc25bddb2f82368ed9864dc85a6bba2e1192cb9d0aa594bb3d5
+reports/public_project_frontier.svg     fe2f6e1d346aee94b2470be42f0da5d2217f547058ce4c0f83547d7d7ba34b5e
+```

@@ -1,0 +1,1586 @@
+{
+  "accepted_at_cost_3": [
+    {
+      "mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 3,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_512"
+      },
+      "metrics": {
+        "expected_optimal_welfare": 0.5555555555555556,
+        "expected_regret": 0.4444444444444444,
+        "expected_welfare": 0.1111111111111111,
+        "max_revenue": 6,
+        "positive_optimum_profiles": 10,
+        "profile_count": 27,
+        "project_rate": 0.037037037037037035,
+        "state_count": 10,
+        "worst_case_regret": 2
+      },
+      "verification": {
+        "accepted": true,
+        "anonymity": true,
+        "dsic": true,
+        "ex_post_ir": true,
+        "feasibility": true,
+        "weak_budget_balance": true,
+        "witnesses": []
+      }
+    },
+    {
+      "mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 3,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_768"
+      },
+      "metrics": {
+        "expected_optimal_welfare": 0.5555555555555556,
+        "expected_regret": 0.2222222222222222,
+        "expected_welfare": 0.3333333333333333,
+        "max_revenue": 5,
+        "positive_optimum_profiles": 10,
+        "profile_count": 27,
+        "project_rate": 0.14814814814814814,
+        "state_count": 10,
+        "worst_case_regret": 1
+      },
+      "verification": {
+        "accepted": true,
+        "anonymity": true,
+        "dsic": true,
+        "ex_post_ir": true,
+        "feasibility": true,
+        "weak_budget_balance": true,
+        "witnesses": []
+      }
+    },
+    {
+      "mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 3,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_896"
+      },
+      "metrics": {
+        "expected_optimal_welfare": 0.5555555555555556,
+        "expected_regret": 0.1111111111111111,
+        "expected_welfare": 0.4444444444444444,
+        "max_revenue": 4,
+        "positive_optimum_profiles": 10,
+        "profile_count": 27,
+        "project_rate": 0.25925925925925924,
+        "state_count": 10,
+        "worst_case_regret": 1
+      },
+      "verification": {
+        "accepted": true,
+        "anonymity": true,
+        "dsic": true,
+        "ex_post_ir": true,
+        "feasibility": true,
+        "weak_budget_balance": true,
+        "witnesses": []
+      }
+    },
+    {
+      "mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 3,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_960"
+      },
+      "metrics": {
+        "expected_optimal_welfare": 0.5555555555555556,
+        "expected_regret": 0.1111111111111111,
+        "expected_welfare": 0.4444444444444444,
+        "max_revenue": 3,
+        "positive_optimum_profiles": 10,
+        "profile_count": 27,
+        "project_rate": 0.2962962962962963,
+        "state_count": 10,
+        "worst_case_regret": 1
+      },
+      "verification": {
+        "accepted": true,
+        "anonymity": true,
+        "dsic": true,
+        "ex_post_ir": true,
+        "feasibility": true,
+        "weak_budget_balance": true,
+        "witnesses": []
+      }
+    }
+  ],
+  "accepted_at_cost_3_count": 4,
+  "baseline_efficient": {
+    "allocation_by_state": [
+      [
+        [
+          0,
+          0,
+          0
+        ],
+        0
+      ],
+      [
+        [
+          0,
+          0,
+          1
+        ],
+        0
+      ],
+      [
+        [
+          0,
+          0,
+          2
+        ],
+        0
+      ],
+      [
+        [
+          0,
+          1,
+          1
+        ],
+        0
+      ],
+      [
+        [
+          0,
+          1,
+          2
+        ],
+        1
+      ],
+      [
+        [
+          0,
+          2,
+          2
+        ],
+        1
+      ],
+      [
+        [
+          1,
+          1,
+          1
+        ],
+        1
+      ],
+      [
+        [
+          1,
+          1,
+          2
+        ],
+        1
+      ],
+      [
+        [
+          1,
+          2,
+          2
+        ],
+        1
+      ],
+      [
+        [
+          2,
+          2,
+          2
+        ],
+        1
+      ]
+    ],
+    "cost": 3,
+    "max_value": 2,
+    "n_agents": 3,
+    "name": "efficient_baseline"
+  },
+  "baseline_efficient_verification": {
+    "accepted": false,
+    "anonymity": true,
+    "dsic": true,
+    "ex_post_ir": true,
+    "feasibility": true,
+    "weak_budget_balance": false,
+    "witnesses": [
+      {
+        "payments": [
+          0,
+          1,
+          1
+        ],
+        "profile": [
+          0,
+          2,
+          2
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          0,
+          1
+        ],
+        "profile": [
+          1,
+          1,
+          2
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          1,
+          0
+        ],
+        "profile": [
+          1,
+          2,
+          1
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          0,
+          0
+        ],
+        "profile": [
+          1,
+          2,
+          2
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          1,
+          0,
+          1
+        ],
+        "profile": [
+          2,
+          0,
+          2
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          1,
+          0,
+          0
+        ],
+        "profile": [
+          2,
+          1,
+          1
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          0,
+          0
+        ],
+        "profile": [
+          2,
+          1,
+          2
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          1,
+          1,
+          0
+        ],
+        "profile": [
+          2,
+          2,
+          0
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          0,
+          0
+        ],
+        "profile": [
+          2,
+          2,
+          1
+        ],
+        "property": "weak_budget_balance"
+      },
+      {
+        "payments": [
+          0,
+          0,
+          0
+        ],
+        "profile": [
+          2,
+          2,
+          2
+        ],
+        "property": "weak_budget_balance"
+      }
+    ]
+  },
+  "configuration": {
+    "allocation_class": "all anonymous monotone Boolean rules",
+    "costs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "heldout_max_value": 3,
+    "max_value": 2,
+    "n_agents": 3,
+    "payment_rule": "normalized discrete critical value",
+    "proposal_seed": 6701,
+    "require_project_at_max_profile": true,
+    "study": "public_project_exact_frontier"
+  },
+  "cost_frontier": {
+    "1": {
+      "accepted_count": 4,
+      "best_expected_welfare": 1.037037037037037,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 1,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_960"
+      },
+      "best_worst_case_regret": 3,
+      "candidate_count": 16
+    },
+    "2": {
+      "accepted_count": 4,
+      "best_expected_welfare": 0.7407407407407407,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 2,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_960"
+      },
+      "best_worst_case_regret": 2,
+      "candidate_count": 16
+    },
+    "3": {
+      "accepted_count": 4,
+      "best_expected_welfare": 0.4444444444444444,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            1
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 3,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_896"
+      },
+      "best_worst_case_regret": 1,
+      "candidate_count": 16
+    },
+    "4": {
+      "accepted_count": 1,
+      "best_expected_welfare": 0.07407407407407407,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 4,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_512"
+      },
+      "best_worst_case_regret": 1,
+      "candidate_count": 16
+    },
+    "5": {
+      "accepted_count": 1,
+      "best_expected_welfare": 0.037037037037037035,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 5,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_512"
+      },
+      "best_worst_case_regret": 0,
+      "candidate_count": 16
+    },
+    "6": {
+      "accepted_count": 1,
+      "best_expected_welfare": 0.0,
+      "best_mechanism": {
+        "allocation_by_state": [
+          [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              0,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              0,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              1
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              1,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              1,
+              2,
+              2
+            ],
+            0
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ],
+            1
+          ]
+        ],
+        "cost": 6,
+        "max_value": 2,
+        "n_agents": 3,
+        "name": "anonymous_monotone_mask_512"
+      },
+      "best_worst_case_regret": 0,
+      "candidate_count": 16
+    }
+  },
+  "enumerated_rule_count": 16,
+  "proposal_probe": {
+    "accepted": 1002,
+    "best": {
+      "accepted": true,
+      "metrics": {
+        "expected_optimal_welfare": 0.5555555555555556,
+        "expected_regret": 0.2222222222222222,
+        "expected_welfare": 0.3333333333333333,
+        "max_revenue": 5,
+        "positive_optimum_profiles": 10,
+        "profile_count": 27,
+        "project_rate": 0.14814814814814814,
+        "state_count": 10,
+        "worst_case_regret": 1
+      },
+      "threshold": 5
+    },
+    "evaluated": 2560,
+    "generations": 40,
+    "population": 64,
+    "seed": 6701
+  },
+  "question": "How much welfare is lost when deterministic anonymous DSIC/EPIR public-project rules must cover a known cost without deficit?",
+  "search_domain": {
+    "allocation_class": "all anonymous monotone Boolean rules",
+    "costs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_value": 2,
+    "n_agents": 3,
+    "payment_rule": "normalized discrete critical value"
+  },
+  "study": "public_project_exact_frontier",
+  "sum_threshold_scale": [
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.5555555555555556,
+          "expected_regret": 0.2222222222222222,
+          "expected_welfare": 0.3333333333333333,
+          "max_revenue": 5,
+          "positive_optimum_profiles": 10,
+          "profile_count": 27,
+          "project_rate": 0.14814814814814814,
+          "state_count": 10,
+          "worst_case_regret": 1
+        },
+        "threshold": 5
+      },
+      "cost": 3,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.5555555555555556,
+            "expected_regret": 0.2222222222222222,
+            "expected_welfare": 0.3333333333333333,
+            "max_revenue": 5,
+            "positive_optimum_profiles": 10,
+            "profile_count": 27,
+            "project_rate": 0.14814814814814814,
+            "state_count": 10,
+            "worst_case_regret": 1
+          },
+          "threshold": 5
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.5555555555555556,
+            "expected_regret": 0.4444444444444444,
+            "expected_welfare": 0.1111111111111111,
+            "max_revenue": 6,
+            "positive_optimum_profiles": 10,
+            "profile_count": 27,
+            "project_rate": 0.037037037037037035,
+            "state_count": 10,
+            "worst_case_regret": 2
+          },
+          "threshold": 6
+        }
+      ],
+      "n_agents": 3
+    },
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.6419753086419753,
+          "expected_regret": 0.4444444444444444,
+          "expected_welfare": 0.19753086419753085,
+          "max_revenue": 7,
+          "positive_optimum_profiles": 31,
+          "profile_count": 81,
+          "project_rate": 0.06172839506172839,
+          "state_count": 15,
+          "worst_case_regret": 2
+        },
+        "threshold": 7
+      },
+      "cost": 4,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.6419753086419753,
+            "expected_regret": 0.4444444444444444,
+            "expected_welfare": 0.19753086419753085,
+            "max_revenue": 7,
+            "positive_optimum_profiles": 31,
+            "profile_count": 81,
+            "project_rate": 0.06172839506172839,
+            "state_count": 15,
+            "worst_case_regret": 2
+          },
+          "threshold": 7
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.6419753086419753,
+            "expected_regret": 0.5925925925925926,
+            "expected_welfare": 0.04938271604938271,
+            "max_revenue": 8,
+            "positive_optimum_profiles": 31,
+            "profile_count": 81,
+            "project_rate": 0.012345679012345678,
+            "state_count": 15,
+            "worst_case_regret": 3
+          },
+          "threshold": 8
+        }
+      ],
+      "n_agents": 4
+    },
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.720164609053498,
+          "expected_regret": 0.6172839506172839,
+          "expected_welfare": 0.102880658436214,
+          "max_revenue": 9,
+          "positive_optimum_profiles": 96,
+          "profile_count": 243,
+          "project_rate": 0.024691358024691357,
+          "state_count": 21,
+          "worst_case_regret": 3
+        },
+        "threshold": 9
+      },
+      "cost": 5,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.720164609053498,
+            "expected_regret": 0.6172839506172839,
+            "expected_welfare": 0.102880658436214,
+            "max_revenue": 9,
+            "positive_optimum_profiles": 96,
+            "profile_count": 243,
+            "project_rate": 0.024691358024691357,
+            "state_count": 21,
+            "worst_case_regret": 3
+          },
+          "threshold": 9
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.720164609053498,
+            "expected_regret": 0.6995884773662552,
+            "expected_welfare": 0.0205761316872428,
+            "max_revenue": 10,
+            "positive_optimum_profiles": 96,
+            "profile_count": 243,
+            "project_rate": 0.00411522633744856,
+            "state_count": 21,
+            "worst_case_regret": 4
+          },
+          "threshold": 10
+        }
+      ],
+      "n_agents": 5
+    },
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.7901234567901234,
+          "expected_regret": 0.7407407407407407,
+          "expected_welfare": 0.04938271604938271,
+          "max_revenue": 11,
+          "positive_optimum_profiles": 294,
+          "profile_count": 729,
+          "project_rate": 0.009602194787379973,
+          "state_count": 28,
+          "worst_case_regret": 4
+        },
+        "threshold": 11
+      },
+      "cost": 6,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.7901234567901234,
+            "expected_regret": 0.7407407407407407,
+            "expected_welfare": 0.04938271604938271,
+            "max_revenue": 11,
+            "positive_optimum_profiles": 294,
+            "profile_count": 729,
+            "project_rate": 0.009602194787379973,
+            "state_count": 28,
+            "worst_case_regret": 4
+          },
+          "threshold": 11
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.7901234567901234,
+            "expected_regret": 0.7818930041152263,
+            "expected_welfare": 0.00823045267489712,
+            "max_revenue": 12,
+            "positive_optimum_profiles": 294,
+            "profile_count": 729,
+            "project_rate": 0.0013717421124828531,
+            "state_count": 28,
+            "worst_case_regret": 5
+          },
+          "threshold": 12
+        }
+      ],
+      "n_agents": 6
+    },
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.8545953360768176,
+          "expected_regret": 0.8321902149062643,
+          "expected_welfare": 0.02240512117055327,
+          "max_revenue": 13,
+          "positive_optimum_profiles": 897,
+          "profile_count": 2187,
+          "project_rate": 0.003657978966620942,
+          "state_count": 36,
+          "worst_case_regret": 5
+        },
+        "threshold": 13
+      },
+      "cost": 7,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.8545953360768176,
+            "expected_regret": 0.8321902149062643,
+            "expected_welfare": 0.02240512117055327,
+            "max_revenue": 13,
+            "positive_optimum_profiles": 897,
+            "profile_count": 2187,
+            "project_rate": 0.003657978966620942,
+            "state_count": 36,
+            "worst_case_regret": 5
+          },
+          "threshold": 13
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.8545953360768176,
+            "expected_regret": 0.8513946044810242,
+            "expected_welfare": 0.003200731595793324,
+            "max_revenue": 14,
+            "positive_optimum_profiles": 897,
+            "profile_count": 2187,
+            "project_rate": 0.0004572473708276177,
+            "state_count": 36,
+            "worst_case_regret": 6
+          },
+          "threshold": 14
+        }
+      ],
+      "n_agents": 7
+    },
+    {
+      "best": {
+        "metrics": {
+          "expected_optimal_welfare": 0.9144947416552355,
+          "expected_regret": 0.9047401310775797,
+          "expected_welfare": 0.009754610577655845,
+          "max_revenue": 15,
+          "positive_optimum_profiles": 2727,
+          "profile_count": 6561,
+          "project_rate": 0.0013717421124828531,
+          "state_count": 45,
+          "worst_case_regret": 6
+        },
+        "threshold": 15
+      },
+      "cost": 8,
+      "feasible_sum_thresholds": [
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.9144947416552355,
+            "expected_regret": 0.9047401310775797,
+            "expected_welfare": 0.009754610577655845,
+            "max_revenue": 15,
+            "positive_optimum_profiles": 2727,
+            "profile_count": 6561,
+            "project_rate": 0.0013717421124828531,
+            "state_count": 45,
+            "worst_case_regret": 6
+          },
+          "threshold": 15
+        },
+        {
+          "metrics": {
+            "expected_optimal_welfare": 0.9144947416552355,
+            "expected_regret": 0.9132754153330285,
+            "expected_welfare": 0.0012193263222069807,
+            "max_revenue": 16,
+            "positive_optimum_profiles": 2727,
+            "profile_count": 6561,
+            "project_rate": 0.00015241579027587258,
+            "state_count": 45,
+            "worst_case_regret": 7
+          },
+          "threshold": 16
+        }
+      ],
+      "n_agents": 8
+    }
+  ]
+}

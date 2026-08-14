@@ -1,36 +1,17 @@
-# Research Experiment Workspace
+# Automated Mechanism Discovery — Experiment 67
 
-This is the independent repository for Experiment 67, **Automated Mechanism Discovery**. Its complete research brief and completion gate are in [`PROMPT.md`](PROMPT.md). The frozen artifact exhaustively checks 1,296 deterministic binary allocation/payment tables and certifies a four-table frontier; start with [`REPLICATION_GUIDE.md`](REPLICATION_GUIDE.md).
+The headline artifact is a finite public-project study grounded in the efficiency/budget-balance literature. It exhaustively enumerates all anonymous monotone Boolean allocation rules for three agents with values `{0,1,2}`, uses normalized critical payments, and certifies the cost-indexed DSIC/IR/no-deficit frontier. The earlier binary allocation audits remain regression baselines in the repository.
 
-## Start here
+## Reproduce
 
-1. Read `PROMPT.md` before choosing tools, architecture, datasets, or claims.
-2. Open this repository as its own Codex project and start a new top-level task.
-3. Start with Terra as lead and paste the complete `PROMPT.md` as the first message.
-4. Terra owns scope, the exact mechanism/verifier, baseline reproduction, and interpretation. It must not hand off until `HANDOFF.md` says `SAFE FOR LUNA HANDOFF`.
-5. Luna may then execute only the frozen task queue recorded in `HANDOFF.md`; it must not change the specification, verifier semantics, success criteria, or conclusions.
-6. Use worktrees only when multiple sessions need to edit this same experiment. Independent experiments belong in independent repositories.
+```bash
+python3 -m unittest discover -s tests -v
+python3 scripts/run_public_project_study.py
+python3 scripts/verify_public_project_certificate.py
+python3 scripts/run_experiment.py
+python3 scripts/verify_certificates.py
+python3 scripts/run_three_agent_extension.py
+python3 scripts/verify_three_agent_certificates.py
+```
 
-## Working structure
-
-- `src/` — reusable implementation
-- `tests/` — automated correctness and regression tests
-- `benchmarks/` — benchmark harnesses and frozen configurations
-- `experiments/` — executable experimental definitions
-- `notebooks/` — exploratory analysis that does not replace reproducible scripts
-- `scripts/` — setup, data acquisition, reproduction, and verification commands
-- `data/` — manifests, small fixtures, and data instructions
-- `reports/` — research logs, results, limitations, replication notes, and paper drafts
-- `PROJECT_CHARTER.md` — frozen primary question, success threshold, baseline, resource ceiling, non-goals, and fallback contribution
-- `STATUS.md` — phase, evidence level, executed commands, blockers, and next action
-- `EVIDENCE_INDEX.md` — headline claims mapped to their supporting or refuting evidence
-- `DECISION_LOG.md` — consequential design choices, alternatives, timing, and rationale
-- `REPRODUCIBILITY_MANIFEST.md` — pinned data/code/model versions, checksums, environment, seeds, hardware, commands, and expected outputs
-
-The research prompt may require additional root-level artifacts. Its requirements take precedence over this starter layout.
-
-## Evidence and storage
-
-Keep code, configurations, small fixtures, summaries, and machine-readable evidence in Git. Do not commit secrets, private data, restricted datasets, large model weights, caches, or generated build artifacts. Store large reproducible artifacts externally and record their source, license, checksum, acquisition command, and expected location in `data/README.md` or an artifact manifest.
-
-GitHub synchronizes repository files; it does not transfer a running Codex session or its compute. Clone this repository on another machine to continue from committed artifacts.
+The public-project outputs are `artifacts/public_project_study.json`, `artifacts/public_project_certificate.json`, `artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`. Read `PROJECT_CHARTER.md`, `MECHANISM_SPEC.md`, `PREREGISTRATION.md`, `PRIOR_ART.md`, and `LIMITATIONS.md` before interpreting them.

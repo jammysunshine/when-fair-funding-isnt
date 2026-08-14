@@ -1,13 +1,11 @@
-# Evidence Index
+# Evidence index
 
-| Claim | Supporting artifact/check |
-| --- | --- |
-| Domain, predicates, baseline frozen | `PROJECT_CHARTER.md`, `PREREGISTRATION.md`, `MECHANISM_SPEC.md`, configs |
-| Every candidate table checked | `src/mechanism_discovery/search.py`, result JSON (`1,296`) |
-| Four-table accepted frontier | result JSON, certificate, `frontier.csv`, `frontier.svg` |
-| Independent agreement | certificate frontier digests; independent verifier test |
-| Baseline reproduction | result JSON baseline records; baseline tests |
-| No strict welfare improver | certificate empty improver list; `NEGATIVE_RESULTS.md` |
-| Held-out/adversarial bounded robustness | confirmation config, `adversarial_audit.py`, certificate |
-| Failure witnesses | verifier regression tests, certificate minimal DSIC witness |
-| Prior-art and claim boundaries | `PRIOR_ART.md`, `SOURCES.json`, `CLAIM_LEDGER.md`, `LIMITATIONS.md` |
+| Claim | Evidence | Status |
+|---|---|---|
+| All 16 anonymous monotone rules were enumerated | `scripts/run_public_project_study.py`, `artifacts/public_project_study.json` | SUPPORTED on frozen domain |
+| Four rules satisfy the cost-3 predicate | `artifacts/public_project_study.json` | SUPPORTED on frozen domain |
+| Independent replay agrees | `scripts/verify_public_project_certificate.py`, `artifacts/public_project_certificate.json` | SUPPORTED |
+| Efficient critical-payment rule can fail no-deficit | `COUNTEREXAMPLES.md`, witness in study JSON | SUPPORTED |
+| Cost frontier contracts as cost rises | frontier CSV/SVG and RESULTS.md | SUPPORTED descriptively |
+| Finite rule generalizes to value 3 | held-out certificate | REFUTED / 207 failures |
+| Continuous/general novelty | none | UNKNOWN / explicitly not claimed |
