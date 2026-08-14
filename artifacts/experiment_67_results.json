@@ -1,0 +1,1017 @@
+{
+  "baseline": {
+    "independent_verifier": {
+      "accepted": true,
+      "failures": []
+    },
+    "metrics": {
+      "description_length": 2.0,
+      "evaluation_profiles": 4.0,
+      "expected_utility_disparity": 0.5,
+      "expected_welfare": 1.5,
+      "worst_case_regret": 0.0
+    },
+    "name": "priority_majority_agent_0",
+    "outcomes": [
+      {
+        "choice": 0,
+        "payments": [
+          0,
+          0
+        ],
+        "profile": [
+          0,
+          0
+        ]
+      },
+      {
+        "choice": 0,
+        "payments": [
+          0,
+          0
+        ],
+        "profile": [
+          0,
+          1
+        ]
+      },
+      {
+        "choice": 1,
+        "payments": [
+          0,
+          0
+        ],
+        "profile": [
+          1,
+          0
+        ]
+      },
+      {
+        "choice": 1,
+        "payments": [
+          0,
+          0
+        ],
+        "profile": [
+          1,
+          1
+        ]
+      }
+    ],
+    "primary_verifier": {
+      "accepted": true,
+      "anonymity": false,
+      "budget_balance": true,
+      "dsic": true,
+      "feasibility": true,
+      "ir": true,
+      "witnesses": [
+        {
+          "agent": null,
+          "detail": "vs (1, 0)",
+          "deviation": null,
+          "profile": [
+            0,
+            1
+          ],
+          "property": "anonymity"
+        },
+        {
+          "agent": null,
+          "detail": "vs (0, 1)",
+          "deviation": null,
+          "profile": [
+            1,
+            0
+          ],
+          "property": "anonymity"
+        }
+      ]
+    }
+  },
+  "config": {
+    "acceptance": "DSIC, ex-post IR, exact budget balance, and binary feasibility on every profile; baseline passes both checkers",
+    "distribution": "uniform over four truthful type profiles",
+    "domain": {
+      "agents": 2,
+      "alternatives": [
+        0,
+        1
+      ],
+      "payment_grid": [
+        -1,
+        0,
+        1
+      ],
+      "types": [
+        0,
+        1
+      ]
+    },
+    "evolutionary": {
+      "generations": 40,
+      "population_size": 64,
+      "seed": 67
+    },
+    "exhaustive_candidates": 1296
+  },
+  "evolutionary_search": {
+    "accepted": 1598,
+    "best_choices": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "evaluated": 2560,
+    "generations": 40,
+    "population_size": 64,
+    "seed": 67
+  },
+  "exhaustive_search": {
+    "accepted_count": 16,
+    "candidate_count": 1296,
+    "frontier": [
+      {
+        "metrics": {
+          "description_length": 10.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 6.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 5.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 0.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.0,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 3.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 1.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 3.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 2.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 6.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 6.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              -1,
+              1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 2.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 3.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 6.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 10.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.5,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 0,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 5.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 1.0,
+          "expected_welfare": 1.5,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 0,
+            "payments": [
+              1,
+              -1
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "metrics": {
+          "description_length": 4.0,
+          "evaluation_profiles": 4.0,
+          "expected_utility_disparity": 0.5,
+          "expected_welfare": 1.0,
+          "worst_case_regret": 0.0
+        },
+        "outcomes": [
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              0,
+              1
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              0
+            ]
+          },
+          {
+            "choice": 1,
+            "payments": [
+              0,
+              0
+            ],
+            "profile": [
+              1,
+              1
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

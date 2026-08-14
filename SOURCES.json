@@ -1,0 +1,4 @@
+[
+  {"id":"gibbard1973","authors":"Allan Gibbard","title":"Manipulation of Voting Schemes: A General Result","year":1973,"venue":"Econometrica 41(4):587-601","doi":"10.2307/1914083","url":"https://www.eecs.harvard.edu/cs286r/courses/fall11/papers/Gibbard73.pdf","accessed":"2026-08-14","role":"primary prior-art scope boundary"},
+  {"id":"moulin1980","authors":"Herve Moulin","title":"On strategy-proofness and single peakedness","year":1980,"venue":"Public Choice 35(4):437-455","doi":"10.1007/BF00128122","url":"https://eprints.gla.ac.uk/92237/","accessed":"2026-08-14","role":"primary restricted-domain characterization"}
+]

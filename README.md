@@ -1,6 +1,6 @@
 # Research Experiment Workspace
 
-This is the independent repository for Experiment 67, **Automated Mechanism Discovery**. Its complete research brief and completion gate are in [`PROMPT.md`](PROMPT.md).
+This is the independent repository for Experiment 67, **Automated Mechanism Discovery**. Its complete research brief and completion gate are in [`PROMPT.md`](PROMPT.md). The frozen useful artifact is a complete finite search over 1,296 deterministic binary allocation/payment tables; start with [`REPLICATION_GUIDE.md`](REPLICATION_GUIDE.md).
 
 ## Start here
 
