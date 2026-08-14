@@ -12,3 +12,10 @@ Frozen before the main run on 2026-08-15.
 - Confirmation: independent checker over every serialized accepted table; held-out sum-threshold audit over all 64 profiles with values `{0,1,2,3}`.
 - Stopping: no tuning after observing frontier outputs; report all costs, accepted counts, witnesses, and held-out failures.
 - Completion: artifacts, tests, hashes, commands, limitations, and claim-to-evidence links committed together.
+
+## Exploratory scaling extension
+
+The post-main extension is governed by `SCALING_EXTENSION_PROTOCOL.md`. It
+enumerates the same mechanism class exactly for `n=3,4,5` and all costs
+`1..2n`. It is reported as a separate finite-scaling result, not as a change
+to the original three-agent preregistration.

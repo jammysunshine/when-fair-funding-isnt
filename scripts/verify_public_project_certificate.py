@@ -49,15 +49,28 @@ def main() -> None:
         heldout.append({"threshold": threshold, "profiles": len(profiles), "failures": failures_for_threshold})
 
     digest = hashlib.sha256(json.dumps(independent, sort_keys=True).encode()).hexdigest()
+    cross_n_rows = []
+    for result in study.get("exact_cross_n_scale", []):
+        for frontier_row in result["cost_frontier"]:
+            cross_n_rows.extend(frontier_row["accepted"])
+    cross_n_checks = [check(row["mechanism"]) for row in cross_n_rows]
+    cross_n_failures = [report for report in cross_n_checks if not report["accepted"]]
+    cross_n_names = sorted(
+        f"{row['mechanism']['n_agents']}:{row['mechanism']['cost']}:{row['mechanism']['name']}"
+        for row in cross_n_rows
+    )
     certificate = {
         "study": "public_project_exact_frontier",
         "primary_rows": len(rows),
         "independent_rows": len(independent),
         "independent_failure_count": len(failures),
         "independent_digest": digest,
+        "cross_n_rows": len(cross_n_rows),
+        "cross_n_failure_count": len(cross_n_failures),
+        "cross_n_digest": hashlib.sha256("\n".join(cross_n_names).encode()).hexdigest(),
         "heldout_sum_threshold_audit": heldout,
         "heldout_total_failures": sum(row["failures"] for row in heldout),
-        "statement": "The independent checker agrees with every serialized accepted row; held-out sum-threshold rules are checked on all 4^3 value profiles.",
+        "statement": "The independent checker agrees with every serialized accepted main-study row and every serialized cross-n row; held-out sum-threshold rules are checked on all 4^3 value profiles.",
     }
     path = ROOT / "artifacts" / "public_project_certificate.json"
     path.write_text(json.dumps(certificate, indent=2, sort_keys=True) + "\n")

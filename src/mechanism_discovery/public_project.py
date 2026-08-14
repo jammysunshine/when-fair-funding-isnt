@@ -101,11 +101,39 @@ def _monotone(mask: int, states: tuple[tuple[int, ...], ...]) -> bool:
 
 
 def enumerate_anonymous_monotone(spec: PublicProjectSpec) -> Iterable[PublicProjectMechanism]:
-    """Enumerate every anonymous monotone Boolean allocation rule."""
+    """Enumerate every anonymous monotone Boolean allocation rule.
+
+    A monotone rule is an upward-closed subset of the sorted-state poset.
+    Enumerating its minimal active states (an antichain) avoids scanning the
+    ``2**|states|`` bit masks used by the original pilot implementation.  The
+    resulting masks are sorted before serialization so the three-agent
+    certificate remains byte-for-byte compatible with the pilot artifact.
+    """
     states = spec.states
-    for mask in range(1 << len(states)):
-        if not _monotone(mask, states):
-            continue
+    comparable = [
+        sum(1 << j for j in range(i + 1, len(states))
+            if all(a <= b for a, b in zip(states[i], states[j]))
+            or all(a >= b for a, b in zip(states[i], states[j])))
+        for i in range(len(states))
+    ]
+
+    masks: list[int] = []
+
+    def visit(index: int, minimal: list[int], blocked: int) -> None:
+        if index == len(states):
+            mask = 0
+            for source in minimal:
+                for target, state in enumerate(states):
+                    if all(a <= b for a, b in zip(states[source], state)):
+                        mask |= 1 << target
+            masks.append(mask)
+            return
+        visit(index + 1, minimal, blocked)
+        if not (blocked >> index) & 1:
+            visit(index + 1, minimal + [index], blocked | comparable[index])
+
+    visit(0, [], 0)
+    for mask in sorted(masks):
         rows = tuple((state, (mask >> i) & 1) for i, state in enumerate(states))
         yield PublicProjectMechanism(spec, rows, name=f"anonymous_monotone_mask_{mask}")
 
@@ -193,11 +221,11 @@ def public_project_metrics(mechanism: PublicProjectMechanism) -> dict[str, float
     }
 
 
-def frontier(spec: PublicProjectSpec) -> list[dict]:
+def frontier(spec: PublicProjectSpec, *, check_anonymity: bool = True) -> list[dict]:
     """Return all accepted mechanisms, sorted by regret then expected welfare."""
     accepted = []
     for mechanism in enumerate_anonymous_monotone(spec):
-        verification = verify_public_project(mechanism)
+        verification = verify_public_project(mechanism, check_anonymity=check_anonymity)
         if verification["accepted"] and mechanism.allocation(tuple([spec.max_value] * spec.n_agents)):
             accepted.append({"mechanism": mechanism, "verification": verification, "metrics": public_project_metrics(mechanism)})
     return sorted(accepted, key=lambda row: (row["metrics"]["worst_case_regret"], -row["metrics"]["expected_welfare"], row["mechanism"].name))

@@ -2,7 +2,13 @@
 
 ## Frozen configuration
 
-Headline study: `configs/public_project_study.json` — three agents, values `{0,1,2}`, costs `1..6`, all anonymous monotone Boolean allocation rules, normalized discrete critical payments, no-subsidy weak budget balance, and a project required at the all-2 profile. The original binary and three-agent audits are regression baselines only.
+The preregistered headline is `configs/public_project_study.json`: three
+agents, values `{0,1,2}`, costs `1..6`, all anonymous monotone Boolean rules,
+normalized discrete critical payments, DSIC, ex-post IR, feasibility,
+anonymity, no-subsidy, all-maximum-profile build, and weak budget balance.
+`SCALING_EXTENSION_PROTOCOL.md` freezes the exploratory exact extension at
+`n=3,4,5` and every cost `1..2n`, using the same checks and antichain
+enumeration. It is not retroactively part of the main preregistration.
 
 ## Exact commands
 
@@ -20,17 +26,32 @@ git diff --check
 
 ## Artifact paths
 
-- Specification and claims: `MECHANISM_SPEC.md`, `PREREGISTRATION.md`, `PRIOR_ART.md`, `CLAIM_LEDGER.md`
-- Main result: `artifacts/public_project_study.json`
+- Model/specification: `MECHANISM_SPEC.md`, `PREREGISTRATION.md`,
+  `SCALING_EXTENSION_PROTOCOL.md`, `PRIOR_ART.md`
+- Main and scaling results: `artifacts/public_project_study.json`,
+  `artifacts/public_project_scaling.csv`, `artifacts/public_project_frontier.csv`
 - Independent certificate: `artifacts/public_project_certificate.json`
-- Frontier table/plot: `artifacts/public_project_frontier.csv`, `reports/public_project_frontier.svg`
-- Code: `src/mechanism_discovery/public_project.py`, `src/mechanism_discovery/public_project_independent.py`, `scripts/run_public_project_study.py`, `scripts/verify_public_project_certificate.py`
-- Interpretation: `RESULTS.md`, `COUNTEREXAMPLES.md`, `LIMITATIONS.md`, `PAPER_DRAFT.md`
+- Plot: `reports/public_project_frontier.svg`
+- Code: `src/mechanism_discovery/public_project.py`,
+  `src/mechanism_discovery/public_project_independent.py`,
+  `scripts/run_public_project_study.py`,
+  `scripts/verify_public_project_certificate.py`
+- Manuscript and interpretation: `PAPER_DRAFT.md`, `RESULTS.md`,
+  `VERIFICATION_REPORT.md`, `CLAIM_LEDGER.md`, `LIMITATIONS.md`
+
+## Verified result
+
+The exact candidate counts for `n=3,4,5` are `16,32,64`; accepted counts by
+cost are `4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and
+`6,6,6,6,6,1,1,1,1,1`. All 74 serialized accepted rows pass independent
+replay; the held-out efficient-threshold audit records 207 failures.
 
 ## Remaining tasks
 
-No in-scope implementation tasks remain. A future paper submission still needs external novelty review, larger domains, subsidy/randomization comparisons, and an independent external replication; these are explicitly outside this handoff.
+No implementation or verification task in the declared finite study remains.
+Before journal submission, prove or refute the observed pattern beyond `n=5`,
+extend value/payment classes, refresh the prior-art review, and obtain external
+replication. The manuscript must not claim a general theorem, guaranteed
+novelty, or guaranteed acceptance from this finite certificate.
 
-The package is reproducible and safe to pass to the next operator: **SAFE FOR LUNA HANDOFF.**
-
-Delivered commit: `bde1b7c` on `origin/main`.
+The complete, reproducible package is **SAFE FOR LUNA HANDOFF.**

@@ -1,7 +1,14 @@
 # Executive summary
 
-This is an exact finite public-project mechanism-design study, not a claim of a new universal theorem. We enumerate all 16 anonymous monotone allocation rules for three agents with values `{0,1,2}`, attach normalized critical payments, and require DSIC, ex-post IR, anonymity, and no-deficit cost coverage.
+Experiment 67 is a certificate-first finite study of deterministic
+public-project mechanisms. It exhaustively enumerates anonymous monotone
+allocation tables for three, four, and five agents (`16/32/64` rules), over
+every integer cost `1..2n`, with exact critical payments and DSIC, ex-post IR,
+anonymity, feasibility, no-subsidy, and no-deficit checks.
 
-At cost 3, four rules survive; the independent checker reproduces the same four. As cost rises, the feasible frontier contracts and welfare falls. The efficient rule is truthful but fails cost coverage, illustrating the classic efficiency/budget-balance tension. A held-out value range `{0,1,2,3}` produces 207 failures, so the finite certificate does not justify broad generalization.
-
-The honest evidence level is a useful reproducible artifact/candidate computational result. It is not by itself a publishable novelty claim, a continuous-domain theorem, or evidence of deployment impact.
+The accepted-count sequences are `4,4,4,1,1,1` (`n=3`),
+`5,5,5,5,1,1,1,1` (`n=4`), and `6,6,6,6,6,1,1,1,1,1` (`n=5`). All 74
+serialized accepted rows pass an independent checker. The efficient threshold
+rule fails cost coverage at `(0,2,2)`, and a held-out value-3 audit records 207
+failures. The defensible contribution is a reproducible finite frontier and
+falsification benchmark—not a guaranteed novelty theorem or deployment result.

@@ -8,7 +8,7 @@ Within a finite public-project domain, how much welfare is lost when determinist
 
 ## Frozen study
 
-Three agents; values `{0,1,2}`; binary project; costs `1..6`; all anonymous monotone Boolean allocation rules; normalized discrete critical payments; uniform finite evaluation distribution. There are 10 anonymous states and 16 rules, exhaustively enumerated at every cost.
+Main study: three agents; values `{0,1,2}`; binary project; costs `1..6`; all anonymous monotone Boolean allocation rules; normalized discrete critical payments; uniform finite evaluation distribution. There are 10 anonymous states and 16 rules, exhaustively enumerated at every cost. An explicitly exploratory extension repeats the exact search for `n=4,5` and costs `1..2n`; its protocol is separate in `SCALING_EXTENSION_PROTOCOL.md`.
 
 Acceptance: feasibility, DSIC, ex-post IR, anonymity, no subsidy when the project is absent, and weak budget balance when it is built. The rule must build at the all-2 profile. Primary metric: worst-case additive welfare regret against the efficient allocation; secondary metric: expected welfare. Threshold: complete enumeration, independent replay, and a held-out audit, with every failure retained.
 
@@ -20,4 +20,4 @@ Local CPU only, no paid API/cloud/real data, under 10 minutes per complete run a
 
 ## Evidence target
 
-Candidate contribution/useful artifact: exact finite frontier plus independent machine-checkable certificate. Any broader publication claim requires external novelty review and independent replication.
+Candidate contribution/useful artifact: exact finite frontier plus independent machine-checkable certificate, with a finite scaling extension. Any broader publication claim requires external novelty review, a proof of any proposed general pattern, and independent replication.

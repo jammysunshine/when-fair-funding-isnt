@@ -69,7 +69,7 @@ def main() -> None:
         }
 
     scale = []
-    for n_agents in range(3, 9):
+    for n_agents in range(3, 6):
         spec = PublicProjectSpec(n_agents=n_agents, max_value=2, cost=n_agents)
         feasible = []
         for threshold in range(0, n_agents * spec.max_value + 2):
@@ -79,6 +79,28 @@ def main() -> None:
                 feasible.append({"threshold": threshold, "metrics": public_project_metrics(mechanism)})
         best = min(feasible, key=lambda row: (row["metrics"]["worst_case_regret"], -row["metrics"]["expected_welfare"])) if feasible else None
         scale.append({"n_agents": n_agents, "cost": n_agents, "feasible_sum_thresholds": feasible, "best": best})
+
+    # The optimized antichain enumerator makes an exact cross-n confirmation
+    # affordable through five agents.  This is the generalization test for
+    # the three-agent headline, not a sampled scaling curve.
+    exact_scale = []
+    for n_agents in range(3, 6):
+        cost_frontier = []
+        for cost in range(1, 2 * n_agents + 1):
+            spec = PublicProjectSpec(n_agents=n_agents, max_value=2, cost=cost)
+            candidates = frontier(spec, check_anonymity=False)
+            cost_frontier.append({
+                "cost": cost,
+                "candidate_count": len(list(enumerate_anonymous_monotone(spec))),
+                "accepted_count": len(candidates),
+                "best_worst_case_regret": candidates[0]["metrics"]["worst_case_regret"] if candidates else None,
+                "best_expected_welfare": max((r["metrics"]["expected_welfare"] for r in candidates), default=None),
+                "accepted": [
+                    {"mechanism": serialise_mechanism(r["mechanism"]), "metrics": r["metrics"]}
+                    for r in candidates
+                ],
+            })
+        exact_scale.append({"n_agents": n_agents, "max_value": 2, "cost_frontier": cost_frontier})
 
     payload = {
         "study": "public_project_exact_frontier",
@@ -90,6 +112,7 @@ def main() -> None:
         "accepted_at_cost_3": rows,
         "cost_frontier": by_cost,
         "sum_threshold_scale": scale,
+        "exact_cross_n_scale": exact_scale,
         "proposal_probe": evolutionary_probe(study_spec),
         "baseline_efficient": serialise_mechanism(sum_threshold_mechanism(study_spec, study_spec.cost, name="efficient_baseline")),
         "baseline_efficient_verification": verify_public_project(sum_threshold_mechanism(study_spec, study_spec.cost)),
@@ -103,6 +126,16 @@ def main() -> None:
         handle.write("cost,accepted_count,best_worst_case_regret,best_expected_welfare,best_mechanism\n")
         for cost, row in by_cost.items():
             handle.write(f"{cost},{row['accepted_count']},{row['best_worst_case_regret']},{row['best_expected_welfare']},{row['best_mechanism']['name'] if row['best_mechanism'] else ''}\n")
+
+    scaling_csv = ROOT / "artifacts" / "public_project_scaling.csv"
+    with scaling_csv.open("w", encoding="utf-8", newline="") as handle:
+        handle.write("n_agents,cost,candidate_count,accepted_count,best_worst_case_regret,best_expected_welfare\n")
+        for result in exact_scale:
+            for row in result["cost_frontier"]:
+                handle.write(
+                    f"{result['n_agents']},{row['cost']},{row['candidate_count']},"
+                    f"{row['accepted_count']},{row['best_worst_case_regret']},{row['best_expected_welfare']}\n"
+                )
 
     svg = ROOT / "reports" / "public_project_frontier.svg"
     svg.parent.mkdir(exist_ok=True)

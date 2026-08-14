@@ -1,11 +1,23 @@
 # Status
 
-Phase: public-project scope -> frozen main study -> independent verification -> packaging.
+Phase: exact public-project frontier plus exploratory cross-agent scaling,
+independent replay, manuscript, and delivery verification.
 
-Completed: prior-art review; charter/specification/preregistration; exact 16-rule enumeration at six costs; primary and standalone verifiers; efficient-rule counterexample; seeded proposal probe; held-out value-magnitude stress test; tests and artifacts.
+Completed: specification, preregistration, prior-art positioning, antichain
+enumerator, exact n=3/4/5 search, cost frontiers, primary verifier,
+standalone certificate, efficient-rule counterexample, held-out stress audit,
+paper-style manuscript, tests, hashes, and legacy regression checks.
 
-Main evidence: 16 rules enumerated; accepted counts by cost `4,4,4,1,1,1`; 4 cost-3 rows independently replayed; held-out audit reports 207 failures. Evidence level: useful artifact/candidate finite result, not confirmed contribution.
+Evidence: candidate counts `16/32/64`; accepted sequences
+`4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and `6,6,6,6,6,1,1,1,1,1`; 74 cross-agent
+rows independently accepted; 207 held-out failures retained.
 
-Resource use: local Python 3, no external packages, under one minute for the public-project run after caching; no external data or paid compute.
+Resource use: local Python standard library, deterministic integer arithmetic,
+no external data, paid API, or cloud compute. The initial n=3..8 scaling
+attempt was stopped for excessive CPU growth; the bounded n=3..5 protocol and
+limitation are recorded in `DECISION_LOG.md` and `SCALING_EXTENSION_PROTOCOL.md`.
 
-Delivery gate: complete command block passed; generated hashes are recorded in `REPRODUCIBILITY_MANIFEST.md`; package committed as `bde1b7c` and pushed to `origin/main`.
+Delivery gate: final clean-run verification is complete; commit and remote
+push are the remaining mechanical steps. The strongest supported claim is a
+finite, reproducible characterization—not a general theorem or guaranteed
+publication result.

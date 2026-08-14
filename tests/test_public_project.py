@@ -21,6 +21,11 @@ class PublicProjectTests(unittest.TestCase):
         self.assertEqual(len(list(enumerate_anonymous_monotone(spec))), 16)
         self.assertEqual(len(frontier(spec)), 4)
 
+    def test_antichain_enumerator_scales_exactly_through_five_agents(self):
+        counts = [len(list(enumerate_anonymous_monotone(PublicProjectSpec(n, 2, n)))) for n in range(3, 6)]
+        self.assertEqual(counts, [16, 32, 64])
+        self.assertEqual(len(frontier(PublicProjectSpec(4, 2, 4))), 5)
+
     def test_efficient_rule_has_a_budget_counterexample(self):
         spec = PublicProjectSpec(3, 2, 3)
         report = verify_public_project(sum_threshold_mechanism(spec, 3))

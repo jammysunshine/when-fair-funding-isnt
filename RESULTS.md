@@ -1,9 +1,26 @@
 # Results
 
-The exact class contains 16 anonymous monotone rules. At cost `c=3`, 4 rules satisfy every frozen constraint; an independent checker accepts all 4 and rejects none. The cost-indexed accepted counts are 4, 4, 4, 1, 1, 1 for `c=1,...,6`.
+The preregistered three-agent class contains 16 anonymous monotone rules. At
+costs `1..6`, accepted counts are `4,4,4,1,1,1`; best worst-case regrets are
+`3,2,1,1,0,0`. The four cost-3 rows all pass the independent checker.
 
-Best worst-case regret is 3, 2, 1, 1, 0, 0 respectively. Best expected welfare under the uniform `3^3` profiles is 1.0370, 0.7407, 0.4444, 0.0741, 0.0370, and 0.0000. These are finite-domain values, not continuous-domain guarantees.
+The exploratory exact extension enumerates 16, 32, and 64 rules for `n=3,4,5`.
+Across costs `1..2n`, accepted counts are:
 
-The efficient critical-payment rule passes DSIC, ex-post IR, feasibility, and anonymity but fails budget balance; `(0,2,2)` is a concrete witness at cost 3. The held-out value-magnitude audit finds 207 budget/IC audit failures across thresholds 1–6 on 64 profiles each. That stress result limits generalization and is part of the result.
+| agents | accepted counts by cost |
+|---:|---|
+| 3 | 4,4,4,1,1,1 |
+| 4 | 5,5,5,5,1,1,1,1 |
+| 5 | 6,6,6,6,6,1,1,1,1,1 |
 
-Artifacts: `artifacts/public_project_study.json`, `artifacts/public_project_certificate.json`, `artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`.
+All 74 serialized accepted rows pass the standalone checker. This supports a
+finite pattern in the tested range, not an asymptotic theorem. The efficient
+critical-payment rule still fails budget balance at `(0,2,2)` (payments
+`(0,1,1)` against cost 3). The held-out `{0,1,2,3}` stress audit records 207
+failures for the efficient threshold family, preserving the generalization
+boundary.
+
+Artifacts: `artifacts/public_project_study.json`,
+`artifacts/public_project_certificate.json`,
+`artifacts/public_project_scaling.csv`,
+`artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`.

@@ -7,3 +7,5 @@
 2026-08-15 (before main run): normalize payments to discrete critical values and forbid subsidies when the project is absent. Rationale: fixes a canonical single-parameter DSIC/IR class and makes budget coverage falsifiable.
 
 2026-08-15 (after run): retain the held-out 207 failures. Rationale: they are a boundary result, not an inconvenient subgroup.
+
+2026-08-15 (extension): replace brute-force Boolean-mask scanning with direct minimal-active-state antichain enumeration. An initial exploratory n=3..8 run was stopped after excessive CPU growth; the protocol was narrowed to exact n=3..5 and the known-anonymous checks were optimized, with all serialized rows still replayed by the full independent checker.
