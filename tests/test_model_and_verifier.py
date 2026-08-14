@@ -10,6 +10,7 @@ from mechanism_discovery.model import (
     Mechanism,
     Outcome,
     PROFILES,
+    anonymous_or,
     canonical_baselines,
     majority_with_tie_break,
     priority_majority,
@@ -27,17 +28,20 @@ class ModelAndVerifierTests(unittest.TestCase):
         self.assertEqual(utility(0, Outcome(1, (-1, 1)), 0), 1)
 
     def test_baseline_is_accepted_by_both_checkers(self):
-        mechanism = priority_majority()
+        mechanism = anonymous_or()
         self.assertTrue(verify(mechanism).accepted)
         self.assertTrue(check(mechanism)["accepted"])
         self.assertEqual(metrics(mechanism)["expected_welfare"], 1.5)
 
-    def test_canonical_zero_transfer_rules_are_accepted(self):
-        for mechanism in (serial_dictatorship(0), serial_dictatorship(1),
-                          majority_with_tie_break(0), majority_with_tie_break(1)):
+    def test_canonical_acceptance_boundary_is_reproduced(self):
+        for mechanism in (majority_with_tie_break(0), majority_with_tie_break(1), anonymous_or()):
             with self.subTest(mechanism=mechanism.name):
                 self.assertTrue(verify(mechanism).accepted)
                 self.assertTrue(check(mechanism)["accepted"])
+        for mechanism in (serial_dictatorship(0), serial_dictatorship(1), priority_majority()):
+            with self.subTest(mechanism=mechanism.name):
+                self.assertFalse(verify(mechanism).accepted)
+                self.assertFalse(check(mechanism)["accepted"])
 
     def test_majority_rule_is_welfare_maximizing_on_each_profile(self):
         for tie_choice in (0, 1):
@@ -87,10 +91,10 @@ class ModelAndVerifierTests(unittest.TestCase):
         primary = {table_from_mechanism(row["mechanism"]) for row in exhaustive_search()}
         independent = set(independent_frontier())
         self.assertEqual(primary, independent)
-        self.assertEqual(len(independent), 16)
+        self.assertEqual(len(independent), 4)
 
     def test_baseline_survives_bounded_coalition_and_value_perturbation_audits(self):
-        audit = audit_baseline(priority_majority())
+        audit = audit_baseline(anonymous_or())
         self.assertEqual(audit["coalition_pareto_deviation_count"], 0)
         self.assertEqual(audit["magnitude_perturbation_failure_count"], 0)
 
