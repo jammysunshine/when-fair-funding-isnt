@@ -17,7 +17,7 @@ no external data, paid API, or cloud compute. The initial n=3..8 scaling
 attempt was stopped for excessive CPU growth; the bounded n=3..5 protocol and
 limitation are recorded in `DECISION_LOG.md` and `SCALING_EXTENSION_PROTOCOL.md`.
 
-Delivery gate: final clean-run verification is complete; commit and remote
-push are the remaining mechanical steps. The strongest supported claim is a
+Delivery gate: final clean-run verification is complete; package committed as
+`870638f` and pushed to `origin/main`. The strongest supported claim is a
 finite, reproducible characterization—not a general theorem or guaranteed
 publication result.

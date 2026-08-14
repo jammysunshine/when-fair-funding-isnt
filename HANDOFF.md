@@ -55,3 +55,5 @@ replication. The manuscript must not claim a general theorem, guaranteed
 novelty, or guaranteed acceptance from this finite certificate.
 
 The complete, reproducible package is **SAFE FOR LUNA HANDOFF.**
+
+Delivered commit: `870638f` on `origin/main`.
