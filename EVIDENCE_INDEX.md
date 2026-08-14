@@ -15,3 +15,5 @@
 | Continuous values, randomized/subsidized/asymmetric classes, and broader novelty | none | UNKNOWN / explicitly not claimed |
 | Phase II pilot: uniform-prior anonymous VCG redistribution optimum is `10/3` on the 3-agent `{0,1/2,1}` grid | `src/mechanism_discovery/vcg_redistribution.py`, `tests/test_vcg_redistribution.py` | SUPPORTED as an exact pilot only; certificate artifact not yet frozen |
 | Phase II complete-oracle and counterexample-guided paths agree | same test file | SUPPORTED as a pilot only |
+| Exact audit of Guo (2024)'s printed 3-agent formula yields efficiency `2/3` | `src/mechanism_discovery/published_rule_audit.py`, `artifacts/published_rule_audit.json` | SUPPORTED for the printed decimal formula |
+| Guo (2024)'s printed 4-agent decimals have non-deficit witness `(0,1/2,1/2,1/2)` with shortfall `1/5000`; constant repair `1/20000` eliminates it | primary and independent audit modules, `scripts/run_published_rule_audit.py`, certificate artifact | SUPPORTED for displayed rounded coefficients only; does not infer a defect in unshared weights |

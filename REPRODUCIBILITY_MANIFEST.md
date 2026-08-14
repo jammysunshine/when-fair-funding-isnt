@@ -14,6 +14,7 @@ python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
 python3 -m unittest tests.test_vcg_redistribution -v
+python3 scripts/run_published_rule_audit.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -33,6 +34,9 @@ Artifacts are regenerated, not hand-edited:
 `artifacts/public_project_value_extension.json`,
 `artifacts/public_project_n6_extension.json`, and
 `reports/public_project_frontier.svg`.
+The published-rule audit emits `artifacts/published_rule_audit.json`; the
+frozen clean-run SHA-256 is
+`4056655ed759dacaf561b36344b206745f98066e7d361bb78ed8a68bf50850df`.
 
 Hashes for the clean run:
 
@@ -46,4 +50,5 @@ reports/public_project_frontier.svg        fe2f6e1d346aee94b2470be42f0da5d2217f5
 artifacts/public_project_value_extension.json c2e4d513ba464dd2a5de02ed4e0eaea064287d963c40d6f12fe18cc3cbb779b2
 artifacts/public_project_n6_extension.json  9ecd187b249b4bcefe5b25b0ea233339a101be5cd4d41f455364fde15f43c4d4
 artifacts/public_project_scaling_theorem.json  97dad770e4ffa74532c5546a9f3c170b2e266f669c9ca68bc111781065e09c6d
+artifacts/published_rule_audit.json       4056655ed759dacaf561b36344b206745f98066e7d361bb78ed8a68bf50850df
 ```

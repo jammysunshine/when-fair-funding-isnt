@@ -3,12 +3,16 @@
 Phase: Phase II feasibility gate for certificate-first VCG redistribution
 synthesis/audit; the completed ternary-frontier theorem remains a baseline.
 
-Current Phase II evidence: a three-agent, three-type exact rational LP has six
-anonymous Groves-term variables and 22 finite constraints. Complete vertex
-enumeration checks 74,613 bases and yields uniform-prior objective `10/3`; a
-counterexample-guided run adds five no-deficit witnesses and reaches the same
-candidate. This is pilot evidence only until standalone replay, frozen
-confirmation priors, and comparator audit are complete.
+Current Phase II evidence: the initial finite-grid oracle is a negative
+control—it returns the ordinary VCG charge rule on the three-agent grid. An
+exact continuous audit of the 3-agent printed Guo (2024) formula reproduces
+efficiency `2/3`. For the paper's printed four-agent decimal formula, two
+independent exact arrangement-vertex implementations find a non-deficit
+shortfall of `1/5000` at `(0,1/2,1/2,1/2)`. Adding the paper's prescribed
+constant repair `1/20000` to each Groves term removes that shortfall; its
+exact printed-decimal efficiency is `3333/5000`. This is a replication result
+about displayed rounded coefficients, not an allegation about unreported
+training weights.
 
 Completed: specification, preregistration, prior-art positioning, antichain
 enumerator, exact n=3/4/5/6 search, all-agent suffix-frontier theorem,
@@ -31,7 +35,8 @@ arbitrary n; full profile replay is bounded at n<=5 in the theorem certificate,
 with the n=6 artifact providing a larger independent cross-check. Runtime and
 memory for that extension remain recorded in the scaling logs.
 
-Delivery gate: final clean-run verification is pending after this theorem
-upgrade. The strongest supported claim is an exact theorem in the declared
-finite ternary mechanism class, not a universal mechanism-design theorem or
-guaranteed publication result.
+Delivery gate: the replication lane now has a frozen certificate and a clean
+independent replay; a paper-grade main study still requires a broader,
+prespecified audit corpus or a new certified mechanism-design result. The
+strongest supported claim remains a bounded reproducibility artifact, not a
+universal mechanism-design theorem or guaranteed publication result.

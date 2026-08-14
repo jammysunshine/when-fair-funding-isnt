@@ -51,3 +51,12 @@ no-deficit constraints on a three-agent `{0, 1/2, 1}` grid. Rationale: DSIC and
 efficient allocation follow from the representation, while exact Fractions
 allow a solver-free global vertex certificate. This is not asserted to cover
 continuous types or the broader literature's neural classes.
+
+2026-08-15 (Phase II replication, after pilot): treat the published 3- and
+4-agent formulas in Guo (2024) as externally fixed audit targets and interpret
+their displayed decimal coefficients as exact terminating decimals. Audit the
+ordered continuous cube by enumerating every piecewise-affine arrangement
+vertex, then require a separately written replay. Rationale: this tests a
+reproducible public claim without pretending to recover unshared neural
+weights. The observed four-agent deficit is reported as a rounding-sensitive
+printed-formula result, not an error attribution to the paper.
