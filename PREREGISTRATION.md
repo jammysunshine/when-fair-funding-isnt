@@ -19,3 +19,10 @@ The post-main extension is governed by `SCALING_EXTENSION_PROTOCOL.md`. It
 enumerates the same mechanism class exactly for `n=3,4,5` and all costs
 `1..2n`. It is reported as a separate finite-scaling result, not as a change
 to the original three-agent preregistration.
+
+## Post-hoc theorem extension
+
+After the frozen analysis, a separate proof and regression certificate were
+added for all `n>=1` in the same ternary mechanism class. This does not alter
+the preregistered estimand: it explains the finite scaling counts and is
+reported as post-hoc mathematical analysis, with its own artifact and tests.

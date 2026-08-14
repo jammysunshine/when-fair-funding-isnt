@@ -15,17 +15,15 @@ domain, 16 rules are enumerated at each cost. The number satisfying all
 constraints is `4,4,4,1,1,1` for costs `1,...,6`; at cost three the best
 accepted rule has worst-case welfare regret one. An efficient sum-threshold
 rule is DSIC and individually rational but fails budget balance at a concrete
-profile. An exact exploratory extension enumerates 32 and 64 rules for four
-and five agents, respectively, across all costs `1,...,2n`; 74 serialized
-accepted rows pass a standalone checker. A harder six-agent extension covers
-128 rules at each cost `1,...,12`, with 48 accepted rows independently
-replayed. A value-magnitude stress test finds
+profile. We prove an all-agent characterization in this declared class: there
+are `n+1` accepted suffix rules for `1<=c<=n`, one rule for `n<c<=2n`, and none
+above `2n`. Exact searches for three through six agents independently
+cross-check the theorem. A value-magnitude stress test finds
 207 failures for the efficient threshold family on held-out `{0,1,2,3}`
 profiles. A post-hoc exact value-lattice sensitivity run finds 66 rules and 60
 independently replayed accepted rows at `max_value=3`. The result is a
-reproducible finite characterization and a falsifiable
-benchmark, not a theorem for continuous values or a claim of unrestricted
-mechanism-design novelty.
+reproducible narrow theorem and falsifiable benchmark, not a theorem for
+continuous values or a claim of unrestricted mechanism-design novelty.
 
 ## 1. Introduction
 
@@ -38,7 +36,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes four deliberately narrow contributions:
+This paper makes five deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -46,10 +44,8 @@ This paper makes four deliberately narrow contributions:
 3. a cost-indexed welfare frontier and explicit efficient-rule counterexample;
 4. serialized certificates replayed by an implementation that does not import
    the primary mechanism code.
-
-The scaling experiment is exploratory. It tests whether the finite pattern is
-stable from three to six agents; it does not convert an observed pattern into
-an asymptotic theorem.
+5. a human-checkable all-agent proof explaining the accepted-count sequence,
+   with a construction certificate covering n=1..12.
 
 ## 2. Model
 
@@ -126,9 +122,19 @@ anonymity, but fails budget balance at `(0,2,2)`: its payments are `(0,1,1)`,
 whose total is 2 while cost is 3. This is the smallest informative negative
 example in the main domain and is retained in the certificate.
 
-### 4.2 Exact cross-agent scaling
+### 4.2 All-agent theorem and finite cross-check
 
-The exploratory extension evaluates every cost from 1 through `2n`:
+The theorem covers every `n>=1` and integer cost. Define `q_k(v)=1` iff every
+reported value is at least 1 and at least `k` reports equal 2. Then the
+accepted rules are exactly `q_0,...,q_n` when `c<=n`, only `q_n` when
+`n<c<=2n`, and none when `c>2n`. At the all-2 profile, anonymity makes every
+critical payment equal; budget balance forces the common threshold to be 2
+above `n`, which leaves only `q_n`. At or below `n`, monotonicity excludes any
+active profile containing zero, and the remaining positive chain has exactly
+the suffix rules; each active profile yields at least one unit per agent, so
+budget balance follows. Full details are in `PUBLIC_PROJECT_THEOREM.md`.
+
+Finite exhaustive searches independently cross-check the theorem:
 
 | agents | anonymous rules | accepted counts by cost | costs with one accepted rule |
 |---:|---:|---|---|
@@ -138,12 +144,10 @@ The exploratory extension evaluates every cost from 1 through `2n`:
 | 6 | 128 | 7,7,7,7,7,7,1,1,1,1,1,1 | 7,8,9,10,11,12 |
 
 The serialized accepted rows total 122 (74 through five agents and 48 in the
-six-agent extension), and all pass the standalone checker. These data support
-a finite pattern—`n+1` accepted rows through cost `n`, then one row above cost
-`n`—for four tested values of `n`. They do not prove that pattern for arbitrary
-agent counts. The six-agent run took 106.191 seconds and used 29,671,424 bytes
-peak resident memory on Darwin, making the computational boundary measurable
-rather than implicit.
+six-agent extension), and all pass the standalone checker. The six-agent run
+took 56.394 seconds and used 29,474,816 bytes peak resident memory on Darwin.
+The symbolic construction certificate checks 806 mechanisms for n=1..12; it
+is a regression certificate for the proof, not a formal proof assistant.
 
 ### 4.3 Stress and falsification
 
@@ -183,13 +187,9 @@ et al. study machine-learning approaches for public-project mechanism design
 | Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
 
-The defensible contribution is thus a compact, replayable certificate and finite
-frontier benchmark. The finite statement supported by the artifacts is: for
-each `n` in `{3,4,5,6}` and each integer cost in `1,...,2n`, the declared
-anonymous monotone class was exhaustively enumerated and the reported accepted
-counts were independently replayed. This is a statement about the specified
-finite class only. Any stronger novelty or generalization claim requires new
-mathematical work and broader comparisons.
+The defensible contribution is a compact, replayable certificate and an exact
+theorem for the specified ternary class. It is not a claim of a new universal
+impossibility result or unrestricted mechanism-design novelty.
 
 ## 6. Reproducibility and falsification
 
@@ -205,16 +205,16 @@ over-generalized. Exact commands and SHA-256 hashes are in
 
 ## 7. Limitations and next work
 
-The mechanism class is anonymous, deterministic, finite-valued, and restricted
-to normalized critical payments. The study does not cover randomized rules,
-subsidies, Bayesian objectives, continuous values, collusion, false-name
-reports, or arbitrary payment schemes. The cross-agent extension is exploratory
-and only reaches six agents; n=7 was not included after the measured runtime
-growth. The stress audit is intentionally negative for
+The theorem's mechanism class is anonymous, deterministic, finite-valued, and
+restricted to normalized critical payments. The study does not cover randomized
+rules, subsidies, Bayesian objectives, continuous values, collusion, false-name
+reports, asymmetric rules, or arbitrary payment schemes. The n=3..6 searches
+are computational cross-checks; the proof itself is the all-agent result. The
+stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
-risk. Before submission, a researcher should add a proof or counterexample for
-the observed scaling pattern, compare unrestricted transfers and subsidies,
-and obtain an independent external replication.
+risk. Before submission, a researcher should test the theorem against richer
+value domains and broader mechanisms, compare unrestricted transfers and
+subsidies, and obtain an independent external replication.
 
 ## 8. Reproduction
 
@@ -224,6 +224,7 @@ python3 scripts/run_public_project_study.py
 python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
+python3 scripts/verify_scaling_theorem.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
@@ -231,9 +232,10 @@ ledger are committed under `artifacts/`, `reports/`, and the repository root.
 
 ## 9. Conclusion
 
-Exact search does not magically produce a universally optimal mechanism. It
-does produce a finite result that a skeptical reader can inspect: every rule in
-the declared class was tested, the efficient comparator has a concrete failure,
-the scaling rows were independently replayed, and the held-out stress test
-records where the result stops generalizing. That is the appropriate evidence
-level for this artifact.
+Exact search does not magically produce a universally optimal mechanism. This
+study does provide a narrow all-agent characterization that a skeptical reader
+can inspect: the proof fixes the accepted family, finite searches replay it,
+the efficient comparator has a concrete failure, and the held-out stress test
+records where the result stops generalizing. It is a serious candidate paper
+or thesis chapter, but publication, a PhD, or a prize still requires external
+novelty review, broader theory, and peer review.

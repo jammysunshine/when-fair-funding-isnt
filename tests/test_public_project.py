@@ -13,9 +13,21 @@ from mechanism_discovery.public_project import (  # noqa: E402
     verify_public_project,
 )
 from mechanism_discovery.public_project_independent import check  # noqa: E402
+from mechanism_discovery.public_project_theorem import theorem_frontier_count, theorem_mechanisms  # noqa: E402
 
 
 class PublicProjectTests(unittest.TestCase):
+    def test_all_agent_theorem_construction(self):
+        for n in range(1, 9):
+            for cost in range(1, 2 * n + 1):
+                spec = PublicProjectSpec(n_agents=n, max_value=2, cost=cost)
+                mechanisms = theorem_mechanisms(spec)
+                self.assertEqual(len(mechanisms), theorem_frontier_count(n, cost))
+                if n <= 5:
+                    self.assertTrue(all(verify_public_project(m, check_anonymity=False)["accepted"] for m in mechanisms))
+            self.assertEqual(theorem_frontier_count(n, 2 * n + 1), 0)
+            self.assertEqual(theorem_mechanisms(PublicProjectSpec(n_agents=n, max_value=2, cost=2 * n + 1)), ())
+
     def test_exhaustive_monotone_count_is_finite_and_reproducible(self):
         spec = PublicProjectSpec(3, 2, 3)
         self.assertEqual(len(list(enumerate_anonymous_monotone(spec))), 16)

@@ -11,6 +11,8 @@ anonymity, no-subsidy, all-maximum-profile build, and weak budget balance.
 the harder six-agent extension at costs `1..12`. Both use the same checks and
 antichain enumeration and are not retroactively part of the main
 preregistration.
+`PUBLIC_PROJECT_THEOREM.md` records the post-hoc all-agent theorem; its
+construction certificate is a separate reproducibility artifact.
 
 ## Exact commands
 
@@ -25,6 +27,7 @@ python3 scripts/run_three_agent_extension.py
 python3 scripts/verify_three_agent_certificates.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
+python3 scripts/verify_scaling_theorem.py
 git diff --check
 ```
 
@@ -37,6 +40,8 @@ git diff --check
 - Independent certificate: `artifacts/public_project_certificate.json`
 - Value-lattice sensitivity: `artifacts/public_project_value_extension.json`
 - Six-agent extension: `artifacts/public_project_n6_extension.json`
+- All-agent theorem: `PUBLIC_PROJECT_THEOREM.md`,
+  `artifacts/public_project_scaling_theorem.json`
 - Plot: `reports/public_project_frontier.svg`
 - Code: `src/mechanism_discovery/public_project.py`,
   `src/mechanism_discovery/public_project_independent.py`,
@@ -56,13 +61,13 @@ accepts `15,15,15,4,4,4,1,1,1` rules across costs `1..9`, and independently
 replays all 60 serialized accepted rows with zero failures.
 The six-agent extension enumerates 128 rules over 28 states at each cost
 `1..12`, accepts `7,7,7,7,7,7,1,1,1,1,1,1`, and independently replays all 48
-serialized accepted rows with zero failures. The recorded run took 106.191
-seconds and peaked at 29,671,424 bytes resident memory on Darwin.
+serialized accepted rows with zero failures. The recorded run took 56.394
+seconds and peaked at 29,474,816 bytes resident memory on Darwin.
 
 ## Remaining research tasks
 
 No implementation or verification task in the declared finite study remains.
-Before journal submission, test whether the observed pattern persists beyond
-`n=6`, extend beyond `max_value=3`, compare broader mechanism classes, and
-obtain external replication. The manuscript must not claim a general theorem,
-guaranteed novelty, or guaranteed acceptance from this finite certificate.
+Before journal submission, test the theorem beyond `max_value=2`, compare
+broader mechanism classes, complete a refreshed novelty review, and obtain
+external replication. The manuscript must not present this narrow theorem as a
+universal mechanism-design result or guarantee publication or acceptance.

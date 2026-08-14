@@ -31,3 +31,8 @@ without changing the frozen acceptance criterion.
 shortcut in the primary loop to keep the exact run tractable, then require the
 independent serialized checker to test every profile permutation. Record wall
 time and peak memory so the computational boundary is part of the result.
+
+2026-08-15 (theorem extension): replace the unproved cross-agent pattern claim
+with a human-checkable all-agent characterization for the declared ternary
+class. Keep n=3..6 exhaustive searches as computational cross-checks and label
+the result post-hoc relative to the frozen three-agent preregistration.

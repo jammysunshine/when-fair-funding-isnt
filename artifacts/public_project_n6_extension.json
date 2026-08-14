@@ -15822,11 +15822,11 @@
     128,
     128
   ],
-  "elapsed_seconds": 106.191,
+  "elapsed_seconds": 56.394,
   "independent_digest": "d13dfc940c38241ea21c4cc3f4abbbbda94fc012af643a1b9b4db0833963c5c7",
   "independent_failure_count": 0,
   "interpretation": "Exploratory exact six-agent extension. Anonymity is structural in the sorted-state representation and is independently replayed over all profile permutations; this does not establish an asymptotic theorem.",
-  "max_rss_bytes": 29671424,
+  "max_rss_bytes": 29474816,
   "resource_platform": "Darwin",
   "scope": {
     "costs": [

@@ -12,9 +12,11 @@ python3 scripts/run_public_project_study.py
 python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
+python3 scripts/verify_scaling_theorem.py
 ```
 
-Expected summary: 16/32/64 candidates for `n=3,4,5`; accepted counts
+Expected summary: theorem construction checks for n=1..12 (806 constructed
+mechanisms), with zero bounded replay failures; 16/32/64 candidates for `n=3,4,5`; accepted counts
 `4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and `6,6,6,6,6,1,1,1,1,1`; 74 cross-agent
 rows; cross-agent independent failures 0; held-out failures 207.
 The exploratory `n=3, max_value=3` extension has 66 candidates and accepted
@@ -41,5 +43,6 @@ artifacts/public_project_scaling.csv       ed52a586503579a1c7c929c6faae5a557bfbd
 artifacts/public_project_frontier.csv      18bfe664fb845cc25bddb2f82368ed9864dc85a6bba2e1192cb9d0aa594bb3d5
 reports/public_project_frontier.svg        fe2f6e1d346aee94b2470be42f0da5d2217f547058ce4c0f83547d7d7ba34b5e
 artifacts/public_project_value_extension.json c2e4d513ba464dd2a5de02ed4e0eaea064287d963c40d6f12fe18cc3cbb779b2
-artifacts/public_project_n6_extension.json  bfb794d5006aad2dfc75349e8ddd2f729062f93f33b830f497dd0c54028d04c4
+artifacts/public_project_n6_extension.json  9ecd187b249b4bcefe5b25b0ea233339a101be5cd4d41f455364fde15f43c4d4
+artifacts/public_project_scaling_theorem.json  97dad770e4ffa74532c5546a9f3c170b2e266f669c9ca68bc111781065e09c6d
 ```

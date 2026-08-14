@@ -30,3 +30,10 @@ permutation-aware checker. The run took 106.191 seconds and peaked at
 29,671,424 bytes on Darwin. This is finite evidence through six agents, not an
 asymptotic theorem; n=7 remains outside the declared result because of the
 measured computational ceiling.
+
+2026-08-15 — Derived the all-agent ternary frontier. Anonymity and budget at
+the all-2 profile force the critical threshold to 2 when `c>n`, leaving only
+the all-2 rule; when `c<=n`, monotonicity excludes zero reports and the positive
+chain yields exactly the suffix rules `q_k`, `k=0..n`. The construction script
+checks n=1..12 (806 mechanisms), replays n<=5 independently, and cross-checks
+the n=3 and n=6 stored artifacts.
