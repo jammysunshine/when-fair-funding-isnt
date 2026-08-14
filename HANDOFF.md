@@ -32,3 +32,5 @@ git diff --check
 No in-scope implementation tasks remain. A future paper submission still needs external novelty review, larger domains, subsidy/randomization comparisons, and an independent external replication; these are explicitly outside this handoff.
 
 The package is reproducible and safe to pass to the next operator: **SAFE FOR LUNA HANDOFF.**
+
+Delivered commit: `bde1b7c` on `origin/main`.

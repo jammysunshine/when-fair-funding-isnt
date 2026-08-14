@@ -8,4 +8,4 @@ Main evidence: 16 rules enumerated; accepted counts by cost `4,4,4,1,1,1`; 4 cos
 
 Resource use: local Python 3, no external packages, under one minute for the public-project run after caching; no external data or paid compute.
 
-Delivery gate: the complete command block has passed, generated hashes are recorded in `REPRODUCIBILITY_MANIFEST.md`, and the staged package is ready for the final commit and push.
+Delivery gate: complete command block passed; generated hashes are recorded in `REPRODUCIBILITY_MANIFEST.md`; package committed as `bde1b7c` and pushed to `origin/main`.
