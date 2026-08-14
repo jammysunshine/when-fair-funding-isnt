@@ -50,6 +50,19 @@ negative at the observed worst points for `n=3,4` and positive for `n=5,6`.
 This is a finite-grid diagnostic of the stated conservative correction, not a
 refutation of its asymptotic competitive guarantee.
 
+Phase III positive control (pre-specified separately): the three-agent exact
+optimum reproduced in Guo (IJCAI 2019), Equation (2), was certified over the
+continuous ordered cube by all piecewise-affine arrangement vertices and a
+standalone replay. It has efficiency `2/3`, but is functionally distinct from
+the printed Guo (AAAI 2024) three-agent formula. This shows the checker can
+certify both a known closed-form optimum and a rounded neural formula without
+conflating them; it is still a replication result, not a new mechanism.
+
+The corpus registry is `AUDIT_CORPUS.md`: five source/formula entries have
+explicit inclusion scope, four independent replays, and clear continuous versus
+grid boundaries. It is still insufficient for a top-tier general-AI claim; the
+next gate is a broader prespecified census or a new certified algorithmic result.
+
 Delivery gate: the replication lane has frozen certificates and clean
 independent replays. A paper-grade main study still requires a broader,
 prespecified audit corpus or a new certified mechanism-design result. The

@@ -17,6 +17,7 @@ python3 -m unittest tests.test_vcg_redistribution -v
 python3 scripts/run_published_rule_audit.py
 python3 scripts/run_guo_2019_baseline_audit.py
 python3 scripts/run_guo_2016_baseline_audit.py
+python3 scripts/run_guo_2019_three_agent_optimal_audit.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -39,6 +40,9 @@ Artifacts are regenerated, not hand-edited:
 The published-rule audit emits `artifacts/published_rule_audit.json`; the
 frozen clean-run SHA-256 is
 `4056655ed759dacaf561b36344b206745f98066e7d361bb78ed8a68bf50850df`.
+The Phase III positive-control audit emits
+`artifacts/guo_2019_three_agent_optimal_audit.json`; its SHA-256 is
+`45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b`.
 
 Hashes for the clean run:
 
@@ -55,4 +59,5 @@ artifacts/public_project_scaling_theorem.json  97dad770e4ffa74532c5546a9f3c170b2
 artifacts/published_rule_audit.json       4056655ed759dacaf561b36344b206745f98066e7d361bb78ed8a68bf50850df
 artifacts/guo_2019_grid_audit.json        61f4dc2efd184375e0ebd79a94dcecfe98a24005e0f78899087a56425ad48fb3
 artifacts/guo_2016_grid_audit.json        92e3078d55320c4d6a9130cab16a07d0d264aef3db648244d61cb97adf7bdbf2
+artifacts/guo_2019_three_agent_optimal_audit.json 45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b
 ```

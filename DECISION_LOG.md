@@ -66,3 +66,10 @@ Equation (3) only as a separately labelled comparator. Its redistribution
 notation differs from the later Groves-charge notation, so audit budget slack
 against the paper's total-VCG-revenue identity and do not pool its retained
 utility ratio with the frozen neural-formula endpoints.
+
+2026-08-15 (Phase III positive control, before evaluation): audit the distinct
+three-agent optimum reproduced as Equation (2) in Guo (IJCAI 2019) on the full
+continuous cube. Use it as a positive control for the certificate method and
+test functional distinctness from the later AAAI-2024 printed formula. Keep
+this new target outside the frozen Phase II corpus and do not call it a new
+discovery.

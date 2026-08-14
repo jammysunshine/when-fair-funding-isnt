@@ -37,3 +37,19 @@ the all-2 rule; when `c<=n`, monotonicity excludes zero reports and the positive
 chain yields exactly the suffix rules `q_k`, `k=0..n`. The construction script
 checks n=1..12 (806 mechanisms), replays n<=5 independently, and cross-checks
 the n=3 and n=6 stored artifacts.
+
+2026-08-15 — Began a separately scoped executable-formula audit program after
+the finite search was found to overlap stronger public-project mechanism
+design work. The corpus registry requires a public closed form, a stated
+convention, and an independent evaluator; it excludes unavailable neural
+weights and ambiguous displays rather than guessing them. The AAAI-2024
+four-agent printed decimals have an exact `1/5000` no-deficit shortfall, while
+the paper's stated uniform correction binds at `1/20000` per Groves term.
+
+2026-08-15 — Added a separately preregistered positive control: IJCAI-2019
+Equation (2), which reproduces a three-agent optimum credited to Guo and Shen
+(2017). Exact continuous arrangement enumeration and a standalone replay both
+give efficiency `2/3`; it differs from the later AAAI-2024 printed formula at
+`(0,1/3,1/3)`. During the PRIMA-2016 audit, rendered-PDF inspection corrected
+an initially missed outer denominator and a max threshold before any artifact
+was accepted. This is retained as a transcription-risk finding, not hidden.

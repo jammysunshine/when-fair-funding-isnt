@@ -50,3 +50,15 @@ Artifacts: `artifacts/public_project_study.json`,
 `artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`.
 The value-lattice extension is in `artifacts/public_project_value_extension.json`.
 The six-agent extension is in `artifacts/public_project_n6_extension.json`.
+
+## Executable-formula certification extension
+
+The separately preregistered IJCAI-2019 Equation (2) positive control was
+evaluated over the continuous ordered three-agent cube using 23 exact
+piecewise-affine arrangement vertices. Primary and independent evaluators
+agree on charge ratios `[2, 7/3]`, hence efficiency `2/3`. It differs from the
+AAAI-2024 printed three-agent formula at `(0,1/3,1/3)`, where the total charges
+are `2` and `19/9`. This establishes the audit method can distinguish two
+published rules with the same headline efficiency; it does not identify a new
+mechanism. The artifact is
+`artifacts/guo_2019_three_agent_optimal_audit.json`.
