@@ -51,6 +51,13 @@ class PublishedRuleAuditTests(unittest.TestCase):
         repaired = audit_printed_four_agent_rule(Fraction(1, 20000))
         self.assertGreaterEqual(repaired.minimum_deficit, Fraction(0))
 
+    def test_constant_repair_is_minimal_within_the_uniform_offset_family(self):
+        # The witnessed shortfall is 1/5000 and four terms receive the offset.
+        almost_repaired = audit_printed_four_agent_rule(Fraction(1, 20001))
+        self.assertLess(almost_repaired.minimum_deficit, Fraction(0))
+        self.assertEqual(audit_printed_four_agent_rule(Fraction(1, 20000)).minimum_deficit,
+                         Fraction(0))
+
     def test_standalone_replay_agrees_on_the_exact_printed_rule_witness(self):
         primary = audit_printed_four_agent_rule()
         independent = replay()

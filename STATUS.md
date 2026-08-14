@@ -35,8 +35,15 @@ arbitrary n; full profile replay is bounded at n<=5 in the theorem certificate,
 with the n=6 artifact providing a larger independent cross-check. Runtime and
 memory for that extension remain recorded in the scaling logs.
 
-Delivery gate: the replication lane now has a frozen certificate and a clean
-independent replay; a paper-grade main study still requires a broader,
+The Phase II corpus now also includes a separately implemented IJCAI-2019
+symbolic asymptotic baseline, exhaustively replayed on the frozen
+`{0,1/4,1/2,3/4,1}^n` grids for `n=3..6` (19,500 profiles). It is non-deficit
+there, but has poor low-agent efficiency, including negative utility at some
+grid profiles; that is a scoped baseline observation, not a contradiction of
+its asymptotic theorem.
+
+Delivery gate: the replication lane has frozen certificates and clean
+independent replays. A paper-grade main study still requires a broader,
 prespecified audit corpus or a new certified mechanism-design result. The
 strongest supported claim remains a bounded reproducibility artifact, not a
 universal mechanism-design theorem or guaranteed publication result.
