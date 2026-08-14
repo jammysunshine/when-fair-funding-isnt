@@ -60,3 +60,9 @@ vertex, then require a separately written replay. Rationale: this tests a
 reproducible public claim without pretending to recover unshared neural
 weights. The observed four-agent deficit is reported as a rounding-sensitive
 printed-formula result, not an error attribution to the paper.
+
+2026-08-15 (Phase II exploratory extension, after freeze): add Guo (2016)
+Equation (3) only as a separately labelled comparator. Its redistribution
+notation differs from the later Groves-charge notation, so audit budget slack
+against the paper's total-VCG-revenue identity and do not pool its retained
+utility ratio with the frozen neural-formula endpoints.

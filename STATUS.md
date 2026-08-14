@@ -42,6 +42,14 @@ there, but has poor low-agent efficiency, including negative utility at some
 grid profiles; that is a scoped baseline observation, not a contradiction of
 its asymptotic theorem.
 
+Exploratory extension (kept outside the frozen Phase II corpus): Guo's
+PRIMA-2016 Equation (3) plus its published `U(n)/n` correction was audited on
+the same 19,500-point rational grids with an independent implementation.  It
+is non-deficit throughout that grid, while its retained-utility ratio is
+negative at the observed worst points for `n=3,4` and positive for `n=5,6`.
+This is a finite-grid diagnostic of the stated conservative correction, not a
+refutation of its asymptotic competitive guarantee.
+
 Delivery gate: the replication lane has frozen certificates and clean
 independent replays. A paper-grade main study still requires a broader,
 prespecified audit corpus or a new certified mechanism-design result. The
