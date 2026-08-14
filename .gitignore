@@ -1,0 +1,49 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.*
+
+# Editors and operating-system state
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# JavaScript and common build outputs
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Large or reproducible local artifacts
+data/raw/
+data/derived/
+artifacts/
+checkpoints/
+models/
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+
+# Notebook and experiment caches
+.ipynb_checkpoints/
+.cache/
+tmp/
