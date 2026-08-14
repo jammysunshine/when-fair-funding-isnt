@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from mechanism_discovery.independent_verifier import check
-from mechanism_discovery.model import priority_majority
+from mechanism_discovery.model import canonical_baselines, priority_majority
 from mechanism_discovery.search import evolutionary_search, exhaustive_search
 from mechanism_discovery.verifier import metrics, verify
 
@@ -21,6 +21,7 @@ def fingerprint(mechanism):
 def main():
     config = json.loads((ROOT / "configs/experiment_67.json").read_text())
     baseline = priority_majority()
+    baselines = canonical_baselines()
     exact = exhaustive_search()
     frontier = []
     for row in exact:
@@ -30,6 +31,12 @@ def main():
         "baseline": {"name": baseline.name, "outcomes": fingerprint(baseline),
                      "primary_verifier": verify(baseline).as_dict(),
                      "independent_verifier": check(baseline), "metrics": metrics(baseline)},
+        "canonical_baselines": [
+            {"name": mechanism.name, "outcomes": fingerprint(mechanism),
+             "primary_verifier": verify(mechanism).as_dict(),
+             "independent_verifier": check(mechanism), "metrics": metrics(mechanism)}
+            for mechanism in baselines
+        ],
         "exhaustive_search": {"candidate_count": config["exhaustive_candidates"], "accepted_count": len(exact),
                               "frontier": frontier},
         "evolutionary_search": evolutionary_search(**config["evolutionary"]),

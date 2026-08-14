@@ -1,10 +1,22 @@
 import sys
+import json
 from pathlib import Path
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from mechanism_discovery.independent_verifier import check
-from mechanism_discovery.model import Mechanism, Outcome, PROFILES, priority_majority, utility
+from mechanism_discovery.adversarial_audit import audit_baseline, parse_distributions
+from mechanism_discovery.independent_verifier import check, independent_frontier, table_from_mechanism
+from mechanism_discovery.model import (
+    Mechanism,
+    Outcome,
+    PROFILES,
+    canonical_baselines,
+    majority_with_tie_break,
+    priority_majority,
+    serial_dictatorship,
+    utility,
+    vcg_pivot,
+)
 from mechanism_discovery.search import exhaustive_search, evolutionary_search
 from mechanism_discovery.verifier import metrics, verify
 
@@ -19,6 +31,38 @@ class ModelAndVerifierTests(unittest.TestCase):
         self.assertTrue(verify(mechanism).accepted)
         self.assertTrue(check(mechanism)["accepted"])
         self.assertEqual(metrics(mechanism)["expected_welfare"], 1.5)
+
+    def test_canonical_zero_transfer_rules_are_accepted(self):
+        for mechanism in (serial_dictatorship(0), serial_dictatorship(1),
+                          majority_with_tie_break(0), majority_with_tie_break(1)):
+            with self.subTest(mechanism=mechanism.name):
+                self.assertTrue(verify(mechanism).accepted)
+                self.assertTrue(check(mechanism)["accepted"])
+
+    def test_majority_rule_is_welfare_maximizing_on_each_profile(self):
+        for tie_choice in (0, 1):
+            mechanism = majority_with_tie_break(tie_choice)
+            for profile in PROFILES:
+                selected_welfare = sum(int(value == mechanism.outcome(profile).choice) for value in profile)
+                self.assertEqual(selected_welfare, max(sum(int(value == c) for value in profile) for c in (0, 1)))
+            self.assertEqual(metrics(mechanism)["expected_allocative_welfare"], 1.5)
+
+    def test_vcg_pivot_matches_analytic_budget_balance_boundary(self):
+        for tie_choice in (0, 1):
+            mechanism = vcg_pivot(tie_choice)
+            report = verify(mechanism)
+            self.assertTrue(report.dsic)
+            self.assertTrue(report.ir)
+            self.assertTrue(report.feasibility)
+            self.assertFalse(report.budget_balance)
+            self.assertFalse(report.accepted)
+            self.assertTrue(any(w.property == "budget_balance" for w in report.witnesses))
+            self.assertEqual(metrics(mechanism)["expected_allocative_welfare"], 1.5)
+            self.assertEqual(metrics(mechanism)["expected_revenue"], 0.5)
+
+    def test_canonical_catalogue_has_unique_names(self):
+        names = [mechanism.name for mechanism in canonical_baselines()]
+        self.assertEqual(len(names), len(set(names)))
 
     def test_dsic_counterexample_contains_profitable_deviation(self):
         mechanism = Mechanism(tuple(Outcome(1 - p[0], (0, 0)) for p in PROFILES), "anti_agent_0")
@@ -38,6 +82,24 @@ class ModelAndVerifierTests(unittest.TestCase):
         accepted = exhaustive_search()
         self.assertGreater(len(accepted), 0)
         self.assertTrue(all(row["verification"].accepted for row in accepted))
+
+    def test_independent_enumerator_matches_primary_frontier(self):
+        primary = {table_from_mechanism(row["mechanism"]) for row in exhaustive_search()}
+        independent = set(independent_frontier())
+        self.assertEqual(primary, independent)
+        self.assertEqual(len(independent), 16)
+
+    def test_baseline_survives_bounded_coalition_and_value_perturbation_audits(self):
+        audit = audit_baseline(priority_majority())
+        self.assertEqual(audit["coalition_pareto_deviation_count"], 0)
+        self.assertEqual(audit["magnitude_perturbation_failure_count"], 0)
+
+    def test_confirmation_distribution_config_is_normalized(self):
+        root = Path(__file__).resolve().parents[1]
+        config = json.loads((root / "configs" / "confirmation_67.json").read_text())
+        distributions = parse_distributions(config)
+        self.assertGreaterEqual(len(distributions), 4)
+        self.assertTrue(all(sum(weights) == 1 for weights in distributions.values()))
 
     def test_evolutionary_loop_is_seeded_and_verifies_proposals(self):
         result = evolutionary_search(seed=67, population_size=8, generations=3)
