@@ -26,6 +26,11 @@ class PublicProjectTests(unittest.TestCase):
         self.assertEqual(counts, [16, 32, 64])
         self.assertEqual(len(frontier(PublicProjectSpec(4, 2, 4))), 5)
 
+    def test_antichain_enumerator_reaches_six_agents_exactly(self):
+        spec = PublicProjectSpec(6, 2, 6)
+        self.assertEqual(len(spec.states), 28)
+        self.assertEqual(len(list(enumerate_anonymous_monotone(spec))), 128)
+
     def test_value_lattice_extension_is_exact(self):
         spec = PublicProjectSpec(3, 3, 3)
         self.assertEqual(len(spec.states), 20)

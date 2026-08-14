@@ -20,6 +20,13 @@ critical-payment rule still fails budget balance at `(0,2,2)` (payments
 failures for the efficient threshold family, preserving the generalization
 boundary.
 
+The harder six-agent extension enumerates 128 rules over 28 sorted states at
+each cost `1..12`. Accepted counts are `7,7,7,7,7,7,1,1,1,1,1,1`; all 48
+serialized accepted rows pass independent replay. The complete run took
+106.191 seconds and recorded 29,671,424 bytes peak resident memory on Darwin.
+This extends exact coverage through six agents but remains an exploratory
+finite result, not evidence for an asymptotic law.
+
 As a post-hoc sensitivity check, the exact three-agent lattice was expanded to
 values `{0,1,2,3}` (20 sorted states, 66 anonymous monotone rules). Across
 costs `1..9`, accepted counts were `15,15,15,4,4,4,1,1,1`; all 60 serialized
@@ -31,3 +38,4 @@ Artifacts: `artifacts/public_project_study.json`,
 `artifacts/public_project_scaling.csv`,
 `artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`.
 The value-lattice extension is in `artifacts/public_project_value_extension.json`.
+The six-agent extension is in `artifacts/public_project_n6_extension.json`.

@@ -25,3 +25,9 @@ the stated editorial scope and bar.
 check after the preregistered analysis. Keep it labeled exploratory rather than
 folding it into the headline; it adds a value-magnitude sensitivity result
 without changing the frozen acceptance criterion.
+
+2026-08-15 (six-agent extension): extend the exploratory scaling benchmark to
+`n=6`, values `{0,1,2}`, and costs `1..12`. Use the structural anonymity
+shortcut in the primary loop to keep the exact run tractable, then require the
+independent serialized checker to test every profile permutation. Record wall
+time and peak memory so the computational boundary is part of the result.

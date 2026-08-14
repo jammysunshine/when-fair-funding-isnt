@@ -17,7 +17,9 @@ accepted rule has worst-case welfare regret one. An efficient sum-threshold
 rule is DSIC and individually rational but fails budget balance at a concrete
 profile. An exact exploratory extension enumerates 32 and 64 rules for four
 and five agents, respectively, across all costs `1,...,2n`; 74 serialized
-accepted rows pass a standalone checker. A value-magnitude stress test finds
+accepted rows pass a standalone checker. A harder six-agent extension covers
+128 rules at each cost `1,...,12`, with 48 accepted rows independently
+replayed. A value-magnitude stress test finds
 207 failures for the efficient threshold family on held-out `{0,1,2,3}`
 profiles. A post-hoc exact value-lattice sensitivity run finds 66 rules and 60
 independently replayed accepted rows at `max_value=3`. The result is a
@@ -46,7 +48,7 @@ This paper makes four deliberately narrow contributions:
    the primary mechanism code.
 
 The scaling experiment is exploratory. It tests whether the finite pattern is
-stable from three to five agents; it does not convert an observed pattern into
+stable from three to six agents; it does not convert an observed pattern into
 an asymptotic theorem.
 
 ## 2. Model
@@ -133,11 +135,15 @@ The exploratory extension evaluates every cost from 1 through `2n`:
 | 3 | 16 | 4,4,4,1,1,1 | 4,5,6 |
 | 4 | 32 | 5,5,5,5,1,1,1,1 | 5,6,7,8 |
 | 5 | 64 | 6,6,6,6,6,1,1,1,1,1 | 6,7,8,9,10 |
+| 6 | 128 | 7,7,7,7,7,7,1,1,1,1,1,1 | 7,8,9,10,11,12 |
 
-The serialized accepted rows total 74 and all pass the standalone checker.
-These data support a finite pattern—`n+1` accepted rows through cost `n`,
-then one row above cost `n`—for the three tested values of `n`. They do not
-prove that pattern for arbitrary agent counts.
+The serialized accepted rows total 122 (74 through five agents and 48 in the
+six-agent extension), and all pass the standalone checker. These data support
+a finite pattern—`n+1` accepted rows through cost `n`, then one row above cost
+`n`—for four tested values of `n`. They do not prove that pattern for arbitrary
+agent counts. The six-agent run took 106.191 seconds and used 29,671,424 bytes
+peak resident memory on Darwin, making the computational boundary measurable
+rather than implicit.
 
 ### 4.3 Stress and falsification
 
@@ -179,7 +185,7 @@ et al. study machine-learning approaches for public-project mechanism design
 
 The defensible contribution is thus a compact, replayable certificate and finite
 frontier benchmark. The finite statement supported by the artifacts is: for
-each `n` in `{3,4,5}` and each integer cost in `1,...,2n`, the declared
+each `n` in `{3,4,5,6}` and each integer cost in `1,...,2n`, the declared
 anonymous monotone class was exhaustively enumerated and the reported accepted
 counts were independently replayed. This is a statement about the specified
 finite class only. Any stronger novelty or generalization claim requires new
@@ -187,9 +193,9 @@ mathematical work and broader comparisons.
 
 ## 6. Reproducibility and falsification
 
-The main JSON and scaling CSVs contain the complete serialized accepted rows;
+The main JSON, scaling CSVs, and six-agent JSON contain the complete serialized accepted rows;
 the independent checker reconstructs allocation and critical payments without
-importing the primary verifier. The clean run reports 74 accepted rows and zero
+importing the primary verifier. The clean run reports 122 accepted rows and zero
 independent replay failures. The held-out audit evaluates every one of the 64
 profiles for each efficient threshold on values `{0,1,2,3}` and records 207
 failures. These are positive and negative controls: the first tests certificate
@@ -203,7 +209,8 @@ The mechanism class is anonymous, deterministic, finite-valued, and restricted
 to normalized critical payments. The study does not cover randomized rules,
 subsidies, Bayesian objectives, continuous values, collusion, false-name
 reports, or arbitrary payment schemes. The cross-agent extension is exploratory
-and only reaches five agents. The stress audit is intentionally negative for
+and only reaches six agents; n=7 was not included after the measured runtime
+growth. The stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
 risk. Before submission, a researcher should add a proof or counterexample for
 the observed scaling pattern, compare unrestricted transfers and subsidies,
@@ -216,6 +223,7 @@ python3 -m unittest discover -s tests -v
 python3 scripts/run_public_project_study.py
 python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
+python3 scripts/run_n6_extension.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim

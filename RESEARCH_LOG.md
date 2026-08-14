@@ -22,3 +22,11 @@ monotone rules; accepted counts over costs 1–9 are
 15,15,15,4,4,4,1,1,1. All 60 serialized accepted rows pass the independent
 checker. This is recorded as exploratory and does not alter the preregistered
 headline.
+
+2026-08-15 — Ran the six-agent exact extension. Each of costs `1..12` has 128
+anonymous monotone candidates over 28 sorted states; accepted counts are
+`7,7,7,7,7,7,1,1,1,1,1,1`. All 48 serialized accepted rows pass the independent
+permutation-aware checker. The run took 106.191 seconds and peaked at
+29,671,424 bytes on Darwin. This is finite evidence through six agents, not an
+asymptotic theorem; n=7 remains outside the declared result because of the
+measured computational ceiling.

@@ -7,8 +7,10 @@ agents, values `{0,1,2}`, costs `1..6`, all anonymous monotone Boolean rules,
 normalized discrete critical payments, DSIC, ex-post IR, feasibility,
 anonymity, no-subsidy, all-maximum-profile build, and weak budget balance.
 `SCALING_EXTENSION_PROTOCOL.md` freezes the exploratory exact extension at
-`n=3,4,5` and every cost `1..2n`, using the same checks and antichain
-enumeration. It is not retroactively part of the main preregistration.
+`n=3,4,5` and every cost `1..2n`; `SCALING_N6_EXTENSION_PROTOCOL.md` freezes
+the harder six-agent extension at costs `1..12`. Both use the same checks and
+antichain enumeration and are not retroactively part of the main
+preregistration.
 
 ## Exact commands
 
@@ -22,6 +24,7 @@ python3 scripts/verify_certificates.py
 python3 scripts/run_three_agent_extension.py
 python3 scripts/verify_three_agent_certificates.py
 python3 scripts/run_value_extension.py
+python3 scripts/run_n6_extension.py
 git diff --check
 ```
 
@@ -33,6 +36,7 @@ git diff --check
   `artifacts/public_project_scaling.csv`, `artifacts/public_project_frontier.csv`
 - Independent certificate: `artifacts/public_project_certificate.json`
 - Value-lattice sensitivity: `artifacts/public_project_value_extension.json`
+- Six-agent extension: `artifacts/public_project_n6_extension.json`
 - Plot: `reports/public_project_frontier.svg`
 - Code: `src/mechanism_discovery/public_project.py`,
   `src/mechanism_discovery/public_project_independent.py`,
@@ -50,11 +54,15 @@ replay; the held-out efficient-threshold audit records 207 failures.
 The exploratory `max_value=3` extension enumerates 66 rules over 20 states,
 accepts `15,15,15,4,4,4,1,1,1` rules across costs `1..9`, and independently
 replays all 60 serialized accepted rows with zero failures.
+The six-agent extension enumerates 128 rules over 28 states at each cost
+`1..12`, accepts `7,7,7,7,7,7,1,1,1,1,1,1`, and independently replays all 48
+serialized accepted rows with zero failures. The recorded run took 106.191
+seconds and peaked at 29,671,424 bytes resident memory on Darwin.
 
 ## Remaining research tasks
 
 No implementation or verification task in the declared finite study remains.
 Before journal submission, test whether the observed pattern persists beyond
-`n=5`, extend beyond `max_value=3`, compare broader mechanism classes, and
+`n=6`, extend beyond `max_value=3`, compare broader mechanism classes, and
 obtain external replication. The manuscript must not claim a general theorem,
 guaranteed novelty, or guaranteed acceptance from this finite certificate.
