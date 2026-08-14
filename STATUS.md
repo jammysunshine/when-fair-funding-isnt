@@ -10,14 +10,16 @@ paper-style manuscript, tests, hashes, and legacy regression checks.
 
 Evidence: candidate counts `16/32/64`; accepted sequences
 `4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and `6,6,6,6,6,1,1,1,1,1`; 74 cross-agent
-rows independently accepted; 207 held-out failures retained.
+rows independently accepted; 207 held-out failures retained. The exploratory
+`max_value=3` extension has 66 candidates, 60 accepted rows replayed with zero
+independent failures, and accepted counts `15,15,15,4,4,4,1,1,1`.
 
 Resource use: local Python standard library, deterministic integer arithmetic,
 no external data, paid API, or cloud compute. The initial n=3..8 scaling
 attempt was stopped for excessive CPU growth; the bounded n=3..5 protocol and
 limitation are recorded in `DECISION_LOG.md` and `SCALING_EXTENSION_PROTOCOL.md`.
 
-Delivery gate: final clean-run verification is complete; package committed as
-`870638f` and pushed to `origin/main`. The strongest supported claim is a
-finite, reproducible characterization—not a general theorem or guaranteed
-publication result.
+Delivery gate: final clean-run verification is complete and the package is
+tracked on `origin/main`. The strongest supported claim is a finite,
+reproducible characterization—not a general theorem or guaranteed publication
+result.

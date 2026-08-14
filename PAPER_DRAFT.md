@@ -19,7 +19,9 @@ profile. An exact exploratory extension enumerates 32 and 64 rules for four
 and five agents, respectively, across all costs `1,...,2n`; 74 serialized
 accepted rows pass a standalone checker. A value-magnitude stress test finds
 207 failures for the efficient threshold family on held-out `{0,1,2,3}`
-profiles. The result is a reproducible finite characterization and a falsifiable
+profiles. A post-hoc exact value-lattice sensitivity run finds 66 rules and 60
+independently replayed accepted rows at `max_value=3`. The result is a
+reproducible finite characterization and a falsifiable
 benchmark, not a theorem for continuous values or a claim of unrestricted
 mechanism-design novelty.
 
@@ -111,9 +113,10 @@ is:
 | 5 | 1 | 0 | 0.0370 |
 | 6 | 1 | 0 | 0.0000 |
 
-At cost three, the four accepted tables are the four sum-threshold cutoffs
-that can still build at `(2,2,2)` while covering cost under the normalized
-critical payments. The result is a complete finite frontier, not a sampled
+At cost three, the four accepted tables are nested upper sets in the sorted
+state poset. Their minimum active states move from `(2,2,2)` down through the
+highest-value states, while the normalized critical payments continue to cover
+the cost. The result is a complete finite frontier, not a sampled
 optimization claim.
 
 The efficient threshold rule passes DSIC, ex-post IR, feasibility, and
@@ -143,21 +146,58 @@ budget/IC failures across 64 profiles per threshold. This is a deliberate
 generalization boundary: success on `{0,1,2}` does not justify a continuous or
 larger-value claim.
 
-## 5. Relation to prior work
+### 4.4 Value-lattice sensitivity
 
-The study is positioned against established automated mechanism design and
-theory rather than claiming to rediscover them. Nath and Sandholm analyze the
-efficiency consequences of strategyproofness and budget balance in general
-quasi-linear domains ([paper](https://arxiv.org/abs/1610.01443)); Conitzer and
-Sandholm give a general computational approach to automated mechanism design
+As a post-hoc sensitivity check, we repeated the exact three-agent search on
+values `{0,1,2,3}`. The 20-state sorted lattice contains 66 anonymous
+monotone rules. Accepted counts over costs `1,...,9` are
+`15,15,15,4,4,4,1,1,1`, and all 60 serialized accepted rows pass the
+standalone checker. This result is useful evidence that the frontier is not an
+artifact of the three-value coding, but it remains exploratory: it does not
+replace the preregistered `{0,1,2}` headline or establish a continuous-value
+characterization.
+
+## 5. Positioning and contribution boundary
+
+The study is deliberately positioned against established theory and automated
+mechanism design rather than claiming to replace either. [Green--Laffont](https://green.scholars.harvard.edu/publications/incentives-public-decision-making),
+[Ohseto](https://www.sciencedirect.com/science/article/pii/S0899825699907558),
+and [Moulin](https://academic.oup.com/restud/article-abstract/61/2/305/1517585)
+provide foundational public-project and cost-sharing results;
+Nath and Sandholm analyze efficiency and budget balance in general quasi-linear
+domains ([paper](https://arxiv.org/abs/1610.01443)); Conitzer and Sandholm give
+the general computational approach to automated mechanism design
 ([AAAI paper](https://ojs.aaai.org/index.php/AAAI/article/view/7708)); and Guo
 et al. study machine-learning approaches for public-project mechanism design
 ([2024 article](https://link.springer.com/article/10.1007/s10458-024-09647-8)).
-The defensible contribution here is a compact, replayable certificate and
-finite frontier benchmark. A novelty claim would require a refreshed literature
-review and comparison against broader transfer normalizations and mechanisms.
 
-## 6. Limitations and next work
+| Existing line | This paper adds | This paper does not add |
+|---|---|---|
+| General public-project and cost-sharing theory | A finite, fully enumerated benchmark with explicit payment reconstruction and witnesses | A new impossibility theorem or a continuous-value characterization |
+| Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
+| Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
+
+The defensible contribution is thus a compact, replayable certificate and finite
+frontier benchmark. The finite statement supported by the artifacts is: for
+each `n` in `{3,4,5}` and each integer cost in `1,...,2n`, the declared
+anonymous monotone class was exhaustively enumerated and the reported accepted
+counts were independently replayed. This is a statement about the specified
+finite class only. Any stronger novelty or generalization claim requires new
+mathematical work and broader comparisons.
+
+## 6. Reproducibility and falsification
+
+The main JSON and scaling CSVs contain the complete serialized accepted rows;
+the independent checker reconstructs allocation and critical payments without
+importing the primary verifier. The clean run reports 74 accepted rows and zero
+independent replay failures. The held-out audit evaluates every one of the 64
+profiles for each efficient threshold on values `{0,1,2,3}` and records 207
+failures. These are positive and negative controls: the first tests certificate
+integrity, while the second tests whether the finite result is being
+over-generalized. Exact commands and SHA-256 hashes are in
+`REPRODUCIBILITY_MANIFEST.md`.
+
+## 7. Limitations and next work
 
 The mechanism class is anonymous, deterministic, finite-valued, and restricted
 to normalized critical payments. The study does not cover randomized rules,
@@ -167,20 +207,21 @@ and only reaches five agents. The stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
 risk. Before submission, a researcher should add a proof or counterexample for
 the observed scaling pattern, compare unrestricted transfers and subsidies,
-refresh prior art, and obtain an independent external replication.
+and obtain an independent external replication.
 
-## 7. Reproduction
+## 8. Reproduction
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 scripts/run_public_project_study.py
 python3 scripts/verify_public_project_certificate.py
+python3 scripts/run_value_extension.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
 ledger are committed under `artifacts/`, `reports/`, and the repository root.
 
-## 8. Conclusion
+## 9. Conclusion
 
 Exact search does not magically produce a universally optimal mechanism. It
 does produce a finite result that a skeptical reader can inspect: every rule in

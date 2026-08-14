@@ -20,7 +20,14 @@ critical-payment rule still fails budget balance at `(0,2,2)` (payments
 failures for the efficient threshold family, preserving the generalization
 boundary.
 
+As a post-hoc sensitivity check, the exact three-agent lattice was expanded to
+values `{0,1,2,3}` (20 sorted states, 66 anonymous monotone rules). Across
+costs `1..9`, accepted counts were `15,15,15,4,4,4,1,1,1`; all 60 serialized
+accepted rows passed independent replay. This extension is exploratory and
+does not alter the preregistered headline.
+
 Artifacts: `artifacts/public_project_study.json`,
 `artifacts/public_project_certificate.json`,
 `artifacts/public_project_scaling.csv`,
 `artifacts/public_project_frontier.csv`, and `reports/public_project_frontier.svg`.
+The value-lattice extension is in `artifacts/public_project_value_extension.json`.

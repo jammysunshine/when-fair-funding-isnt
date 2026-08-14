@@ -1,4 +1,4 @@
-# Experiment 67 handoff
+# Experiment 67 delivery record
 
 ## Frozen configuration
 
@@ -21,6 +21,7 @@ python3 scripts/run_experiment.py
 python3 scripts/verify_certificates.py
 python3 scripts/run_three_agent_extension.py
 python3 scripts/verify_three_agent_certificates.py
+python3 scripts/run_value_extension.py
 git diff --check
 ```
 
@@ -31,6 +32,7 @@ git diff --check
 - Main and scaling results: `artifacts/public_project_study.json`,
   `artifacts/public_project_scaling.csv`, `artifacts/public_project_frontier.csv`
 - Independent certificate: `artifacts/public_project_certificate.json`
+- Value-lattice sensitivity: `artifacts/public_project_value_extension.json`
 - Plot: `reports/public_project_frontier.svg`
 - Code: `src/mechanism_discovery/public_project.py`,
   `src/mechanism_discovery/public_project_independent.py`,
@@ -45,15 +47,14 @@ The exact candidate counts for `n=3,4,5` are `16,32,64`; accepted counts by
 cost are `4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and
 `6,6,6,6,6,1,1,1,1,1`. All 74 serialized accepted rows pass independent
 replay; the held-out efficient-threshold audit records 207 failures.
+The exploratory `max_value=3` extension enumerates 66 rules over 20 states,
+accepts `15,15,15,4,4,4,1,1,1` rules across costs `1..9`, and independently
+replays all 60 serialized accepted rows with zero failures.
 
-## Remaining tasks
+## Remaining research tasks
 
 No implementation or verification task in the declared finite study remains.
-Before journal submission, prove or refute the observed pattern beyond `n=5`,
-extend value/payment classes, refresh the prior-art review, and obtain external
-replication. The manuscript must not claim a general theorem, guaranteed
-novelty, or guaranteed acceptance from this finite certificate.
-
-The complete, reproducible package is **SAFE FOR LUNA HANDOFF.**
-
-Delivered commit: `870638f` on `origin/main`.
+Before journal submission, test whether the observed pattern persists beyond
+`n=5`, extend beyond `max_value=3`, compare broader mechanism classes, and
+obtain external replication. The manuscript must not claim a general theorem,
+guaranteed novelty, or guaranteed acceptance from this finite certificate.

@@ -26,6 +26,13 @@ class PublicProjectTests(unittest.TestCase):
         self.assertEqual(counts, [16, 32, 64])
         self.assertEqual(len(frontier(PublicProjectSpec(4, 2, 4))), 5)
 
+    def test_value_lattice_extension_is_exact(self):
+        spec = PublicProjectSpec(3, 3, 3)
+        self.assertEqual(len(spec.states), 20)
+        self.assertEqual(len(list(enumerate_anonymous_monotone(spec))), 66)
+        counts = [len(frontier(PublicProjectSpec(3, 3, cost))) for cost in range(1, 10)]
+        self.assertEqual(counts, [15, 15, 15, 4, 4, 4, 1, 1, 1])
+
     def test_efficient_rule_has_a_budget_counterexample(self):
         spec = PublicProjectSpec(3, 2, 3)
         report = verify_public_project(sum_threshold_mechanism(spec, 3))
