@@ -260,9 +260,9 @@ def replay_payload(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
         if name not in payload["entries"]:
             raise ValueError(f"source network has no certificate entry: {name}")
         entry = payload["entries"][name]
-        if int(entry["dimension"]) != 4:
-            raise ValueError("deleted-input source-network replay currently requires four agents")
         dimension = int(entry["dimension"])
+        if len(network["output_weights"]) != dimension - 1:
+            raise ValueError("source network input dimension disagrees with certificate")
         source_vertices = _feasible_vertices(
             _planes(entry["specification"], dimension) + _network_break_planes(network, dimension), dimension
         )

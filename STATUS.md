@@ -143,3 +143,12 @@ All seven repaired sources fail ex-post IR: the published control is already
 negative before repair, and each initially nonnegative synthetic margin is
 smaller than its necessary offset. Compiler, direct source, and exact-real Z3
 routes agree, so the scalar repair is rejected as a viable mechanism result.
+
+Phase IX: the preregistered five-case 3--7-agent rational-ReLU scaling study
+completed with compiler/direct-source equality on every case, five detected
+output-bias mutations, and 15/15 `unsat` Z3 strict-counterexample challenges.
+Per-case exact certification time was 0.006, 0.077, 1.409, 11.567, and 112.935
+seconds for 3 through 7 agents respectively (126.0 seconds total). The steep
+seven-agent cost is a measured limitation, not evidence of practical
+large-scale verification. A new certified synthesis or repair result against
+relevant public baselines remains necessary for a publication-grade claim.

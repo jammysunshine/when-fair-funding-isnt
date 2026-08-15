@@ -202,3 +202,15 @@ rules, exact predicted/exhaustive equality, and zero independent failures in
 24.00 seconds. Rationale: the result supports the finite theorem's stated
 scope; it does not establish continuous-domain, broad-AI, or novel-neural
 mechanism claims.
+
+2026-08-15 (Phase IX rational-ReLU scaling, before evaluation): freeze five
+deterministic width-two rational sources at 3--7 agents, including two untouched
+confirmation cases. Require source/compiler certificate equality, a detected
+`+1/7` output-bias mutation, and three exact-real Z3 strict-improvement queries
+per source. Rationale: expose the actual combinatorial boundary rather than
+retain a four-agent-only demonstration.
+
+2026-08-15 (Phase IX rational-ReLU scaling, after evaluation): retain all five
+cases unchanged. Equality, mutation, and 15 Z3 checks passed, while the final
+case took 112.935 seconds versus 0.006 seconds at three agents. This supports
+bounded semantic correctness but does not support a scalability claim.

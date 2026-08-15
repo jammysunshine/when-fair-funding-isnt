@@ -86,3 +86,10 @@ independent replay of every accepted rule. The run met those criteria for
 `n=3,m=4,c=1..12`, with 255 accepted-rule replays and zero failures. This is
 an exact result for the declared discrete critical-payment model, not a claim
 about continuous values or a new neural mechanism.
+
+Phase IX question: does the source-aware exact rational-ReLU certificate remain
+semantically consistent as the public-project dimension rises from three to
+seven agents? This bounded verifier study requires five pre-fixed sources,
+compiler/direct-source equality, detected output-bias mutation, and three
+exact-real Z3 strict-counterexample challenges per source; it is not a
+mechanism-discovery or learned-policy study.

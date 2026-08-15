@@ -40,10 +40,10 @@ these pointwise identities proves the result. ∎
 
 ## Lemma 3 — independent source binding
 
-For the declared four-agent symmetric deleted-input network, the standalone
+For a declared finite-agent symmetric deleted-input network, the standalone
 checker compares the source evaluator and serialized `Expr` at every vertex of
-the common refinement of their branch planes and `D_4`. If it accepts, both
-representations agree throughout `D_4`.
+the common refinement of their branch planes and `D_n`. If it accepts, both
+representations agree throughout `D_n`.
 
 Proof. Both functions are affine on each common-refinement cell. Their
 difference is affine and zero at every vertex, hence zero on that cell's convex
@@ -55,7 +55,7 @@ With `P` distinct arrangement planes in dimension `n`, at most `binom(P,n)`
 bases are solved; degenerate bases may be rejected. For an `h`-unit
 one-hidden-layer network on `d` inputs, lowering creates one affine term and
 at most `h` binary max/min terms per network evaluation. The symmetric
-four-agent deletion construction has four such evaluations. This is a bound
+`n`-agent deletion construction has `n` such evaluations. This is a bound
 for the declared language, not a polynomial-time claim in network depth or
 dimension. The certificate records actual plane, basis, and vertex counts.
 

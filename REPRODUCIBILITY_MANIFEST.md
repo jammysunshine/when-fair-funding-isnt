@@ -31,6 +31,19 @@ python3 scripts/run_repair_ir_tradeoff_study.py
 .venv/bin/python scripts/verify_repair_ir_z3.py
 ```
 
+The frozen Phase-IX scaling configuration is
+`configs/phase_ix_relu_scaling.json` (SHA-256
+`64f9c845ba60b5282d98aaab3b2f7bdc7eb01a05facb7bc7650c892c540aed60`). Run
+`python3 scripts/run_relu_scaling_study.py` followed by
+`python3 scripts/verify_relu_scaling_z3.py`. The source/compiler certificate
+is `artifacts/phase_ix_relu_scaling_results.json` (SHA-256
+`fd73f61e44dc510cf98bdaee436bf0a5f8a0dddeb7b50cecdb69c5e45ae49a14`), and
+the exact-real challenge record is
+`artifacts/phase_ix_relu_scaling_z3_certificate.json` (SHA-256
+`6d0512dbf961c1a2cdf00d120fcbc49ca6793ed88a656077658a45adfb1a8197`). It
+fixes five width-two sources across 3--7 agents and records 15 `unsat`
+strict-improvement checks.
+
 Expected summary: theorem construction checks for n=1..12 (806 constructed
 mechanisms), with zero bounded replay failures; 16/32/64 candidates for `n=3,4,5`; accepted counts
 `4,4,4,1,1,1`, `5,5,5,5,1,1,1,1`, and `6,6,6,6,6,1,1,1,1,1`; 74 cross-agent

@@ -186,6 +186,21 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
             return value
         self.assertEqual(replay_deleted_input_network(source, 4), encode(compiled))
 
+    def test_source_only_certificate_is_dimension_generic(self):
+        source = deterministic_network(671102, input_dimension=6, width=2)
+        compiled = certify_ordered_public_project_charge(deleted_input_charge(source, 7), 7)
+
+        def encode(value):
+            if isinstance(value, Fraction):
+                return f"{value.numerator}/{value.denominator}"
+            if isinstance(value, tuple):
+                return [encode(item) for item in value]
+            if hasattr(value, "__dict__"):
+                return {key: encode(item) for key, item in value.__dict__.items()}
+            return value
+
+        self.assertEqual(replay_deleted_input_network(source, 7), encode(compiled))
+
 
 if __name__ == "__main__":
     unittest.main()
