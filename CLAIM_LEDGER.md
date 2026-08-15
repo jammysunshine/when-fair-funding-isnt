@@ -35,6 +35,11 @@
   truthful utility by exactly that offset. Across the frozen Phase-VII corpus,
   no repaired source is simultaneously no-deficit and ex-post IR; compiler,
   direct-source, and Z3 routes agree.
+- The canonical efficient/pivotal (welfare-maximizing sum-threshold,
+  critical-value payment) mechanism is single-agent DSIC on every domain
+  tested but fails coalition-cap-2 DSIC in 66 of 75 audited `(domain, n,
+  cost)` rows, independently of its separate weak-budget-balance deficit;
+  the independent checker reproduces all 75 rows with 0 mismatches.
 
 ## EMPIRICALLY EVALUATED
 

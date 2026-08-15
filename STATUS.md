@@ -1,6 +1,7 @@
 # Status
 
-Phase: Phase X coalition-robustness extension is complete as a post-hoc falsification study.
+Phase: Phase X coalition-robustness extension, including its independent
+baseline audit, is complete as a post-hoc falsification study.
 Phase VII budget--IR trade-off is complete for declared rational ReLU
 sources. Phase VIII independently confirmed the finite value-lattice theorem
 on an untouched `n=3,m=4,c=1..12` grid: exact predicted/exhaustive rule-set
@@ -28,6 +29,15 @@ Post-hoc finite-domain coalition robustness:
   `scripts/verify_public_project_coalition_value3_frontier.py` extended the
   value domain to `n=3`, `max_value=3`, `cost=1..9`, cap up to 3, at selected
   costs `1,3,9`, with `9` cost rows and `0` independent failures.
+- Independent baseline audit: `scripts/run_public_project_coalition_baseline_audit.py`
+  plus `scripts/verify_public_project_coalition_baseline_audit.py` test the
+  canonical efficient/pivotal (welfare-maximizing sum-threshold, critical-value
+  payment) mechanism against the same coalition bar across all four domains
+  above. It is single-agent DSIC everywhere but fails coalition-cap-2 DSIC in
+  66 of 75 `(domain, n, cost)` rows and in 10 of 11 selected spot checks
+  (only `value3_frontier` cost `9` survives). This is independent of, and
+  decoupled from, that mechanism's separately known budget-balance deficit.
+  `0` independent replay mismatches across all 75 rows.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An

@@ -61,5 +61,21 @@ finite public-project class used in Phase VIII:
   3, checking selected costs `1,3,9`, and independent digest
   `cfe838d49e8814069f0c6e08da310cedba1df6f6d492a234c775ae5de34e41c1`.
 
-All four scripts are fully replayable from frozen config files in
+Phase X independent baseline audit: `scripts/run_public_project_coalition_baseline_audit.py`
+and `scripts/verify_public_project_coalition_baseline_audit.py` test the
+canonical efficient/pivotal mechanism (welfare-maximizing sum-threshold
+decision, critical-value payment) against the same bounded-coalition bar used
+above, across all four prior domains (75 `(domain, n, cost)` rows). This is
+decoupled from that mechanism's separately documented weak-budget-balance
+deficit: fragility is judged strictly on the `dsic`/`coalitional_dsic`
+verifier fields, never the bundled `accepted` flag. Result: the baseline is
+single-agent DSIC everywhere tested but fails at coalition size 2 in 66 of 75
+rows. Among the 11 selected spot-check rows only one is coalition-robust
+(`value3_frontier`, `n=3`, `cost=9`, no failing cap found up to 3); the other
+ten fail at coalition size 2, including every selected row in `frontier`,
+`scaling`, and `scaling_extended`. The independent replay checks all 75 rows
+with 0 mismatches and digest
+`825ded27f5889dd1a48b9ff4ae6459a4fc566dfb5919bf64bfdf345217e86f96`.
+
+All five scripts are fully replayable from frozen config files in
 `configs/public_project_coalition_*.json`.
