@@ -26,6 +26,34 @@ def guo_2019_equation_two_charge() -> Expr:
     return _sum(h(b, c), h(a, c), h(a, b))
 
 
+def guo_2016_equation_three_charge() -> Expr:
+    """Groves-term equivalent of Guo (PRIMA 2016), Eq. (3), for three agents.
+
+    Equation (3) specifies total redistribution rather than Groves charges.
+    If ``R`` is that total redistribution and ``E`` is the sum of the three
+    VCG externality terms, then ``E - R`` is the charge representation needed
+    by the certificate: subtracting ``2 * first_best`` recovers exactly the
+    source convention's budget slack.
+    """
+    a, b, c = affine(1, 0, 0), affine(0, 1, 0), affine(0, 0, 1)
+    const = lambda value: affine(0, 0, 0, constant=value)
+    threshold = Fraction(2, 3)
+    correction = (Fraction(1, 2) + Fraction(1, 6) + Fraction(64, 81)) / 3
+
+    def externality(left, right):
+        return Expr.maximum(tuple(x + y for x, y in zip(left, right)), const(threshold))
+
+    def redistribution(left, right):
+        pair = tuple(x + y for x, y in zip(left, right))
+        raw = (Expr.maximum(left, const(threshold))
+               + Expr.maximum(right, const(threshold))
+               + Expr.maximum(pair, const(1)).scale(-1)).scale(Fraction(1, 2))
+        return raw + Expr.from_affine(const(-correction))
+
+    pairs = ((b, c), (a, c), (a, b))
+    return _sum(*(externality(*pair) + redistribution(*pair).scale(-1) for pair in pairs))
+
+
 def guo_2024_three_agent_charge() -> Expr:
     """Total charge of Guo (AAAI 2024)'s printed 3-agent formula."""
     a, b, c = affine(1, 0, 0), affine(0, 1, 0), affine(0, 0, 1)

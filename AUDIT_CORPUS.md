@@ -12,7 +12,7 @@ public source are excluded rather than reverse engineered.
 | A1 | Guo, AAAI 2024, printed 3-agent formula | Groves charge | Exact continuous arrangement certificate | Included, frozen Phase II |
 | A2 | Guo, AAAI 2024, printed 4-agent decimal formula | Groves charge | Exact continuous arrangement certificate and uniform-offset repair family | Included, frozen Phase II |
 | A3 | Guo, IJCAI 2019, Eq. (6) and symmetrisation | Groves charge | Exhaustive `{0,1/4,1/2,3/4,1}^n`, `n=3..6` | Included, frozen Phase II |
-| A4 | Guo, PRIMA 2016, Eq. (3) plus Proposition 1 correction | Redistribution | Exhaustive same rational grids | Included, exploratory after Phase II freeze |
+| A4 | Guo, PRIMA 2016, Eq. (3) plus Proposition 1 correction | Redistribution | Exact continuous 3-agent arrangement certificate; exhaustive same rational grids for `n=3..6` | Included; continuous 3-agent extension in Phase IV |
 | A5 | Guo, IJCAI 2019, Eq. (2), credited to Guo and Shen (2017) | Groves charge | Exact continuous arrangement certificate | Included, separately preregistered Phase III positive control |
 
 ## Phase-IV source census ledger
@@ -44,6 +44,11 @@ executable-formula certificate under the preregistered scope.
 - The generic engine is validated against A5, A1, and A2. For A2 it reproduces
   both the printed-decimal deficit and the declared uniform-offset repair,
   using a typed transcription separate from the source-specific evaluator.
+- The Phase-IV extension also represents A4's direct redistribution convention
+  as the equivalent Groves-term quantity `sum externalities - total
+  redistribution`. Its derived slack is exactly the source convention's VCG
+  revenue minus redistribution. The three-agent continuous result is checked
+  at every certified vertex by the pre-existing direct source evaluator.
 
 ## Source-transcription safeguards
 

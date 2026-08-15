@@ -64,14 +64,15 @@ grid boundaries. It is still insufficient for a top-tier general-AI claim; the
 next gate is a broader prespecified census or a new certified algorithmic result.
 
 Phase IV (pre-registered before extension): a typed exact shallow max-affine
-executable-specification engine now reproduces three continuous controls: Guo
+executable-specification engine now reproduces four continuous controls: Guo
 (IJCAI 2019) Equation (2), Guo (AAAI 2024)'s printed three-agent rule, and its
-four-agent decimal rule. For the latter it independently reproduces both the
+four-agent decimal rule, plus the three-agent PRIMA-2016 direct redistribution
+formula in an equivalent Groves-term representation. For the four-agent rule it independently reproduces both the
 printed `1/5000` deficit and the `1/20000` per-term repair. Its emitted
 certificate is `artifacts/max_affine_certification.json`. The source census
 logs inaccessible and adjacent sources as exclusions rather than inferring
 their formulas. A standalone replay consumes the serialized rational
-expressions, derives the arrangement anew, and agrees on all four entries.
+expressions, derives the arrangement anew, and agrees on all five entries.
 The largest entry has 22 planes, 7,315 exact candidate bases, and 116 feasible
 vertices; these counts bound the demonstrated computational envelope. This is
 a reusable method result within the restricted expression class, not a general

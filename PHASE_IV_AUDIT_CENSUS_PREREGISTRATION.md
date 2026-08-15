@@ -28,9 +28,9 @@ equation/page, and transcription convention.
 
 ## Methods and endpoints
 
-The primary engine accepts sums, rational scalars, affine forms, and maxima of
-affine forms.  It enumerates all vertices of the ordered unit cube induced by
-domain facets and every max-branch and first-best break plane, using exact
+The primary engine accepts sums, rational scalars, affine forms, and maxima or
+minima of affine forms. It enumerates all vertices of the ordered unit cube induced by
+domain facets and every branch and first-best break plane, using exact
 `Fraction` arithmetic.  This is complete only for the represented shallow
 max-affine class: on each resulting cell both charge and first-best are affine,
 so extrema of the charge/first-best ratio occur at vertices.

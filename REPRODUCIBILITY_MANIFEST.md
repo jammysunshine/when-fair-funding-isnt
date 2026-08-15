@@ -47,9 +47,9 @@ The Phase III positive-control audit emits
 `45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b`.
 The Phase IV generic shallow-max-affine certificate emits
 `artifacts/max_affine_certification.json`; its SHA-256 is
-`410b114a8d60239ecf1a3e00a391641450ed74c03335f3b9dc5d7741d5dd2d9f`.
+`30a89552f9a3c90774ad824d9b285949f39002b7c60bd63ea9e532cd7d99bff7`.
 Its independent replay is `artifacts/max_affine_independent_certificate.json`;
-its SHA-256 is `398c9dd18b242be285284182121a6b39c0b7816be37e69c1c66ed32a5353922d`.
+its SHA-256 is `78dfa50adff58d53ff3d6911d5e8b08e02366fa1544337aeb2624b79df9c378b`.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
 
@@ -69,6 +69,6 @@ artifacts/published_rule_audit.json       4056655ed759dacaf561b36344b206745f9806
 artifacts/guo_2019_grid_audit.json        61f4dc2efd184375e0ebd79a94dcecfe98a24005e0f78899087a56425ad48fb3
 artifacts/guo_2016_grid_audit.json        92e3078d55320c4d6a9130cab16a07d0d264aef3db648244d61cb97adf7bdbf2
 artifacts/guo_2019_three_agent_optimal_audit.json 45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b
-artifacts/max_affine_certification.json 410b114a8d60239ecf1a3e00a391641450ed74c03335f3b9dc5d7741d5dd2d9f
-artifacts/max_affine_independent_certificate.json 398c9dd18b242be285284182121a6b39c0b7816be37e69c1c66ed32a5353922d
+artifacts/max_affine_certification.json 30a89552f9a3c90774ad824d9b285949f39002b7c60bd63ea9e532cd7d99bff7
+artifacts/max_affine_independent_certificate.json 78dfa50adff58d53ff3d6911d5e8b08e02366fa1544337aeb2624b79df9c378b
 ```

@@ -62,3 +62,12 @@ are `2` and `19/9`. This establishes the audit method can distinguish two
 published rules with the same headline efficiency; it does not identify a new
 mechanism. The artifact is
 `artifacts/guo_2019_three_agent_optimal_audit.json`.
+
+The PRIMA-2016 Equation (3) redistribution rule is now also certified on the
+continuous ordered three-agent cube. To preserve its source convention, the
+typed certificate uses `sum externalities - total redistribution`; subtracting
+twice first-best cost gives exactly VCG revenue minus redistribution. All 23
+certificate vertices agree with the separately written source evaluator. The
+minimum slack is `64/81`; the exact minimum retained-efficiency expression is
+`-47/162` at `(0,0,1)`. This is a continuous strengthening of the existing
+grid audit, not a refutation of the source's asymptotic competitive claim.

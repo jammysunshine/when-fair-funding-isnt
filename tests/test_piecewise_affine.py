@@ -5,7 +5,13 @@ from pathlib import Path
 import unittest
 
 from src.mechanism_discovery.guo_2019_three_agent_optimal import audit as equation_two_audit
+from src.mechanism_discovery.guo_2016_baseline import (
+    efficiency_ratio as prima_efficiency_ratio,
+    total_corrected_redistribution,
+    vcg_revenue,
+)
 from src.mechanism_discovery.max_affine_corpus import (
+    guo_2016_equation_three_charge,
     guo_2019_equation_two_charge,
     guo_2024_three_agent_charge,
     guo_2024_four_agent_charge,
@@ -16,6 +22,15 @@ from src.mechanism_discovery.published_rule_audit import audit_printed_four_agen
 
 
 class PiecewiseAffineCertificateTest(unittest.TestCase):
+    def test_reproduces_prima_2016_source_convention_at_every_certificate_vertex(self):
+        generic = certify_ordered_public_project_charge(guo_2016_equation_three_charge(), 3)
+        source_rows = [
+            (vcg_revenue(point) - total_corrected_redistribution(point), prima_efficiency_ratio(point), point)
+            for point in generic.vertices
+        ]
+        self.assertEqual(generic.minimum_budget_slack, min(source_rows)[0])
+        self.assertEqual(generic.worst_case_efficiency, min(source_rows, key=lambda row: row[1])[1])
+
     def test_reproduces_known_three_agent_optimum(self):
         generic = certify_ordered_public_project_charge(guo_2019_equation_two_charge(), 3)
         known = equation_two_audit()

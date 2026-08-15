@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.mechanism_discovery.max_affine_corpus import (
+    guo_2016_equation_three_charge,
     guo_2019_equation_two_charge,
     guo_2024_three_agent_charge,
     guo_2024_four_agent_charge,
@@ -32,6 +33,7 @@ def encode(value):
 
 def main():
     formulas = {
+        "guo_prima_2016_equation_3_three_agent": (guo_2016_equation_three_charge(), 3),
         "guo_ijcai_2019_equation_2": (guo_2019_equation_two_charge(), 3),
         "guo_aaai_2024_printed_3_agent": (guo_2024_three_agent_charge(), 3),
         "guo_aaai_2024_printed_4_agent": (guo_2024_four_agent_charge(), 4),

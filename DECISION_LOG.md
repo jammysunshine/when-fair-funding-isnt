@@ -102,3 +102,10 @@ counts with each certificate and state the arrangement reduction explicitly.
 Rationale: exactness without a declared computational envelope invites an
 unwarranted scalability inference; the paper must distinguish its proof domain
 from arbitrary neural or program verification.
+
+2026-08-15 (Phase IV corpus extension): upgrade the already logged PRIMA-2016
+Equation (3) three-agent direct-redistribution formula from a grid-only audit
+to a continuous typed certificate. Rationale: it is an eligible public closed
+form and tests a convention distinct from the `h`-form formulas. Preserve its
+negative normalized efficiency result and state that it is not an asymptotic
+competitive-ratio refutation.

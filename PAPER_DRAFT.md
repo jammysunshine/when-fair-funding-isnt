@@ -182,15 +182,19 @@ Groves charge divided by first-best cost. On each arrangement cell the selected
 branches are affine, budget slack is affine, and the ratio is linear-fractional
 with denominator at least one; extrema therefore occur at a cell vertex.
 
-The generic engine reproduces three pre-existing continuous formulas: the
-three-agent optimum displayed as Guo (IJCAI 2019) Equation (2), and the
-three- and four-agent printed formulas in Guo (AAAI 2024). The four-agent
-case is the hard control: it includes signed ReLU terms and terminating
+The generic engine reproduces four pre-existing continuous formulas: the
+three-agent direct-redistribution formula in Guo (PRIMA 2016) Equation (3),
+the three-agent optimum displayed as Guo (IJCAI 2019) Equation (2), and the
+three- and four-agent printed formulas in Guo (AAAI 2024). The PRIMA rule is
+converted to its Groves-term equivalent and independently checked against the
+source-convention evaluator at every certificate vertex; it has slack `64/81`
+and minimum retained efficiency `-47/162` on the three-agent ordered cube.
+The four-agent case is the hard control: it includes signed ReLU terms and terminating
 decimal coefficients. The generic certificate reproduces the displayed
 formula's `1/5000` deficit and its published `1/20000` per-term uniform repair.
 An independent program consumes only the serialized rational expression,
 derives branch planes and arrangement vertices itself, and exactly matches all
-four certificates (including the repaired four-agent entry).
+five certificates (including the repaired four-agent entry).
 The largest frozen entry has 22 planes, 7,315 exact four-plane bases, and 116
 feasible vertices. These are a demonstrated resource boundary, not evidence of
 scalability to arbitrary architecture depth or dimension.
