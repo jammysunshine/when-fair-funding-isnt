@@ -2,9 +2,13 @@
 
 ## FORMALLY VERIFIED / EXHAUSTIVELY VERIFIED ON DOMAIN
 
-- In the declared ternary class, for every `n>=1`, accepted counts are `n+1`
-  for `1<=c<=n`, one for `n<c<=2n`, and zero for `c>2n`; accepted rules are
-  exactly the suffix family in `PUBLIC_PROJECT_THEOREM.md`.
+- In the declared finite integer-value critical-payment class, for every
+  `n>=1`, cap `m>=1`, and integer cost `c`, accepted rules are exactly the
+  nonempty upward-closed subsets of the sorted restricted lattice
+  `{ceil(c/n),...,m}^n`; none exists when `c>nm`. The ternary suffix result is
+  its `m=2` corollary. The proof is human-checkable and the untouched
+  `n=3,m=4,c=1..12` confirmation has exact rule-set equality with 255
+  independent accepted-rule replays and zero failures.
 - The implementation enumerates all 16 anonymous monotone Boolean allocation rules for the frozen three-agent, three-level domain.
 - The antichain implementation enumerates 16, 32, and 64 rules exactly for `n=3,4,5` on the declared domains.
 - Every reported accepted row passes the primary verifier; all 74 serialized cross-agent rows pass the independent checker.
@@ -36,7 +40,7 @@
 
 - Held-out cost coverage across values `{0,1,2,3}` is refuted for thresholds 1–6 (207 failures).
 - No claim of universal optimality, randomized optimality, deployment effect,
-  or generalization beyond the ternary class is made.
+  or generalization beyond the finite integer-value critical-payment class is made.
 - The certificate method is not established for arbitrary neural networks,
   opaque learned weights, unrestricted programs, arbitrary depth, or instances
   beyond the recorded three-to-five-agent computational envelope.

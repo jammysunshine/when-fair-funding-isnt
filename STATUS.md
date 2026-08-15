@@ -1,9 +1,11 @@
 # Status
 
 Phase: Phase VII budget--IR trade-off is complete for declared rational ReLU
-sources; the completed ternary-frontier theorem remains a baseline. A proposed
-Phase VIII finite synthesis result was withdrawn because it was exactly the
-normalized pivotal VCG rule under a mismatched comparator.
+sources. Phase VIII independently confirmed the finite value-lattice theorem
+on an untouched `n=3,m=4,c=1..12` grid: exact predicted/exhaustive rule-set
+equality, 255 accepted-rule replays, and zero independent failures. A separate
+Phase VIII constrained-synthesis pilot was withdrawn because it was exactly
+the normalized pivotal VCG rule under a mismatched comparator.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An
@@ -17,10 +19,10 @@ about displayed rounded coefficients, not an allegation about unreported
 training weights.
 
 Completed: specification, preregistration, prior-art positioning, antichain
-enumerator, exact n=3/4/5/6 search, all-agent suffix-frontier theorem,
-construction certificate, primary and independent verifiers, efficient-rule
-counterexample, held-out stress audit, manuscript, tests, hashes, and legacy
-regression checks.
+enumerator, exact n=3/4/5/6 search, finite-lattice theorem, preregistered
+`m=4` full-domain confirmation, construction certificate, primary and
+independent verifiers, efficient-rule counterexample, held-out stress audit,
+manuscript, tests, hashes, and legacy regression checks.
 
 Evidence: the theorem certificate checks 806 constructions for n=1..12 and
 the exact rule-count formula; finite searches give candidate counts `16/32/64`
@@ -32,10 +34,12 @@ candidates, 60 accepted rows replayed with zero independent failures, and
 accepted counts `15,15,15,4,4,4,1,1,1`.
 
 Resource use: local Python standard library, deterministic integer arithmetic,
-no external data, paid API, or cloud compute. Symbolic construction handles
-arbitrary n; full profile replay is bounded at n<=5 in the theorem certificate,
-with the n=6 artifact providing a larger independent cross-check. Runtime and
-memory for that extension remain recorded in the scaling logs.
+no external data, paid API, or cloud compute. The Phase VIII confirmation ran
+in 24.00 seconds with 45,842,432 bytes peak resident memory and emitted a
+1,248,674-byte artifact, within the frozen 10-minute/100-MB ceiling. Symbolic
+construction handles arbitrary n; full profile replay is bounded at n<=5 in
+the older theorem certificate, with the n=6 artifact providing a larger
+cross-check.
 
 The Phase II corpus now also includes a separately implemented IJCAI-2019
 symbolic asymptotic baseline, exhaustively replayed on the frozen
@@ -81,10 +85,12 @@ a reusable method result within the restricted expression class, not a general
 neural-network verifier.
 
 Delivery gate: the replication lane has frozen certificates and clean
-independent replays. A paper-grade main study still requires a broader,
-prespecified audit corpus or a new certified mechanism-design result. The
-strongest supported claim remains a bounded reproducibility artifact, not a
-universal mechanism-design theorem or guaranteed publication result.
+independent replays. The finite-lattice theorem is now a stronger mathematical
+result than the original ternary benchmark, but a paper-grade broad-AI claim
+still requires a broader prespecified corpus or a new algorithmic result. The
+strongest supported claim is a finite discrete mechanism-design theorem plus
+bounded reproducibility artifacts—not a universal mechanism-design theorem or
+guaranteed publication result.
 
 Phase V: the printed four-agent one-hidden-layer rational ReLU rule is now
 lowered from a serialized network specification embedded in its certificate by

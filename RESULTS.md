@@ -27,22 +27,30 @@ serialized accepted rows pass independent replay. The complete run took
 This is a finite computational cross-check of the all-agent theorem; its
 runtime and memory remain useful reproducibility measurements.
 
-## All-agent theorem
+## Finite value-lattice theorem
 
-For every `n>=1` and integer cost `c`, within the declared deterministic,
-anonymous, coordinatewise-monotone ternary class with normalized critical
-payments and required build at the all-2 profile, the accepted count is
-`n+1` for `1<=c<=n`, `1` for `n<c<=2n`, and `0` for `c>2n`. The accepted rules
-are exactly `q_k(v)=1` when every value is at least 1 and at least `k` values
-equal 2, with `k=0..n` in the first range and `k=n` in the second. The proof
-and machine-checkable construction certificate are in
-`PUBLIC_PROJECT_THEOREM.md` and `artifacts/public_project_scaling_theorem.json`.
+For every `n>=1`, integer value cap `m>=1`, and cost `c`, within the declared
+deterministic anonymous coordinatewise-monotone class with normalized critical
+payments and required build at the all-`m` profile, put `k=ceil(c/n)`. There
+is no accepted rule if `k>m`; otherwise accepted rules are exactly the
+nonempty upward-closed subsets of the sorted restricted lattice
+`{k,...,m}^n`. `m=2` gives the prior suffix count: `n+1` rules through cost
+`n`, one through cost `2n`, and none above it. The proof is in
+`PUBLIC_PROJECT_THEOREM.md`.
 
-As a post-hoc sensitivity check, the exact three-agent lattice was expanded to
-values `{0,1,2,3}` (20 sorted states, 66 anonymous monotone rules). Across
-costs `1..9`, accepted counts were `15,15,15,4,4,4,1,1,1`; all 60 serialized
-accepted rows passed independent replay. This extension is exploratory and
-does not alter the preregistered headline.
+The theorem was frozen before a separate full-domain confirmation at
+`n=3,m=4,c=1..12`. Predicted and exhaustive accepted rule sets were identical
+at every cost; counts are `65,65,65,15,15,15,4,4,4,1,1,1`. All 255 serialized
+accepted rules pass the independent checker with zero failures. The run took
+24.00 seconds and 45,842,432 bytes peak resident memory. The immutable input
+and generated record are `configs/phase_viii_value_lattice_theorem.json` and
+`artifacts/phase_viii_value_lattice_theorem.json`.
+
+The earlier post-hoc `m=3` run (20 sorted states, 66 anonymous monotone rules)
+is retained as an exploratory precursor. Its counts over costs `1..9` were
+`15,15,15,4,4,4,1,1,1`; all 60 serialized accepted rows passed independent
+replay. The newer preregistered `m=4` test—not that precursor—is the theorem
+confirmation.
 
 Artifacts: `artifacts/public_project_study.json`,
 `artifacts/public_project_certificate.json`,

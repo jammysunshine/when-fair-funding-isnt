@@ -4,10 +4,10 @@
 
 Automated mechanism design is only scientifically useful when proposed rules
 can be checked exhaustively rather than judged by sampled performance. We
-develop a small certificate-first benchmark for deterministic public-project
-mechanisms. Agents have integer values in `{0,1,2}` for a binary project with
-a known cost. We enumerate every anonymous monotone allocation rule over the
-sorted report states and attach its normalized discrete critical payments.
+develop a certificate-first study for deterministic public-project mechanisms.
+Agents have integer values in a finite lattice `{0,...,m}` for a binary project
+with a known cost. We enumerate every anonymous monotone allocation rule over
+the sorted report states and attach normalized discrete critical payments.
 Each candidate is checked for dominant-strategy incentive compatibility (DSIC),
 ex-post individual rationality, feasibility, anonymity, no subsidy when the
 project is absent, and weak budget balance. On the preregistered three-agent
@@ -15,14 +15,18 @@ domain, 16 rules are enumerated at each cost. The number satisfying all
 constraints is `4,4,4,1,1,1` for costs `1,...,6`; at cost three the best
 accepted rule has worst-case welfare regret one. An efficient sum-threshold
 rule is DSIC and individually rational but fails budget balance at a concrete
-profile. We prove an all-agent characterization in this declared class: there
-are `n+1` accepted suffix rules for `1<=c<=n`, one rule for `n<c<=2n`, and none
-above `2n`. Exact searches for three through six agents independently
-cross-check the theorem. A value-magnitude stress test finds
+profile. We prove a finite-lattice characterization in this declared class:
+writing `k=ceil(c/n)`, accepted rules are exactly the nonempty upward-closed
+sets inside `{k,...,m}^n`, and none exists for `c>nm`. The original ternary
+suffix result is its `m=2` corollary. A preregistered untouched
+`n=3,m=4,c=1..12` confirmation reproduces every accepted rule set by full
+enumeration and independently replays all 255 accepted rules with zero
+failures. Exact searches for three through six ternary agents independently
+cross-check that corollary. A value-magnitude stress test finds
 207 failures for the efficient threshold family on held-out `{0,1,2,3}`
-profiles. A post-hoc exact value-lattice sensitivity run finds 66 rules and 60
-independently replayed accepted rows at `max_value=3`. The result is a
-reproducible narrow theorem and falsifiable benchmark, not a theorem for
+profiles. A post-hoc exact `m=3` precursor finds 66 rules and 60 independently
+replayed accepted rows. The result is a reproducible finite theorem and
+falsifiable benchmark, not a theorem for
 continuous values or a claim of unrestricted mechanism-design novelty. As a
 separate source-integrity study, six preregistered rational one-hidden-layer
 ReLU fixtures with three to five agents have identical direct-source and
@@ -49,8 +53,8 @@ This paper makes seven deliberately narrow contributions:
 3. a cost-indexed welfare frontier and explicit efficient-rule counterexample;
 4. serialized certificates replayed by an implementation that does not import
    the primary mechanism code.
-5. a human-checkable all-agent proof explaining the accepted-count sequence,
-   with a construction certificate covering n=1..12.
+5. a human-checkable finite-lattice proof, with a construction independent of
+   full-domain search and a preregistered full-domain confirmation.
 6. an executable-specification audit layer for published shallow max-affine
    VCG-redistribution formulas, with a standalone replay from serialized
    rational expressions.
@@ -59,8 +63,8 @@ This paper makes seven deliberately narrow contributions:
 
 ## 2. Model
 
-There are `n` agents with values `v_i` in `{0,1,2}` for a public project with
-cost `c`. A direct mechanism reports `r` and chooses `q(r) in {0,1}`. Agent
+There are `n` agents with values `v_i` in `{0,...,m}` for a public project with
+integer cost `c`. A direct mechanism reports `r` and chooses `q(r) in {0,1}`. Agent
 `i` receives utility
 
 `u_i(v_i,r) = v_i q(r) - p_i(r)`.
@@ -79,7 +83,7 @@ The verifier requires:
 - ex-post IR at every truthful profile;
 - anonymity under every profile permutation;
 - weak budget balance, `sum_i p_i(r) >= c`, whenever `q(r)=1`;
-- `q(2,...,2)=1`, excluding the vacuous never-build rule.
+- `q(m,...,m)=1`, excluding the vacuous never-build rule.
 
 The primary objective is worst-case additive welfare regret relative to the
 efficient allocation `q*(v)=1{sum_i v_i >= c}`:
@@ -132,17 +136,17 @@ anonymity, but fails budget balance at `(0,2,2)`: its payments are `(0,1,1)`,
 whose total is 2 while cost is 3. This is the smallest informative negative
 example in the main domain and is retained in the certificate.
 
-### 4.2 All-agent theorem and finite cross-check
+### 4.2 Finite value-lattice theorem and cross-check
 
-The theorem covers every `n>=1` and integer cost. Define `q_k(v)=1` iff every
-reported value is at least 1 and at least `k` reports equal 2. Then the
-accepted rules are exactly `q_0,...,q_n` when `c<=n`, only `q_n` when
-`n<c<=2n`, and none when `c>2n`. At the all-2 profile, anonymity makes every
-critical payment equal; budget balance forces the common threshold to be 2
-above `n`, which leaves only `q_n`. At or below `n`, monotonicity excludes any
-active profile containing zero, and the remaining positive chain has exactly
-the suffix rules; each active profile yields at least one unit per agent, so
-budget balance follows. Full details are in `PUBLIC_PROJECT_THEOREM.md`.
+The theorem covers every `n>=1`, finite integer cap `m>=1`, and integer cost.
+Put `k=ceil(c/n)`. If `k>m`, no accepted rule exists. Otherwise, an allocation
+rule is accepted exactly when its active set is a nonempty upward-closed subset
+of the sorted restricted lattice `{k,...,m}^n`. At the all-`m` profile,
+anonymity makes all critical payments equal; budget balance forces their common
+threshold to be at least `k`. Monotonicity then rules out every active profile
+with a coordinate below `k`. Conversely, every upward-closed set inside the
+restricted lattice has every active critical payment at least `k`, so its total
+revenue covers cost. Full details are in `PUBLIC_PROJECT_THEOREM.md`.
 
 Finite exhaustive searches independently cross-check the theorem:
 
@@ -156,8 +160,9 @@ Finite exhaustive searches independently cross-check the theorem:
 The serialized accepted rows total 122 (74 through five agents and 48 in the
 six-agent extension), and all pass the standalone checker. The six-agent run
 took 56.394 seconds and used 29,474,816 bytes peak resident memory on Darwin.
-The symbolic construction certificate checks 806 mechanisms for n=1..12; it
-is a regression certificate for the proof, not a formal proof assistant.
+The symbolic ternary construction certificate checks 806 mechanisms for
+`n=1..12`; it is a regression certificate for the `m=2` corollary, not a
+formal proof assistant.
 
 ### 4.3 Stress and falsification
 
@@ -166,16 +171,19 @@ budget/IC failures across 64 profiles per threshold. This is a deliberate
 generalization boundary: success on `{0,1,2}` does not justify a continuous or
 larger-value claim.
 
-### 4.4 Value-lattice sensitivity
+### 4.4 Preregistered value-lattice confirmation
 
-As a post-hoc sensitivity check, we repeated the exact three-agent search on
-values `{0,1,2,3}`. The 20-state sorted lattice contains 66 anonymous
-monotone rules. Accepted counts over costs `1,...,9` are
-`15,15,15,4,4,4,1,1,1`, and all 60 serialized accepted rows pass the
-standalone checker. This result is useful evidence that the frontier is not an
-artifact of the three-value coding, but it remains exploratory: it does not
-replace the preregistered `{0,1,2}` headline or establish a continuous-value
-characterization.
+The theorem and frozen confirmation protocol were committed before a fresh
+three-agent `m=4` run. Full-domain enumeration and the theorem construction
+produce identical accepted rule sets at all costs `1,...,12`; counts are
+`65,65,65,15,15,15,4,4,4,1,1,1`. The standalone checker accepted all 255
+serialized rules, with no failures. The run took 24.00 seconds and used
+45,842,432 bytes peak resident memory. This is a direct falsification attempt
+on a larger untouched lattice, not an extrapolated performance metric.
+
+The prior post-hoc `m=3` run is retained as a precursor: it has 66 anonymous
+monotone rules and counts `15,15,15,4,4,4,1,1,1`, with 60 independent replays.
+Neither run establishes a continuous-value characterization.
 
 ### 4.5 Executable audit of published max-affine rules
 
@@ -291,15 +299,16 @@ et al. study machine-learning approaches for public-project mechanism design
 | Computer-aided mechanism and neural-network verification | Typed formula provenance, direct-source replay, and exact-real SMT cross-checks for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
 
 The defensible contribution is a compact, replayable certificate and an exact
-theorem for the specified ternary class. It is not a claim of a new universal
-impossibility result or unrestricted mechanism-design novelty.
+theorem for the specified finite integer-value class. It is not a claim of a
+new universal impossibility result or unrestricted mechanism-design novelty.
 
 ## 6. Reproducibility and falsification
 
 The main JSON, scaling CSVs, and six-agent JSON contain the complete serialized accepted rows;
 the independent checker reconstructs allocation and critical payments without
-importing the primary verifier. The clean run reports 122 accepted rows and zero
-independent replay failures. The held-out audit evaluates every one of the 64
+importing the primary verifier. The ternary clean run reports 122 accepted rows
+and zero independent replay failures; the frozen `m=4` confirmation adds 255
+accepted rows with exact predicted/exhaustive equality and zero failures. The held-out audit evaluates every one of the 64
 profiles for each efficient threshold on values `{0,1,2,3}` and records 207
 failures. These are positive and negative controls: the first tests certificate
 integrity, while the second tests whether the finite result is being
@@ -312,7 +321,7 @@ The theorem's mechanism class is anonymous, deterministic, finite-valued, and
 restricted to normalized critical payments. The study does not cover randomized
 rules, subsidies, Bayesian objectives, continuous values, collusion, false-name
 reports, asymmetric rules, or arbitrary payment schemes. The n=3..6 searches
-are computational cross-checks; the proof itself is the all-agent result. The
+are computational cross-checks; the finite-lattice proof is the general result. The
 stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
 risk. The ReLU cross-check covers six frozen synthetic fixtures and publicly
@@ -331,6 +340,7 @@ python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
+python3 scripts/verify_value_lattice_theorem.py
 python3 scripts/run_max_affine_certification.py
 python3 scripts/verify_max_affine_certificate.py
 python3 scripts/verify_source_network_certificates.py
@@ -350,9 +360,10 @@ ledger are committed under `artifacts/`, `reports/`, and the repository root.
 ## 9. Conclusion
 
 Exact search does not magically produce a universally optimal mechanism. This
-study does provide a narrow all-agent characterization that a skeptical reader
-can inspect: the proof fixes the accepted family, finite searches replay it,
-the efficient comparator has a concrete failure, and the held-out stress test
-records where the result stops generalizing. It is a serious candidate paper
-or thesis chapter, but publication, a PhD, or a prize still requires external
-novelty review, broader theory, and peer review.
+study does provide a finite-lattice characterization that a skeptical reader
+can inspect: the proof fixes the accepted family, a preregistered larger-lattice
+enumeration reproduces it exactly, the efficient comparator has a concrete
+failure, and the held-out stress test records where the result stops
+generalizing. It is a credible foundation for a theory/verification paper, but
+publication still requires external novelty review, broader theory, and peer
+review.

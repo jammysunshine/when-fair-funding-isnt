@@ -1,8 +1,9 @@
 # Project Charter
 
-Status: original study frozen 2026-08-15; Phase VII is complete. A proposed
-Phase VIII constrained-synthesis pilot was withdrawn at its semantic-baseline
-gate because it rediscovered pivotal VCG. The original
+Status: original study frozen 2026-08-15; Phase VII is complete. Phase VIII
+now has a preregistered, independently replayed finite value-lattice theorem
+confirmation. A separate constrained-synthesis pilot was withdrawn at its
+semantic-baseline gate because it rediscovered pivotal VCG. The original
 binary-table audit remains a baseline and Phase II--IV results remain bounded
 replication evidence.
 
@@ -16,7 +17,7 @@ Within a finite public-project domain, how much welfare is lost when determinist
 
 ## Frozen study
 
-Main study: three agents; values `{0,1,2}`; binary project; costs `1..6`; all anonymous monotone Boolean allocation rules; normalized discrete critical payments; uniform finite evaluation distribution. There are 10 anonymous states and 16 rules, exhaustively enumerated at every cost. A post-hoc theorem extension characterizes every `n>=1` in this same ternary class; exact searches for `n=3..6` are computational cross-checks governed by the scaling protocols.
+Main study: three agents; values `{0,1,2}`; binary project; costs `1..6`; all anonymous monotone Boolean allocation rules; normalized discrete critical payments; uniform finite evaluation distribution. There are 10 anonymous states and 16 rules, exhaustively enumerated at every cost. The finite-lattice extension now characterizes every integer cap `m>=1` and every `n>=1` in the same critical-payment class; the preregistered `n=3,m=4,c=1..12` run is an exact, independent confirmation. The earlier exact searches for `n=3..6` are computational cross-checks.
 
 Acceptance: feasibility, DSIC, ex-post IR, anonymity, no subsidy when the project is absent, and weak budget balance when it is built. The rule must build at the all-2 profile. Primary metric: worst-case additive welfare regret against the efficient allocation; secondary metric: expected welfare. Threshold: complete enumeration, independent replay, and a held-out audit, with every failure retained.
 
@@ -28,7 +29,7 @@ Local CPU only, no paid API/cloud/real data, under 10 minutes per complete run a
 
 ## Evidence target
 
-Candidate contribution/useful artifact: exact narrow all-agent characterization plus independent machine-checkable certificate and finite scaling cross-check. Any broader publication claim requires external novelty review, richer mechanism classes, and independent replication.
+Candidate contribution/useful artifact: exact finite-lattice characterization plus independent machine-checkable certificate and preregistered full-domain confirmation. Any broader publication claim requires external novelty review, richer mechanism classes, and independent replication.
 
 Phase V question: can a serialized public rational ReLU rule be compiled into
 the exact certificate language, rather than transcribed as bespoke formula
@@ -77,3 +78,11 @@ term, while its comparator incorrectly used threshold one. The raw output is
 preserved in `artifacts/withdrawn_phase_viii_comparator_failure.json`; it is a
 negative control, not a discovery. A viable next question must quantify a
 property distinct from known pivotal VCG and include this equivalence test.
+
+Phase VIII finite-lattice theorem: before its `m=4` confirmation run, freeze
+the claim that accepted active sets are exactly the nonempty upward-closed sets
+inside `{ceil(c/n),...,m}^n`. Require full-domain rule-set equality and an
+independent replay of every accepted rule. The run met those criteria for
+`n=3,m=4,c=1..12`, with 255 accepted-rule replays and zero failures. This is
+an exact result for the declared discrete critical-payment model, not a claim
+about continuous values or a new neural mechanism.

@@ -187,3 +187,18 @@ withdraw the pilot code, archive the raw output under the explicit
 `withdrawn_phase_viii_comparator_failure_*` names, and require a
 source-checked baseline-equivalence gate before any future constrained
 synthesis is preregistered.
+
+2026-08-15 (Phase VIII finite-lattice theorem, before confirmation): replace
+the narrow ternary-only statement with the finite integer-value claim: for
+`k=ceil(c/n)`, accepted active sets are exactly nonempty upward-closed subsets
+inside `{k,...,m}^n`. Freeze `n=3,m=4,c=1..12` as a fresh confirmation grid,
+requiring exact full-domain rule-set equality and independent replay of every
+accepted rule. Rationale: this is a material mathematical strengthening with a
+direct counterexample criterion, unlike the withdrawn comparator pilot.
+
+2026-08-15 (Phase VIII finite-lattice theorem, after confirmation): retain the
+confirmation unchanged: counts `65,65,65,15,15,15,4,4,4,1,1,1`, 255 accepted
+rules, exact predicted/exhaustive equality, and zero independent failures in
+24.00 seconds. Rationale: the result supports the finite theorem's stated
+scope; it does not establish continuous-domain, broad-AI, or novel-neural
+mechanism claims.

@@ -13,6 +13,7 @@ python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
+python3 scripts/verify_value_lattice_theorem.py
 python3 -m unittest tests.test_vcg_redistribution -v
 python3 scripts/run_published_rule_audit.py
 python3 scripts/run_guo_2019_baseline_audit.py
@@ -40,6 +41,17 @@ The exact six-agent extension has 128 candidates at each cost `1..12`, accepted
 counts `7,7,7,7,7,7,1,1,1,1,1,1`, 48 serialized rows, and zero independent
 replay failures. Its canonical digest is
 `d13dfc940c38241ea21c4cc3f4abbbbda94fc012af643a1b9b4db0833963c5c7`.
+The frozen Phase-VIII value-lattice confirmation uses
+`configs/phase_viii_value_lattice_theorem.json` (SHA-256
+`fa828ce7e3f4e5180b4a2751e9935615d1c47fd314fecb56bd3dfa7533b0868f`).
+For `n=3`, `max_value=4`, and costs `1..12`, it requires exact predicted versus
+exhaustive rule-set equality and independent replay of every accepted rule.
+Counts are `65,65,65,15,15,15,4,4,4,1,1,1`: 255 rows total, zero independent
+failures, digest
+`977f91e2a4d34634f648a953d2450c12cac7ab636ea6bf97a76ae082d85979ec`.
+The run took 24.00 seconds, used 45,842,432 bytes peak resident memory, and
+emitted `artifacts/phase_viii_value_lattice_theorem.json` (1,248,674 bytes;
+SHA-256 `c0c539a99d53d74fe34ae2ed1b8371d190686b58f53e04ac2403870aadd98a50`).
 
 Artifacts are regenerated, not hand-edited:
 `artifacts/public_project_study.json`, `artifacts/public_project_certificate.json`,
@@ -47,6 +59,9 @@ Artifacts are regenerated, not hand-edited:
 `artifacts/public_project_value_extension.json`,
 `artifacts/public_project_n6_extension.json`, and
 `reports/public_project_frontier.svg`.
+The Phase-VIII theorem confirmation is regenerated at
+`artifacts/phase_viii_value_lattice_theorem.json`; its serialized rule tables
+are intentionally retained so the independent replay target is inspectable.
 The published-rule audit emits `artifacts/published_rule_audit.json`; the
 frozen clean-run SHA-256 is
 `4056655ed759dacaf561b36344b206745f98066e7d361bb78ed8a68bf50850df`.
