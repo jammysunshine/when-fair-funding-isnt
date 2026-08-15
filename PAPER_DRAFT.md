@@ -185,7 +185,9 @@ with denominator at least one; extrema therefore occur at a cell vertex.
 The generic engine reproduces four pre-existing continuous formulas: the
 three-agent direct-redistribution formula in Guo (PRIMA 2016) Equation (3),
 the three-agent optimum displayed as Guo (IJCAI 2019) Equation (2), and the
-three- and four-agent printed formulas in Guo (AAAI 2024). The PRIMA rule is
+three- and four-agent printed formulas in Guo (AAAI 2024). The four-agent
+network is lowered from a serialized rational one-hidden-layer ReLU
+specification rather than only bespoke arithmetic. The PRIMA rule is
 converted to its Groves-term equivalent and independently checked against the
 source-convention evaluator at every certificate vertex; it has slack `64/81`
 and minimum retained efficiency `-47/162` on the three-agent ordered cube.

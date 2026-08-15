@@ -1,6 +1,8 @@
 # Project Charter
 
-Status: original study frozen 2026-08-15; a separate Phase II feasibility gate is active. The original binary-table audit is a baseline.
+Status: original study frozen 2026-08-15; Phase V is active. The original
+binary-table audit remains a baseline and Phase II--IV results remain bounded
+replication evidence.
 
 ## Phase II feasibility question (active; not yet a headline claim)
 
@@ -26,4 +28,8 @@ Local CPU only, no paid API/cloud/real data, under 10 minutes per complete run a
 
 Candidate contribution/useful artifact: exact narrow all-agent characterization plus independent machine-checkable certificate and finite scaling cross-check. Any broader publication claim requires external novelty review, richer mechanism classes, and independent replication.
 
-Phase II threshold before promotion beyond a useful replication artifact: a frozen external audit target, two independently written continuous checkers, machine-readable certificates, a published-method comparator, an exact correction audit, and an explicit distinction between displayed decimal rules and unshared neural weights. Local CPU only; no claim about recovered weights or mechanisms with undisclosed formulas.
+Phase V question: can a serialized public rational ReLU rule be compiled into
+the exact certificate language, rather than transcribed as bespoke formula
+code, while retaining an independent replay? The initial 4-agent control is a
+validation target, not a claim of generality. Promotion beyond a useful
+replication artifact requires the five gates in `RESEARCH_GAP_AUDIT.md`.

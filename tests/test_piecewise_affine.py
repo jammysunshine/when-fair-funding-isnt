@@ -17,11 +17,21 @@ from src.mechanism_discovery.max_affine_corpus import (
     guo_2024_four_agent_charge,
 )
 from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
+from src.mechanism_discovery.rational_relu import compile_one_hidden_layer
 from src.mechanism_discovery.max_affine_independent import replay_payload
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
 
 
 class PiecewiseAffineCertificateTest(unittest.TestCase):
+    def test_rational_relu_compiler_accepts_serialized_coefficients(self):
+        a, b = (Fraction(2), Fraction(3))
+        from src.mechanism_discovery.piecewise_affine import affine
+        expression = compile_one_hidden_layer({
+            "output_weights": ("1/2", "-1/3"), "output_bias": "1/7",
+            "hidden": ({"weights": ("2", "-1"), "bias": "-1", "output_weight": "3/5"},),
+        }, (affine(1, 0), affine(0, 1)))
+        self.assertEqual(expression.evaluate((a, b)), Fraction(1, 7) + Fraction(1, 2) * a - b / 3)
+
     def test_reproduces_prima_2016_source_convention_at_every_certificate_vertex(self):
         generic = certify_ordered_public_project_charge(guo_2016_equation_three_charge(), 3)
         source_rows = [

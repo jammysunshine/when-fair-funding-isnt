@@ -109,3 +109,13 @@ to a continuous typed certificate. Rationale: it is an eligible public closed
 form and tests a convention distinct from the `h`-form formulas. Preserve its
 negative normalized efficiency result and state that it is not an asymptotic
 competitive-ratio refutation.
+
+2026-08-15 (Phase V gap audit): do not promote the project as novel
+proof-carrying mechanism verification. Barthe et al. (2015) and Mittelmann et
+al. (2025) establish directly relevant formal-verification/synthesis prior
+art, while Guo et al. (AAAI 2024) establish learned public-project mechanism
+design. Instead, add a rational one-hidden-layer ReLU compiler and validate it
+against the published four-agent formula. Rationale: it removes a bespoke
+transcription dependency while preserving exact arithmetic and independent
+replay; it is a bounded engineering/reproducibility advance, not a paper-level
+novelty assertion.

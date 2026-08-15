@@ -1,7 +1,7 @@
 # Status
 
-Phase: Phase IV prespecified census and exact-certificate extension for VCG
-redistribution; the completed ternary-frontier theorem remains a baseline.
+Phase: Phase V rational-ReLU compiler validation for VCG redistribution; the
+completed ternary-frontier theorem remains a baseline.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An
@@ -83,3 +83,13 @@ independent replays. A paper-grade main study still requires a broader,
 prespecified audit corpus or a new certified mechanism-design result. The
 strongest supported claim remains a bounded reproducibility artifact, not a
 universal mechanism-design theorem or guaranteed publication result.
+
+Phase V: the printed four-agent one-hidden-layer rational ReLU rule is now
+lowered from a serialized network specification by
+`src/mechanism_discovery/rational_relu.py`; it no longer relies solely on
+boutique affine arithmetic in the corpus transcription. Its certificate and
+independent replay hashes are unchanged, and a regression test exercises the
+compiler on serialized rational coefficients. `RESEARCH_GAP_AUDIT.md` records
+the decisive prior-art boundary: formal mechanism verification and neural
+mechanism design already exist, so this compiler validation is an incremental
+artifact result, not a general-AI paper claim.

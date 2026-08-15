@@ -3,6 +3,7 @@
 from fractions import Fraction
 
 from .piecewise_affine import Expr, affine
+from .rational_relu import compile_one_hidden_layer
 
 
 def _sum(*expressions: Expr) -> Expr:
@@ -79,30 +80,22 @@ def guo_2024_four_agent_charge(charge_offset: Fraction = Fraction(0)) -> Expr:
     """
     variables = tuple(affine(*(1 if index == coordinate else 0 for index in range(4)))
                       for coordinate in range(4))
-    zero = affine(0, 0, 0, 0)
-
-    def combine(weights, forms, bias=0):
-        coefficients = tuple(sum((Fraction(weight) * form[index]
-                                  for weight, form in zip(weights, forms)), Fraction(0))
-                             for index in range(4))
-        return coefficients + (sum((Fraction(weight) * form[-1]
-                                    for weight, form in zip(weights, forms)), Fraction(bias)),)
 
     def h(first, second, third):
         forms = (first, second, third)
-        relus = (
-            ((-7220, -5927, -5925), Fraction(5926, 10000)),
-            ((-4485, -5939, -3858), Fraction(3856, 10000)),
-            ((1925, 4570, 4436), Fraction(-2218, 10000)),
-            ((-4820, -3097, -915), Fraction(3667, 10000)),
-        )
-        base = combine((Fraction(9197, 10000), Fraction(6558, 10000), Fraction(6646, 10000)),
-                       forms, Fraction(2218, 10000) + charge_offset)
-        expression = Expr.from_affine(base)
-        for index, (weights, bias) in enumerate(relus):
-            expression = expression + Expr.maximum(zero, combine(
-                tuple(Fraction(weight, 10000) for weight in weights), forms, bias
-            )).scale(-1 if index == 3 else 1)
-        return expression
+        return compile_one_hidden_layer({
+            "output_weights": ("9197/10000", "6558/10000", "6646/10000"),
+            "output_bias": Fraction(2218, 10000) + charge_offset,
+            "hidden": (
+                {"weights": ("-7220/10000", "-5927/10000", "-5925/10000"),
+                 "bias": "5926/10000", "output_weight": 1},
+                {"weights": ("-4485/10000", "-5939/10000", "-3858/10000"),
+                 "bias": "3856/10000", "output_weight": 1},
+                {"weights": ("1925/10000", "4570/10000", "4436/10000"),
+                 "bias": "-2218/10000", "output_weight": 1},
+                {"weights": ("-4820/10000", "-3097/10000", "-915/10000"),
+                 "bias": "3667/10000", "output_weight": -1},
+            ),
+        }, forms)
 
     return _sum(*(h(*(variables[:index] + variables[index + 1:])) for index in range(4)))
