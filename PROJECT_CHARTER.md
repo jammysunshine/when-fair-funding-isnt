@@ -47,3 +47,9 @@ predicate is exact equality between compiled and source-only certificates;
 the bounded compute metric is candidate bases. This is a stress test for the
 declared verifier class only, with no claim about neural training or new
 economic mechanisms.
+
+Phase V solver extension: each frozen benchmark certificate is challenged by
+an external Z3 exact-real satisfiability query for a strict improvement in its
+reported extrema. Acceptance requires `unsat` for all three queries per case
+and direct rational validation of each witness. This is an adversarial solver
+check for the fixed source language, not a generic MIP/SMT performance study.

@@ -153,3 +153,11 @@ unit. Preserve the failed run in the research record, then align the source
 route to the function-level arrangement by skipping zero-output units. This is
 an implementation correction discovered by the frozen confirmation case; no
 case, seed, or coefficient was changed.
+
+2026-08-15 (Phase V solver gate, before evaluation): use Z3 exact-real
+satisfiability to search for strict improvements over every reported benchmark
+extremum, rather than presenting another arrangement enumerator as a solver
+baseline. Rationale: a strict-improvement `unsat` result paired with an exact
+certificate witness establishes the stated bound without relying on
+nonlinear-optimization heuristics. Scope is deliberately limited to the six
+frozen shallow rational source networks.

@@ -22,6 +22,8 @@ python3 scripts/run_max_affine_certification.py
 python3 scripts/verify_max_affine_certificate.py
 python3 scripts/verify_source_network_certificates.py
 python3 scripts/run_relu_benchmark.py
+.venv/bin/python -m pip install -r requirements-verification.txt
+.venv/bin/python scripts/verify_relu_benchmark_z3.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -64,6 +66,13 @@ and emits `artifacts/relu_benchmark_results.json` (SHA-256
 `8589d83fb5fcd4b3c9721ff4d3c2de2d7723c71a08fb5c46a518c88f96fd5cbd`).
 It contains six deterministic rational fixtures over 3--5 agents; both exact
 routes agree on every field after the retained zero-output-boundary bug fix.
+The solver-backed strict-counterexample audit uses `z3-solver==5.0.0.0` from
+`requirements-verification.txt` (SHA-256
+`137fd7f42291439e332a9f3be1055e8d593de68f83048fee673164e0c4f0dc65`) and
+writes `artifacts/relu_benchmark_z3_certificate.json` (SHA-256
+`b9fb7e30792d9fe26eb7197b845a4c1ebd8a171c389713a260f574e5924f8545`). It
+records 18 `unsat` strict-improvement queries plus direct rational witness
+checks.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
 
@@ -88,4 +97,6 @@ artifacts/max_affine_independent_certificate.json 8b89a8ca8b4ed937f865be2b33c72f
 artifacts/max_affine_source_network_certificate.json 1bcde48fc4f23e58a510027310fc723195a6553f23354472c904332111745d4f
 configs/relu_benchmark.json 64745342ba577353a2d4db81ebe9d67ac05a68b8a2d964b99cdeae69500d7b34
 artifacts/relu_benchmark_results.json 8589d83fb5fcd4b3c9721ff4d3c2de2d7723c71a08fb5c46a518c88f96fd5cbd
+requirements-verification.txt 137fd7f42291439e332a9f3be1055e8d593de68f83048fee673164e0c4f0dc65
+artifacts/relu_benchmark_z3_certificate.json b9fb7e30792d9fe26eb7197b845a4c1ebd8a171c389713a260f574e5924f8545
 ```

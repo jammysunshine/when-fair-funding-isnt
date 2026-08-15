@@ -110,3 +110,10 @@ a zero-output hidden-unit boundary mismatch; the source verifier now removes
 only semantically inert zero-output activations, matching the compiler's
 function-level arrangement. The original failed result and correction are
 retained in `DECISION_LOG.md`; no benchmark seed was changed.
+
+Phase V solver gate: Z3 5.0.0.0 now independently encodes the six frozen
+source networks over exact reals. All 18 strict counterexample queries (lower
+budget slack, lower charge ratio, higher charge ratio) returned `unsat`, and
+all serialized witnesses evaluate exactly from source coefficients. This meets
+the previously missing solver-backed baseline gate for this bounded benchmark,
+but the corpus remains synthetic and too small for a broad publication claim.
