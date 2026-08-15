@@ -114,6 +114,8 @@ def ordered_cube_facets(dimension: int) -> tuple[Affine, ...]:
 
 @dataclass(frozen=True)
 class Certificate:
+    arrangement_planes: int
+    candidate_bases_examined: int
     vertices: tuple[Point, ...]
     minimum_charge_ratio: Fraction
     minimum_witness: Point
@@ -147,5 +149,6 @@ def certify_ordered_public_project_charge(charge: Expr, dimension: int) -> Certi
     low_ratio, _, low_witness = min(rows)
     high_ratio, _, high_witness = max(rows)
     _, slack, slack_witness = min(rows, key=lambda row: (row[1], row[2]))
-    return Certificate(ordered_vertices, low_ratio, low_witness, high_ratio, high_witness,
+    return Certificate(len(planes), sum(1 for _ in combinations(planes, dimension)),
+                       ordered_vertices, low_ratio, low_witness, high_ratio, high_witness,
                        Fraction(dimension) - high_ratio, slack, slack_witness)

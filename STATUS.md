@@ -72,8 +72,10 @@ certificate is `artifacts/max_affine_certification.json`. The source census
 logs inaccessible and adjacent sources as exclusions rather than inferring
 their formulas. A standalone replay consumes the serialized rational
 expressions, derives the arrangement anew, and agrees on all four entries.
-This is a reusable method result within the restricted expression class, not a
-general neural-network verifier.
+The largest entry has 22 planes, 7,315 exact candidate bases, and 116 feasible
+vertices; these counts bound the demonstrated computational envelope. This is
+a reusable method result within the restricted expression class, not a general
+neural-network verifier.
 
 Delivery gate: the replication lane has frozen certificates and clean
 independent replays. A paper-grade main study still requires a broader,

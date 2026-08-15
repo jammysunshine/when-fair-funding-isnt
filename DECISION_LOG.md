@@ -96,3 +96,9 @@ each generic certificate and require an independent parser/enumerator to
 replay it without importing the producer or formula-specific code. Rationale:
 agreement between two transcriptions alone is not enough to make the generic
 method inspectable; the artifact must be sufficient for a separate replay.
+
+2026-08-15 (Phase IV reporting): serialize arrangement-plane and candidate-base
+counts with each certificate and state the arrangement reduction explicitly.
+Rationale: exactness without a declared computational envelope invites an
+unwarranted scalability inference; the paper must distinguish its proof domain
+from arbitrary neural or program verification.

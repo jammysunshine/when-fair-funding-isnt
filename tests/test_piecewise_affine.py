@@ -42,6 +42,11 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
             self.assertEqual(generic.maximum_charge_ratio, known.maximum_charge_ratio)
             self.assertEqual(generic.worst_case_efficiency, known.worst_case_efficiency)
 
+    def test_certificate_reports_exact_arrangement_work(self):
+        certificate = certify_ordered_public_project_charge(guo_2024_four_agent_charge(), 4)
+        self.assertGreater(certificate.arrangement_planes, 4)
+        self.assertGreater(certificate.candidate_bases_examined, len(certificate.vertices))
+
     def test_serialized_certificate_replays_without_primary_engine(self):
         root = Path(__file__).resolve().parents[1]
         payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())

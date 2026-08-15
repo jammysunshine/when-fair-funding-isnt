@@ -2,6 +2,8 @@
   "entries": {
     "guo_aaai_2024_printed_3_agent": {
       "certificate": {
+        "arrangement_planes": 11,
+        "candidate_bases_examined": 165,
         "maximum_charge_ratio": "7/3",
         "maximum_witness": [
           "1/1",
@@ -232,6 +234,8 @@
     },
     "guo_aaai_2024_printed_4_agent": {
       "certificate": {
+        "arrangement_planes": 22,
+        "candidate_bases_examined": 7315,
         "maximum_charge_ratio": "8333/2500",
         "maximum_witness": [
           "1/1",
@@ -1249,6 +1253,8 @@
     },
     "guo_aaai_2024_printed_4_agent_uniform_repair": {
       "certificate": {
+        "arrangement_planes": 22,
+        "candidate_bases_examined": 7315,
         "maximum_charge_ratio": "16667/5000",
         "maximum_witness": [
           "0/1",
@@ -2266,6 +2272,8 @@
     },
     "guo_ijcai_2019_equation_2": {
       "certificate": {
+        "arrangement_planes": 20,
+        "candidate_bases_examined": 1140,
         "maximum_charge_ratio": "7/3",
         "maximum_witness": [
           "1/1",

@@ -9,6 +9,9 @@
 - The antichain implementation enumerates 16, 32, and 64 rules exactly for `n=3,4,5` on the declared domains.
 - Every reported accepted row passes the primary verifier; all 74 serialized cross-agent rows pass the independent checker.
 - The efficient critical-payment rule has explicit weak-budget-balance witnesses at cost 3.
+- For the declared rational sum-of-max/min-affine language on an ordered unit
+  cube, the arrangement-vertex reduction exactly certifies the reported
+  charge-ratio, efficiency, and budget-slack extrema.
 
 ## EMPIRICALLY EVALUATED
 
@@ -22,3 +25,6 @@
 - Held-out cost coverage across values `{0,1,2,3}` is refuted for thresholds 1–6 (207 failures).
 - No claim of universal optimality, randomized optimality, deployment effect,
   or generalization beyond the ternary class is made.
+- The certificate method is not established for arbitrary neural networks,
+  opaque learned weights, unrestricted programs, or higher-dimensional
+  instances beyond the recorded computational envelope.

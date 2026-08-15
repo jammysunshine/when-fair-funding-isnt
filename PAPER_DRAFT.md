@@ -178,7 +178,9 @@ forms combined by addition, scalar multiplication, and finite `max`/`min`.
 On an ordered unit cube, every branch boundary and the public-project
 first-best boundary are affine. Enumerating every intersection of the declared
 boundaries therefore gives a finite exact certificate for extrema of total
-Groves charge divided by first-best cost.
+Groves charge divided by first-best cost. On each arrangement cell the selected
+branches are affine, budget slack is affine, and the ratio is linear-fractional
+with denominator at least one; extrema therefore occur at a cell vertex.
 
 The generic engine reproduces three pre-existing continuous formulas: the
 three-agent optimum displayed as Guo (IJCAI 2019) Equation (2), and the
@@ -189,6 +191,9 @@ formula's `1/5000` deficit and its published `1/20000` per-term uniform repair.
 An independent program consumes only the serialized rational expression,
 derives branch planes and arrangement vertices itself, and exactly matches all
 four certificates (including the repaired four-agent entry).
+The largest frozen entry has 22 planes, 7,315 exact four-plane bases, and 116
+feasible vertices. These are a demonstrated resource boundary, not evidence of
+scalability to arbitrary architecture depth or dimension.
 
 This is a reproducibility result about displayed formulas. It does not recover
 training weights, diagnose authors' unshared implementation, prove properties

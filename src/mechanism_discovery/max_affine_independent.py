@@ -74,8 +74,11 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
     """Recompute a certificate entry from its serialized expression only."""
     dimension = int(entry["dimension"])
     specification = entry["specification"]
+    planes = _planes(specification, dimension)
     vertices = set()
-    for basis in combinations(_planes(specification, dimension), dimension):
+    bases_examined = 0
+    for basis in combinations(planes, dimension):
+        bases_examined += 1
         point = _solve(basis)
         if point is not None and all(Fraction(0) <= value <= Fraction(1) for value in point) and all(
             point[index] <= point[index + 1] for index in range(dimension - 1)
@@ -91,6 +94,8 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
     high, _, high_witness = max(rows)
     _, slack, slack_witness = min(rows, key=lambda row: (row[1], row[2]))
     return {
+        "arrangement_planes": len(planes),
+        "candidate_bases_examined": bases_examined,
         "vertices": [[f"{value.numerator}/{value.denominator}" for value in point] for point in ordered],
         "minimum_charge_ratio": f"{low.numerator}/{low.denominator}",
         "minimum_witness": [f"{value.numerator}/{value.denominator}" for value in low_witness],

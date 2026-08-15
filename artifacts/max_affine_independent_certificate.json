@@ -1,6 +1,8 @@
 {
   "entries": {
     "guo_aaai_2024_printed_3_agent": {
+      "arrangement_planes": 11,
+      "candidate_bases_examined": 165,
       "maximum_charge_ratio": "7/3",
       "maximum_witness": [
         "1/1",
@@ -119,6 +121,8 @@
       "worst_case_efficiency": "2/3"
     },
     "guo_aaai_2024_printed_4_agent": {
+      "arrangement_planes": 22,
+      "candidate_bases_examined": 7315,
       "maximum_charge_ratio": "8333/2500",
       "maximum_witness": [
         "1/1",
@@ -841,6 +845,8 @@
       "worst_case_efficiency": "1667/2500"
     },
     "guo_aaai_2024_printed_4_agent_uniform_repair": {
+      "arrangement_planes": 22,
+      "candidate_bases_examined": 7315,
       "maximum_charge_ratio": "16667/5000",
       "maximum_witness": [
         "0/1",
@@ -1563,6 +1569,8 @@
       "worst_case_efficiency": "3333/5000"
     },
     "guo_ijcai_2019_equation_2": {
+      "arrangement_planes": 20,
+      "candidate_bases_examined": 1140,
       "maximum_charge_ratio": "7/3",
       "maximum_witness": [
         "1/1",
@@ -1701,5 +1709,5 @@
       "worst_case_efficiency": "2/3"
     }
   },
-  "source_sha256": "2602864bf441586ae2370d9b1221ee763ace98aad981e9b35b04976db569f650"
+  "source_sha256": "410b114a8d60239ecf1a3e00a391641450ed74c03335f3b9dc5d7741d5dd2d9f"
 }
