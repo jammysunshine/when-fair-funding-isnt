@@ -15,6 +15,20 @@ public source are excluded rather than reverse engineered.
 | A4 | Guo, PRIMA 2016, Eq. (3) plus Proposition 1 correction | Redistribution | Exhaustive same rational grids | Included, exploratory after Phase II freeze |
 | A5 | Guo, IJCAI 2019, Eq. (2), credited to Guo and Shen (2017) | Groves charge | Exact continuous arrangement certificate | Included, separately preregistered Phase III positive control |
 
+## Phase-IV source census ledger
+
+This is a provenance ledger, not an additional endpoint pool. It records the
+backward and adjacent literature checked while extending the reusable
+certificate engine. Exclusion means only that a source cannot support an
+executable-formula certificate under the preregistered scope.
+
+| ID | Source and access route | Census disposition | Reason |
+|---|---|---|---|
+| C1 | Naroditskiy et al., WINE 2012, [official repository record](https://digital.library.adelaide.edu.au/items/261238eb-51d1-4b28-b23f-9e0f73eab495) | Excluded | The accessible record identifies a three-agent optimum but its PDF is restricted; no formula is reconstructed. |
+| C2 | Guo and Shen, PRIMA 2017, [official repository record](https://digital.library.adelaide.edu.au/items/147ffe40-1f6b-430b-8db6-d10fa38d1b33) | Lineage logged; independent formula excluded | IJCAI 2019 prints the credited Eq. (2), already audited as A5; the original record does not supply a separately accessible executable formula. |
+| C3 | Guo et al., AAMAS 2024, [publisher record](https://link.springer.com/article/10.1007/s10458-024-09647-8) | Excluded as adjacent | It studies ML approaches to public projects, not an eligible displayed anonymous VCG-redistribution max-affine rule under this audit's convention. |
+| C4 | Barthe et al., 2015, [preprint](https://arxiv.org/abs/1502.04052) | Method comparator, not corpus formula | It establishes prior computer-aided mechanism verification; this project makes no generic verification-novelty claim. |
+
 ## Interpretation rules
 
 - A continuous certificate establishes only the displayed public formula on
@@ -27,6 +41,9 @@ public source are excluded rather than reverse engineered.
   error to unshared source material.
 - The Phase II endpoints remain frozen. A later source is separately labelled
   and cannot be pooled into its primary claim.
+- The generic engine is validated against A5, A1, and A2. For A2 it reproduces
+  both the printed-decimal deficit and the declared uniform-offset repair,
+  using a typed transcription separate from the source-specific evaluator.
 
 ## Source-transcription safeguards
 

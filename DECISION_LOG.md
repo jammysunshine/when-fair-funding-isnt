@@ -82,3 +82,11 @@ computer-aided mechanism verification, and general piecewise-linear network
 verification separately; a credible claim must be the bounded bridge, with
 explicit formula provenance and reproducible certificates rather than an
 unsupported discovery claim.
+
+2026-08-15 (Phase IV extension, after preregistration): require the generic
+engine to reproduce the four-agent printed-decimal deficit and repair in
+addition to two three-agent positive controls. Rationale: this tests the
+engine on a higher-dimensional formula with signed ReLU terms and a
+rounding-sensitive budget boundary; any disagreement with the separate exact
+evaluator is a falsifiable implementation failure. Record inaccessible 2012
+and 2017 sources as exclusions, not inferred formula targets.

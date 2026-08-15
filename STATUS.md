@@ -1,7 +1,7 @@
 # Status
 
-Phase: Phase II feasibility gate for certificate-first VCG redistribution
-synthesis/audit; the completed ternary-frontier theorem remains a baseline.
+Phase: Phase IV prespecified census and exact-certificate extension for VCG
+redistribution; the completed ternary-frontier theorem remains a baseline.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An
@@ -64,11 +64,14 @@ grid boundaries. It is still insufficient for a top-tier general-AI claim; the
 next gate is a broader prespecified census or a new certified algorithmic result.
 
 Phase IV (pre-registered before extension): a typed exact shallow max-affine
-executable-specification engine now reproduces both continuous three-agent
-positive controls—Guo (IJCAI 2019) Equation (2) and Guo (AAAI 2024)'s printed
-rule—at every arrangement vertex. Its emitted certificate is
-`artifacts/max_affine_certification.json`. This is a reusable method result
-within the restricted expression class, not a general neural-network verifier.
+executable-specification engine now reproduces three continuous controls: Guo
+(IJCAI 2019) Equation (2), Guo (AAAI 2024)'s printed three-agent rule, and its
+four-agent decimal rule. For the latter it independently reproduces both the
+printed `1/5000` deficit and the `1/20000` per-term repair. Its emitted
+certificate is `artifacts/max_affine_certification.json`. The source census
+logs inaccessible and adjacent sources as exclusions rather than inferring
+their formulas. This is a reusable method result within the restricted
+expression class, not a general neural-network verifier.
 
 Delivery gate: the replication lane has frozen certificates and clean
 independent replays. A paper-grade main study still requires a broader,
