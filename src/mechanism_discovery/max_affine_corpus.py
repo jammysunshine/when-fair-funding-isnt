@@ -82,20 +82,25 @@ def guo_2024_four_agent_charge(charge_offset: Fraction = Fraction(0)) -> Expr:
                       for coordinate in range(4))
 
     def h(first, second, third):
-        forms = (first, second, third)
-        return compile_one_hidden_layer({
-            "output_weights": ("9197/10000", "6558/10000", "6646/10000"),
-            "output_bias": Fraction(2218, 10000) + charge_offset,
-            "hidden": (
-                {"weights": ("-7220/10000", "-5927/10000", "-5925/10000"),
-                 "bias": "5926/10000", "output_weight": 1},
-                {"weights": ("-4485/10000", "-5939/10000", "-3858/10000"),
-                 "bias": "3856/10000", "output_weight": 1},
-                {"weights": ("1925/10000", "4570/10000", "4436/10000"),
-                 "bias": "-2218/10000", "output_weight": 1},
-                {"weights": ("-4820/10000", "-3097/10000", "-915/10000"),
-                 "bias": "3667/10000", "output_weight": -1},
-            ),
-        }, forms)
+        return compile_one_hidden_layer(guo_2024_four_agent_network_spec(charge_offset),
+                                        (first, second, third))
 
     return _sum(*(h(*(variables[:index] + variables[index + 1:])) for index in range(4)))
+
+
+def guo_2024_four_agent_network_spec(charge_offset: Fraction = Fraction(0)) -> dict:
+    """Serialized coefficient source for the printed 4-agent shallow ReLU rule."""
+    return {
+        "output_weights": ("9197/10000", "6558/10000", "6646/10000"),
+        "output_bias": str(Fraction(2218, 10000) + charge_offset),
+        "hidden": (
+            {"weights": ("-7220/10000", "-5927/10000", "-5925/10000"),
+             "bias": "5926/10000", "output_weight": "1"},
+            {"weights": ("-4485/10000", "-5939/10000", "-3858/10000"),
+             "bias": "3856/10000", "output_weight": "1"},
+            {"weights": ("1925/10000", "4570/10000", "4436/10000"),
+             "bias": "-2218/10000", "output_weight": "1"},
+            {"weights": ("-4820/10000", "-3097/10000", "-915/10000"),
+             "bias": "3667/10000", "output_weight": "-1"},
+        ),
+    }

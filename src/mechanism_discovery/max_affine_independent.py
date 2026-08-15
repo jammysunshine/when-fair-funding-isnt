@@ -12,9 +12,8 @@ from itertools import combinations
 from typing import Any
 
 
-def _fraction(value: str) -> Fraction:
-    numerator, denominator = value.split("/")
-    return Fraction(int(numerator), int(denominator))
+def _fraction(value: str | int) -> Fraction:
+    return Fraction(value)
 
 
 def _forms(items: list[list[str]]) -> tuple[tuple[Fraction, ...], ...]:
@@ -31,6 +30,24 @@ def _expression_value(specification: dict[str, Any], point: tuple[Fraction, ...]
                   for branches in (_forms(group) for group in specification["maxima"])), Fraction(0))
     return total + sum((min(_evaluate(branch, point) for branch in branches)
                         for branches in (_forms(group) for group in specification["minima"])), Fraction(0))
+
+
+def _network_value(specification: dict[str, Any], inputs: tuple[Fraction, ...]) -> Fraction:
+    """Evaluate a serialized rational affine--ReLU--affine network directly."""
+    output = sum((_fraction(weight) * value
+                  for weight, value in zip(specification["output_weights"], inputs)),
+                 _fraction(specification["output_bias"]))
+    for unit in specification["hidden"]:
+        preactivation = sum((_fraction(weight) * value
+                             for weight, value in zip(unit["weights"], inputs)),
+                            _fraction(unit["bias"]))
+        output += _fraction(unit["output_weight"]) * max(Fraction(0), preactivation)
+    return output
+
+
+def _deleted_input_network_charge(specification: dict[str, Any], point: tuple[Fraction, ...]) -> Fraction:
+    return sum((_network_value(specification, point[:index] + point[index + 1:])
+                for index in range(len(point))), Fraction(0))
 
 
 def _difference(left: tuple[Fraction, ...], right: tuple[Fraction, ...]) -> tuple[Fraction, ...]:
@@ -108,4 +125,25 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
 
 
 def replay_payload(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {name: replay_entry(entry) for name, entry in payload["entries"].items()}
+    """Replay certificates and bind declared source networks to each formula.
+
+    A source network, when present, is directly evaluated on every certified
+    arrangement vertex after deleting each agent input. This is intentionally
+    separate from the producer's compiler.
+    """
+    replay = {name: replay_entry(entry) for name, entry in payload["entries"].items()}
+    for name, network in payload.get("source_networks", {}).items():
+        if name not in payload["entries"]:
+            raise ValueError(f"source network has no certificate entry: {name}")
+        entry = payload["entries"][name]
+        if int(entry["dimension"]) != 4:
+            raise ValueError("deleted-input source-network replay currently requires four agents")
+        for serialized_point in replay[name]["vertices"]:
+            point = tuple(_fraction(value) for value in serialized_point)
+            compiled_value = _expression_value(entry["specification"], point)
+            source_value = _deleted_input_network_charge(network, point)
+            if source_value != compiled_value:
+                raise ValueError(
+                    f"source network disagrees with compiled expression for {name} at {serialized_point}"
+                )
+    return replay

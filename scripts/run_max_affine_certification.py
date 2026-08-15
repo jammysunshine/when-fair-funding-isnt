@@ -17,6 +17,7 @@ from src.mechanism_discovery.max_affine_corpus import (
     guo_2019_equation_two_charge,
     guo_2024_three_agent_charge,
     guo_2024_four_agent_charge,
+    guo_2024_four_agent_network_spec,
 )
 from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
 
@@ -51,6 +52,12 @@ def main():
                 "certificate": encode(certify_ordered_public_project_charge(formula, dimension)),
             }
             for name, (formula, dimension) in formulas.items()
+        },
+        "source_networks": {
+            "guo_aaai_2024_printed_4_agent": guo_2024_four_agent_network_spec(),
+            "guo_aaai_2024_printed_4_agent_uniform_repair": (
+                guo_2024_four_agent_network_spec(Fraction(1, 20000))
+            ),
         },
     }
     serialized = json.dumps(payload, indent=2, sort_keys=True) + "\n"

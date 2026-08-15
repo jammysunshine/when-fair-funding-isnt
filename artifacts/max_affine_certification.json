@@ -2922,5 +2922,99 @@
     }
   },
   "method_limit": "not a general neural-network verifier; completeness follows only for the declared shallow max-affine representation",
-  "scope": "exact shallow max-affine certificates on ordered continuous public-project unit cubes"
+  "scope": "exact shallow max-affine certificates on ordered continuous public-project unit cubes",
+  "source_networks": {
+    "guo_aaai_2024_printed_4_agent": {
+      "hidden": [
+        {
+          "bias": "5926/10000",
+          "output_weight": "1",
+          "weights": [
+            "-7220/10000",
+            "-5927/10000",
+            "-5925/10000"
+          ]
+        },
+        {
+          "bias": "3856/10000",
+          "output_weight": "1",
+          "weights": [
+            "-4485/10000",
+            "-5939/10000",
+            "-3858/10000"
+          ]
+        },
+        {
+          "bias": "-2218/10000",
+          "output_weight": "1",
+          "weights": [
+            "1925/10000",
+            "4570/10000",
+            "4436/10000"
+          ]
+        },
+        {
+          "bias": "3667/10000",
+          "output_weight": "-1",
+          "weights": [
+            "-4820/10000",
+            "-3097/10000",
+            "-915/10000"
+          ]
+        }
+      ],
+      "output_bias": "1109/5000",
+      "output_weights": [
+        "9197/10000",
+        "6558/10000",
+        "6646/10000"
+      ]
+    },
+    "guo_aaai_2024_printed_4_agent_uniform_repair": {
+      "hidden": [
+        {
+          "bias": "5926/10000",
+          "output_weight": "1",
+          "weights": [
+            "-7220/10000",
+            "-5927/10000",
+            "-5925/10000"
+          ]
+        },
+        {
+          "bias": "3856/10000",
+          "output_weight": "1",
+          "weights": [
+            "-4485/10000",
+            "-5939/10000",
+            "-3858/10000"
+          ]
+        },
+        {
+          "bias": "-2218/10000",
+          "output_weight": "1",
+          "weights": [
+            "1925/10000",
+            "4570/10000",
+            "4436/10000"
+          ]
+        },
+        {
+          "bias": "3667/10000",
+          "output_weight": "-1",
+          "weights": [
+            "-4820/10000",
+            "-3097/10000",
+            "-915/10000"
+          ]
+        }
+      ],
+      "output_bias": "4437/20000",
+      "output_weights": [
+        "9197/10000",
+        "6558/10000",
+        "6646/10000"
+      ]
+    }
+  }
 }

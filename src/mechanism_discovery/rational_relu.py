@@ -14,6 +14,8 @@ from .piecewise_affine import Affine, Expr
 
 
 def _fraction(value: str | int | Fraction) -> Fraction:
+    if isinstance(value, float):
+        raise ValueError("floating-point coefficients are not an exact network specification")
     return Fraction(value)
 
 

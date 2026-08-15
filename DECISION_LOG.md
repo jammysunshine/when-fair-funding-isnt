@@ -119,3 +119,17 @@ against the published four-agent formula. Rationale: it removes a bespoke
 transcription dependency while preserving exact arithmetic and independent
 replay; it is a bounded engineering/reproducibility advance, not a paper-level
 novelty assertion.
+
+2026-08-15 (Phase V provenance): embed the two exact public four-agent ReLU
+network specifications (printed and uniform-repair variants) in the generic
+certificate artifact, and reject floating-point coefficient inputs. Rationale:
+the artifact now preserves an exact source-network representation alongside
+its compiled expression, while refusing an ambiguous arithmetic format.
+
+2026-08-15 (Phase V independent provenance): require the standalone checker to
+evaluate each serialized source network at every certified arrangement vertex
+and compare it with the serialized max-affine expression. Rationale: this
+turns the embedded source specification into a checked claim, so a changed
+network coefficient cannot be concealed by leaving the compiled expression
+unchanged. The check is restricted to the declared symmetric four-agent,
+deleted-input form.
