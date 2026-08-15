@@ -1,6 +1,7 @@
 # Project Charter
 
-Status: original study frozen 2026-08-15; Phase V is active. The original
+Status: original study frozen 2026-08-15; Phase VII is complete and Phase VIII
+joint constrained synthesis is the next gate. The original
 binary-table audit remains a baseline and Phase II--IV results remain bounded
 replication evidence.
 
@@ -60,3 +61,15 @@ the certificate's minimum budget deficit. The frozen corpus is the printed
 four-agent source plus all six Phase-V fixtures; every entry is reported. The
 claim is restricted to this scalar repair family and requires compiler,
 direct-source, and exact-real solver non-deficit checks.
+
+Phase VII trade-off extension: keep the Phase-VI source corpus and repair
+family fixed, and certify whether the minimal no-deficit repair also preserves
+ex-post IR. This gate is deliberately falsifying: all seven repaired sources
+fail IR under the stated efficient-Groves convention. It rules out claiming
+that scalar repair itself discovers a viable mechanism.
+
+Phase VIII question: can an exact finite constrained search discover a
+nontrivial anonymous redistribution rule that simultaneously satisfies budget
+and IR, and does that constrained frontier survive untouched prior shifts and
+an independent optimizer/replay? This is the next discovery task, not an
+extension of the rejected scalar-repair claim.
