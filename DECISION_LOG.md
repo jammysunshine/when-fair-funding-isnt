@@ -134,3 +134,13 @@ the two piecewise-affine representations throughout the declared cube, so a
 changed network coefficient cannot be concealed by leaving the compiled
 expression unchanged. The check is restricted to the declared symmetric
 four-agent, deleted-input form.
+
+2026-08-15 (Phase V falsification extension, before evaluation): add a direct
+source-network activation-boundary enumerator that never consumes the compiled
+max/min expression. Require exact equality of all extrema, witnesses, and
+candidate-set output for every embedded source rule; preserve any disagreement
+as a failed verifier comparison. Rationale: common-refinement equivalence
+checks source-to-formula semantics, whereas this second route checks the
+reported extrema directly from source coefficients. It is deliberately framed
+as a bounded independent-verifier baseline, not as a replacement for an
+external solver or a general neural-verification contribution.

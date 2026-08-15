@@ -19,7 +19,7 @@ from src.mechanism_discovery.max_affine_corpus import (
 )
 from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
 from src.mechanism_discovery.rational_relu import compile_one_hidden_layer
-from src.mechanism_discovery.max_affine_independent import replay_payload
+from src.mechanism_discovery.max_affine_independent import replay_deleted_input_network, replay_payload
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
 
 
@@ -116,6 +116,26 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
         corrupted["source_networks"]["guo_aaai_2024_printed_4_agent"]["output_bias"] = "0/1"
         with self.assertRaises(ValueError):
             replay_payload(corrupted)
+
+    def test_direct_source_network_certificate_matches_compiled_certificate(self):
+        root = Path(__file__).resolve().parents[1]
+        payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
+        for name, network in payload["source_networks"].items():
+            self.assertEqual(
+                replay_deleted_input_network(network, int(payload["entries"][name]["dimension"])),
+                payload["entries"][name]["certificate"],
+            )
+
+    def test_direct_source_network_certificate_detects_changed_coefficient(self):
+        root = Path(__file__).resolve().parents[1]
+        payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
+        name = "guo_aaai_2024_printed_4_agent"
+        corrupted = deepcopy(payload["source_networks"][name])
+        corrupted["hidden"][0]["output_weight"] = "0/1"
+        self.assertNotEqual(
+            replay_deleted_input_network(corrupted, 4),
+            payload["entries"][name]["certificate"],
+        )
 
 
 if __name__ == "__main__":

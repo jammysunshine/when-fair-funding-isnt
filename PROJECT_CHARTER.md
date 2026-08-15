@@ -33,3 +33,9 @@ the exact certificate language, rather than transcribed as bespoke formula
 code, while retaining an independent replay? The initial 4-agent control is a
 validation target, not a claim of generality. Promotion beyond a useful
 replication artifact requires the five gates in `RESEARCH_GAP_AUDIT.md`.
+
+Phase V falsification extension (frozen before its run): the same declared
+source networks must be certified by a direct activation-boundary enumerator
+that does not consume compiled expressions. Exact equality of every reported
+metric and witness is the acceptance predicate; any mismatch is retained as a
+failure. This crosscheck is a verifier comparison, not a new mechanism search.

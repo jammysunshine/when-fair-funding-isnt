@@ -20,6 +20,7 @@ python3 scripts/run_guo_2016_baseline_audit.py
 python3 scripts/run_guo_2019_three_agent_optimal_audit.py
 python3 scripts/run_max_affine_certification.py
 python3 scripts/verify_max_affine_certificate.py
+python3 scripts/verify_source_network_certificates.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -50,6 +51,11 @@ The Phase IV generic shallow-max-affine certificate emits
 `3bdb0c02b39107994f989894d1fcbe04157e0dce6814004e1cd11b217916f882`.
 Its independent replay is `artifacts/max_affine_independent_certificate.json`;
 its SHA-256 is `8b89a8ca8b4ed937f865be2b33c72f7d0d35518870c8bfbc3a9644bd13194f98`.
+The direct source-network replay writes
+`artifacts/max_affine_source_network_certificate.json`; it must match each
+embedded public source network without reading a compiled expression.
+Its frozen SHA-256 is
+`1bcde48fc4f23e58a510027310fc723195a6553f23354472c904332111745d4f`.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
 
@@ -71,4 +77,5 @@ artifacts/guo_2016_grid_audit.json        92e3078d55320c4d6a9130cab16a07d0d264ae
 artifacts/guo_2019_three_agent_optimal_audit.json 45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b
 artifacts/max_affine_certification.json 3bdb0c02b39107994f989894d1fcbe04157e0dce6814004e1cd11b217916f882
 artifacts/max_affine_independent_certificate.json 8b89a8ca8b4ed937f865be2b33c72f7d0d35518870c8bfbc3a9644bd13194f98
+artifacts/max_affine_source_network_certificate.json 1bcde48fc4f23e58a510027310fc723195a6553f23354472c904332111745d4f
 ```

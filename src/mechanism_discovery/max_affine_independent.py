@@ -88,7 +88,8 @@ def _difference(left: tuple[Fraction, ...], right: tuple[Fraction, ...]) -> tupl
     return tuple(a - b for a, b in zip(left, right))
 
 
-def _planes(specification: dict[str, Any], dimension: int) -> tuple[tuple[Fraction, ...], ...]:
+def _base_planes(dimension: int) -> tuple[tuple[Fraction, ...], ...]:
+    """Domain and first-best boundaries shared by all public-project audits."""
     planes = [[Fraction(1)] + [Fraction(0)] * (dimension - 1) + [Fraction(0)]]
     planes.append([Fraction(0)] * (dimension - 1) + [Fraction(1), Fraction(-1)])
     for index in range(dimension - 1):
@@ -96,6 +97,11 @@ def _planes(specification: dict[str, Any], dimension: int) -> tuple[tuple[Fracti
         form[index], form[index + 1] = Fraction(1), Fraction(-1)
         planes.append(form)
     planes.append([Fraction(1)] * dimension + [Fraction(-1)])
+    return tuple(tuple(plane) for plane in planes)
+
+
+def _planes(specification: dict[str, Any], dimension: int) -> tuple[tuple[Fraction, ...], ...]:
+    planes = list(_base_planes(dimension))
     for key in ("maxima", "minima"):
         for group in specification[key]:
             forms = _forms(group)
@@ -134,6 +140,40 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
     for point in ordered:
         first_best = max(sum(point, Fraction(0)), Fraction(1))
         charge = _expression_value(specification, point)
+        rows.append((charge / first_best, charge - Fraction(dimension - 1) * first_best, point))
+    low, _, low_witness = min(rows)
+    high, _, high_witness = max(rows)
+    _, slack, slack_witness = min(rows, key=lambda row: (row[1], row[2]))
+    return {
+        "arrangement_planes": len(planes),
+        "candidate_bases_examined": bases_examined,
+        "vertices": [[f"{value.numerator}/{value.denominator}" for value in point] for point in ordered],
+        "minimum_charge_ratio": f"{low.numerator}/{low.denominator}",
+        "minimum_witness": [f"{value.numerator}/{value.denominator}" for value in low_witness],
+        "maximum_charge_ratio": f"{high.numerator}/{high.denominator}",
+        "maximum_witness": [f"{value.numerator}/{value.denominator}" for value in high_witness],
+        "worst_case_efficiency": f"{(Fraction(dimension) - high).numerator}/{(Fraction(dimension) - high).denominator}",
+        "minimum_budget_slack": f"{slack.numerator}/{slack.denominator}",
+        "minimum_slack_witness": [f"{value.numerator}/{value.denominator}" for value in slack_witness],
+    }
+
+
+def replay_deleted_input_network(specification: dict[str, Any], dimension: int) -> dict[str, Any]:
+    """Certify a serialized ReLU source directly, without compiled expressions.
+
+    The candidate set is formed from ordered-cube, first-best, and ReLU
+    activation boundaries.  On each resulting cell the direct source charge
+    is affine, so its extrema occur at these exact vertices.  This is a
+    second verifier route: it consumes only source-network coefficients and
+    never reads the producer's max/min expression serialization.
+    """
+    planes = _base_planes(dimension) + _network_break_planes(specification, dimension)
+    bases_examined = sum(1 for _ in combinations(planes, dimension))
+    ordered = _feasible_vertices(planes, dimension)
+    rows = []
+    for point in ordered:
+        first_best = max(sum(point, Fraction(0)), Fraction(1))
+        charge = _deleted_input_network_charge(specification, point)
         rows.append((charge / first_best, charge - Fraction(dimension - 1) * first_best, point))
     low, _, low_witness = min(rows)
     high, _, high_witness = max(rows)

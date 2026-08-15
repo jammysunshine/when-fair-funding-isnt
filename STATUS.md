@@ -94,3 +94,11 @@ source coefficient. `RESEARCH_GAP_AUDIT.md`
 records the decisive prior-art boundary: formal mechanism verification and
 neural mechanism design already exist, so this compiler validation is an
 incremental artifact result, not a general-AI paper claim.
+
+Phase V extension: a third, direct source-network route now derives its own
+activation-boundary arrangement from the serialized ReLU coefficients and
+recomputes extrema without reading the compiled max/min formula. It is frozen
+against the same public source rules and must agree exactly with both prior
+routes; a coefficient mutation is a negative control. This is a meaningful
+falsification check, but still does not substitute for the broader corpus and
+external baseline required for a publication-grade methodological claim.
