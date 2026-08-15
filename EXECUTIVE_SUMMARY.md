@@ -14,3 +14,8 @@ failures. The defensible contribution is a narrow exact characterization plus
 a reproducible finite frontier and falsification benchmark. It is not a
 universal mechanism-design result, deployment evidence, or guarantee of
 publication or a prize.
+
+The later exact repair audit makes the limitation sharper: a scalar offset can
+remove certified budget deficits, but it lowers every truthful Groves utility
+by that offset. On the unchanged seven-source corpus, none of the repaired
+rules is ex-post IR; compiler, direct-source, and exact-real Z3 checks agree.

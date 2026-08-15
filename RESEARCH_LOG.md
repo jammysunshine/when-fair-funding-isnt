@@ -61,3 +61,8 @@ All seven repaired sources passed compiler/direct replay and exact-real Z3
 no-deficit challenges. Five synthetic fixtures require large offsets, which is
 retained as negative evidence: the result is a certified repair primitive, not
 an economically persuasive new mechanism.
+
+2026-08-15 — Preregistered and executed the Phase-VII budget--IR trade-off on
+the unchanged seven-source corpus. The scalar repair lowers each utility by
+its offset; all repaired sources fail ex-post IR. This is retained as the
+decisive negative result preventing an unsupported mechanism-quality claim.

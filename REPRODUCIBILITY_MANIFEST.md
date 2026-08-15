@@ -26,6 +26,8 @@ python3 scripts/run_relu_benchmark.py
 .venv/bin/python scripts/verify_relu_benchmark_z3.py
 python3 scripts/run_uniform_repair_study.py
 .venv/bin/python scripts/verify_uniform_repair_z3.py
+python3 scripts/run_repair_ir_tradeoff_study.py
+.venv/bin/python scripts/verify_repair_ir_z3.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -86,6 +88,14 @@ the scalar repair is `max(0,-s/n)` and each positive half-repair remains
 deficit-producing at the original slack witness.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
+The Phase-VII budget--IR study keeps the same corpus and writes
+`artifacts/repair_ir_tradeoff_study.json` (SHA-256
+`040e6a898ffe1d28c9053692280014c26ccbcc907f3c5e69d32023a93873d6a3`)
+and `artifacts/repair_ir_tradeoff_z3_certificate.json` (SHA-256
+`bd0adaa64c0d521c8f9a945e5687e26c16379ee622e0a0906d1e17ff960cd453`).
+The direct source and compiler minima agree. Z3 records 28 `unsat`
+strict-lower-bound queries and seven IR outcome queries; no repaired source is
+ex-post IR in the declared efficient-Groves model.
 
 Hashes for the clean run:
 
@@ -112,4 +122,6 @@ requirements-verification.txt 137fd7f42291439e332a9f3be1055e8d593de68f83048fee67
 artifacts/relu_benchmark_z3_certificate.json b9fb7e30792d9fe26eb7197b845a4c1ebd8a171c389713a260f574e5924f8545
 artifacts/uniform_repair_study.json 6978e7d21130f62136525abfc7e00a3f3df4af3442224263028b88f5ee71d3d2
 artifacts/uniform_repair_z3_certificate.json e074614506941fec5abd97360ce649ba1baf45d0e451ffa5f8992d703502d33d
+artifacts/repair_ir_tradeoff_study.json 040e6a898ffe1d28c9053692280014c26ccbcc907f3c5e69d32023a93873d6a3
+artifacts/repair_ir_tradeoff_z3_certificate.json bd0adaa64c0d521c8f9a945e5687e26c16379ee622e0a0906d1e17ff960cd453
 ```

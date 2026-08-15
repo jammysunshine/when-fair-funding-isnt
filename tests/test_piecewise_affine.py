@@ -17,10 +17,10 @@ from src.mechanism_discovery.max_affine_corpus import (
     guo_2024_four_agent_charge,
     guo_2024_four_agent_network_spec,
 )
-from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
+from src.mechanism_discovery.piecewise_affine import certify_minimum_groves_utility, certify_ordered_public_project_charge
 from src.mechanism_discovery.rational_relu import compile_one_hidden_layer
-from src.mechanism_discovery.max_affine_independent import replay_deleted_input_network, replay_payload
-from src.mechanism_discovery.relu_benchmark import deleted_input_charge, deterministic_network
+from src.mechanism_discovery.max_affine_independent import replay_deleted_input_network, replay_deleted_input_network_utility_margin, replay_payload
+from src.mechanism_discovery.relu_benchmark import deleted_input_charge, deleted_input_terms, deterministic_network
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
 from src.mechanism_discovery.uniform_repair import add_output_bias_offset, synthesize_minimal_uniform_repair
 
@@ -105,6 +105,17 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
         under_repaired = deleted_input_charge(add_output_bias_offset(source, repair.per_term_offset / 2), 4)
         point = baseline.minimum_slack_witness
         self.assertLess(under_repaired.evaluate(point) - 3 * max(sum(point), Fraction(1)), 0)
+
+    def test_uniform_budget_repair_has_exact_ir_tradeoff(self):
+        source = guo_2024_four_agent_network_spec()
+        budget = certify_ordered_public_project_charge(deleted_input_charge(source, 4), 4)
+        repair = synthesize_minimal_uniform_repair(budget, 4)
+        baseline = certify_minimum_groves_utility(deleted_input_terms(source, 4), 4)
+        repaired_source = add_output_bias_offset(source, repair.per_term_offset)
+        repaired = certify_minimum_groves_utility(deleted_input_terms(repaired_source, 4), 4)
+        direct = replay_deleted_input_network_utility_margin(repaired_source, 4)
+        self.assertEqual(repaired.minimum_utility, baseline.minimum_utility - repair.per_term_offset)
+        self.assertEqual(direct["minimum_utility"], f"{repaired.minimum_utility.numerator}/{repaired.minimum_utility.denominator}")
 
     def test_certificate_reports_exact_arrangement_work(self):
         certificate = certify_ordered_public_project_charge(guo_2024_four_agent_charge(), 4)

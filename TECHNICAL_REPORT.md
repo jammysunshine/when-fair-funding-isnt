@@ -73,3 +73,11 @@ source certificates agree after each repair, and Z3 exact-real searches find
 no negative slack for any repaired source. The large offsets in the synthetic
 cases are retained as a practical limitation: correctness of a scalar repair
 does not imply individual rationality, welfare quality, or economic relevance.
+
+## Budget--IR compatibility
+
+The scalar repair has an exact adverse utility effect: since truthful utility
+is `S-h(theta_-i)`, an offset `delta` subtracts `delta` from every agent's
+utility. The independent Phase-VII source evaluator and Z3 audit certify that
+none of the seven repaired sources is ex-post IR. This invalidates any claim
+that the repair is, by itself, an economically viable mechanism.

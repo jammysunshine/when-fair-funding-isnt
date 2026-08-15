@@ -126,6 +126,62 @@ class Certificate:
     minimum_slack_witness: Point
 
 
+@dataclass(frozen=True)
+class ExtremumCertificate:
+    """Exact range of an expression on the declared ordered cube."""
+
+    arrangement_planes: int
+    candidate_bases_examined: int
+    vertices: tuple[Point, ...]
+    minimum: Fraction
+    minimum_witness: Point
+    maximum: Fraction
+    maximum_witness: Point
+
+
+@dataclass(frozen=True)
+class GrovesUtilityCertificate:
+    """Worst truthful utility across agents for an efficient Groves rule."""
+
+    minimum_utility: Fraction
+    minimum_witness: Point
+    minimum_agent: int
+    per_agent: tuple[ExtremumCertificate, ...]
+
+
+def certify_ordered_cube_extrema(expression: Expr, dimension: int) -> ExtremumCertificate:
+    """Certify exact extrema of a piecewise-affine expression on the cube."""
+    planes = ordered_cube_facets(dimension) + expression.break_planes()
+    vertices = set()
+    for basis in combinations(planes, dimension):
+        point = _solve(basis)
+        if point is not None and all(Fraction(0) <= point[index] <= Fraction(1)
+                                     for index in range(dimension)) and all(
+                                         point[index] <= point[index + 1] for index in range(dimension - 1)):
+            vertices.add(point)
+    ordered_vertices = tuple(sorted(vertices))
+    if not ordered_vertices:
+        raise ValueError("empty arrangement")
+    values = tuple((expression.evaluate(point), point) for point in ordered_vertices)
+    minimum, minimum_witness = min(values)
+    maximum, maximum_witness = max(values)
+    return ExtremumCertificate(len(planes), sum(1 for _ in combinations(planes, dimension)),
+                               ordered_vertices, minimum, minimum_witness, maximum, maximum_witness)
+
+
+def certify_minimum_groves_utility(terms: Sequence[Expr], dimension: int) -> GrovesUtilityCertificate:
+    """Certify ``min_i,theta S(theta)-h(theta_-i)`` in the stated Groves model."""
+    if len(terms) != dimension:
+        raise ValueError("one deleted-input term is required per agent")
+    total = affine(*([1] * dimension), constant=0)
+    first_best = Expr.maximum(total, constant(dimension, 1))
+    certificates = tuple(certify_ordered_cube_extrema(first_best + term.scale(-1), dimension)
+                         for term in terms)
+    minimum, agent, witness = min((certificate.minimum, index, certificate.minimum_witness)
+                                  for index, certificate in enumerate(certificates))
+    return GrovesUtilityCertificate(minimum, witness, agent, certificates)
+
+
 def certify_ordered_public_project_charge(charge: Expr, dimension: int) -> Certificate:
     """Certify a charge formula on ``0 <= x_1 <= ... <= x_n <= 1`` exactly."""
     total = affine(*([1] * dimension), constant=0)

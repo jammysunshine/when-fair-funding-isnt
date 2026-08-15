@@ -10,3 +10,6 @@
   the declared deleted-input network form. It does not preserve or establish
   individual rationality, redistribution quality, utility bounds, or welfare;
   the large synthetic offsets demonstrate this limitation rather than solve it.
+- The Phase-VII rejection of uniform repair does not exclude nonuniform or
+  newly optimized rules. Such a claim needs a broader public corpus and a
+  separate preregistered constrained search.

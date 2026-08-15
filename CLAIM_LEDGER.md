@@ -20,6 +20,10 @@
   nonnegative uniform output-bias offset that eliminates a certified minimum
   slack `s` is `max(0,-s/n)`. The Phase-VI seven-source corpus is certified
   through compiled, direct-source, and Z3 exact-real routes.
+- In the declared efficient-Groves model, the uniform offset lowers every
+  truthful utility by exactly that offset. Across the frozen Phase-VII corpus,
+  no repaired source is simultaneously no-deficit and ex-post IR; compiler,
+  direct-source, and Z3 routes agree.
 
 ## EMPIRICALLY EVALUATED
 
@@ -40,3 +44,6 @@
   budget optimality outside its scalar family, or a useful economic mechanism;
   its synthetic large-offset cases are explicitly negative evidence against
   treating repair feasibility as practical mechanism quality.
+- This all-fail trade-off result concerns only the fixed uniform-bias family
+  and seven declared sources; it is not an impossibility theorem for arbitrary
+  Groves redistribution mechanisms.

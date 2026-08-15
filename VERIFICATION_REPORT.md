@@ -29,3 +29,8 @@ positive repair, half the offset remains deficit-producing at the baseline
 witness. `scripts/verify_uniform_repair_z3.py` encodes the repaired sources
 over exact reals and returns `unsat` for all seven strict-negative-slack
 queries. The artifact is `artifacts/uniform_repair_z3_certificate.json`.
+
+Phase VII independently replays minimum truthful utility directly from source
+coefficients and issues 28 exact-real strict-lower-bound Z3 queries, one per
+source and omitted report. All are `unsat`; seven separate negative-utility
+queries match the compiled conclusion that every repaired source fails IR.

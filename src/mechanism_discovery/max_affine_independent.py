@@ -70,6 +70,22 @@ def _network_break_planes(specification: dict[str, Any], dimension: int) -> tupl
     return tuple(planes)
 
 
+def _deleted_network_break_planes(specification: dict[str, Any], dimension: int,
+                                  deleted: int) -> tuple[tuple[Fraction, ...], ...]:
+    """Lift activation boundaries for one specified deleted-input term."""
+    planes = []
+    for unit in specification["hidden"]:
+        if _fraction(unit["output_weight"]) == 0:
+            continue
+        weights = tuple(_fraction(weight) for weight in unit["weights"])
+        if len(weights) != dimension - 1:
+            raise ValueError("source network input dimension disagrees with certificate")
+        iterator = iter(weights)
+        planes.append(tuple(Fraction(0) if coordinate == deleted else next(iterator)
+                            for coordinate in range(dimension)) + (_fraction(unit["bias"]),))
+    return tuple(planes)
+
+
 def _canonical_plane(plane: tuple[Fraction, ...]) -> tuple[Fraction, ...]:
     pivot = next((value for value in plane if value != 0), None)
     if pivot is None:
@@ -194,6 +210,39 @@ def replay_deleted_input_network(specification: dict[str, Any], dimension: int) 
         "worst_case_efficiency": f"{(Fraction(dimension) - high).numerator}/{(Fraction(dimension) - high).denominator}",
         "minimum_budget_slack": f"{slack.numerator}/{slack.denominator}",
         "minimum_slack_witness": [f"{value.numerator}/{value.denominator}" for value in slack_witness],
+    }
+
+
+def replay_deleted_input_network_utility_margin(specification: dict[str, Any], dimension: int) -> dict[str, Any]:
+    """Directly certify the smallest efficient-Groves truthful utility.
+
+    This consumes source-network coefficients only.  For each deleted report,
+    the network and ``max(sum(theta), 1)`` are affine on every enumerated cell.
+    """
+    candidates = []
+    per_agent = []
+    for deleted in range(dimension):
+        planes = _base_planes(dimension) + _deleted_network_break_planes(specification, dimension, deleted)
+        ordered = _feasible_vertices(planes, dimension)
+        rows = []
+        for point in ordered:
+            first_best = max(sum(point, Fraction(0)), Fraction(1))
+            utility = first_best - _network_value(specification, point[:deleted] + point[deleted + 1:])
+            rows.append((utility, point))
+        utility, witness = min(rows)
+        candidates.append((utility, deleted, witness))
+        per_agent.append({
+            "arrangement_planes": len(planes),
+            "candidate_bases_examined": sum(1 for _ in combinations(planes, dimension)),
+            "minimum_utility": f"{utility.numerator}/{utility.denominator}",
+            "minimum_witness": [f"{value.numerator}/{value.denominator}" for value in witness],
+        })
+    minimum, agent, witness = min(candidates)
+    return {
+        "minimum_utility": f"{minimum.numerator}/{minimum.denominator}",
+        "minimum_witness": [f"{value.numerator}/{value.denominator}" for value in witness],
+        "minimum_agent": agent,
+        "per_agent": per_agent,
     }
 
 

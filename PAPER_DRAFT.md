@@ -256,6 +256,19 @@ strict-negative-slack queries are `unsat`. This is not a new mechanism or a
 welfare result. In fact, the large synthetic offsets are negative evidence
 against interpreting scalar feasibility repair as economically useful design.
 
+### 4.8 Certified budget--IR incompatibility of the scalar repair
+
+The preceding result is not sufficient for a Groves mechanism because truthful
+utility is `S-h(theta_-i)`. The same offset `delta` that adds `n*delta` to total
+slack subtracts `delta` from every agent's utility. We therefore froze the
+corpus and repair family before computing exact minimum utility. All seven
+repaired sources fail ex-post IR: the displayed control is negative already,
+and every initially nonnegative synthetic margin is smaller than the offset
+required for budget repair. Direct source replay agrees with the compiler; 28
+exact-real Z3 lower-bound queries are `unsat`, and seven IR queries agree.
+This is a calibrated negative result, not an impossibility theorem for other
+redistribution families.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -327,6 +340,8 @@ python3 -m venv .venv
 .venv/bin/python scripts/verify_relu_benchmark_z3.py
 python3 scripts/run_uniform_repair_study.py
 .venv/bin/python scripts/verify_uniform_repair_z3.py
+python3 scripts/run_repair_ir_tradeoff_study.py
+.venv/bin/python scripts/verify_repair_ir_z3.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim

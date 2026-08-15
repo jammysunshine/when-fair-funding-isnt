@@ -128,3 +128,10 @@ finds no repaired deficit in any of the seven sources. This is a small,
 provable repair primitive, not an economically validated new mechanism: the
 synthetic offsets can be large and do not preserve the broader constraints
 needed for a deployable redistribution rule.
+
+Phase VII tested that missing economic condition without changing the corpus.
+The same uniform offset lowers every truthful utility by exactly that offset.
+All seven repaired sources fail ex-post IR: the published control is already
+negative before repair, and each initially nonnegative synthetic margin is
+smaller than its necessary offset. Compiler, direct source, and exact-real Z3
+routes agree, so the scalar repair is rejected as a viable mechanism result.

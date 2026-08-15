@@ -37,13 +37,14 @@ def deterministic_network(seed: int, input_dimension: int, width: int, denominat
     }
 
 
-def deleted_input_charge(specification: dict[str, Any], agents: int) -> Expr:
-    """Compile the same source network after each agent's report is deleted."""
+def deleted_input_terms(specification: dict[str, Any], agents: int) -> tuple[Expr, ...]:
+    """Compile one source term for each omitted report."""
     variables = tuple(affine(*(1 if index == coordinate else 0 for index in range(agents)))
                       for coordinate in range(agents))
-    total = Expr()
-    for deleted in range(agents):
-        total = total + compile_one_hidden_layer(
-            specification, variables[:deleted] + variables[deleted + 1:]
-        )
-    return total
+    return tuple(compile_one_hidden_layer(specification, variables[:deleted] + variables[deleted + 1:])
+                 for deleted in range(agents))
+
+
+def deleted_input_charge(specification: dict[str, Any], agents: int) -> Expr:
+    """Compile the sum of one source term after each agent report is deleted."""
+    return sum(deleted_input_terms(specification, agents), Expr())

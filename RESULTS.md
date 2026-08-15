@@ -102,3 +102,15 @@ does not demonstrate an economically good repair, only a sound exact repair
 primitive within a deliberately narrow scalar family. Artifacts:
 `artifacts/uniform_repair_study.json` and
 `artifacts/uniform_repair_z3_certificate.json`.
+
+## Exact budget--IR trade-off
+
+For an efficient Groves rule, truthful utility is `S-h`. A uniform output-bias
+repair by `delta` therefore reduces every utility by exactly `delta`. The
+Phase-VII frozen seven-source corpus has no repaired source satisfying ex-post
+IR. The displayed four-agent control changes from `-833/2500` to `-1333/4000`;
+the five initially nonnegative synthetic margins are each smaller than their
+required offset. Direct source replay matches the compiler minima, 28 Z3
+strict-lower-bound queries are `unsat`, and seven Z3 IR queries agree. See
+`artifacts/repair_ir_tradeoff_study.json` and
+`artifacts/repair_ir_tradeoff_z3_certificate.json`.

@@ -170,3 +170,9 @@ operation without pretending that an unconstrained search over transfers or a
 synthetic benchmark establishes an economically useful mechanism. Require
 direct-source replay, a half-offset minimality witness, and a Z3 no-deficit
 challenge for every repaired source.
+
+2026-08-15 (Phase VII budget--IR gate, before evaluation): keep the Phase-VI
+corpus and scalar repair fixed, then certify minimum `S-h` utility before and
+after repair for every omitted report. Require direct-source agreement and a
+strict-lower-bound exact-real Z3 check. Rationale: no-deficit alone is not an
+economic mechanism property; a negative result must block any stronger claim.
