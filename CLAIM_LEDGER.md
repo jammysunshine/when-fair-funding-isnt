@@ -12,6 +12,10 @@
 - For the declared rational sum-of-max/min-affine language on an ordered unit
   cube, the arrangement-vertex reduction exactly certifies the reported
   charge-ratio, efficiency, and budget-slack extrema.
+- For six preregistered rational one-hidden-layer ReLU fixtures (three to five
+  agents), source-direct and compiler-lowered certificates agree exactly;
+  exact-real Z3 returns `unsat` for all 18 recorded strict-bound queries and
+  independently validates the extremum witnesses.
 
 ## EMPIRICALLY EVALUATED
 
@@ -26,5 +30,5 @@
 - No claim of universal optimality, randomized optimality, deployment effect,
   or generalization beyond the ternary class is made.
 - The certificate method is not established for arbitrary neural networks,
-  opaque learned weights, unrestricted programs, or higher-dimensional
-  instances beyond the recorded computational envelope.
+  opaque learned weights, unrestricted programs, arbitrary depth, or instances
+  beyond the recorded three-to-five-agent computational envelope.

@@ -71,3 +71,16 @@ certificate vertices agree with the separately written source evaluator. The
 minimum slack is `64/81`; the exact minimum retained-efficiency expression is
 `-47/162` at `(0,0,1)`. This is a continuous strengthening of the existing
 grid audit, not a refutation of the source's asymptotic competitive claim.
+
+## Frozen rational-ReLU cross-check
+
+Six preregistered deterministic rational one-hidden-layer ReLU fixtures cover
+three development and three confirmation cases with three to five agents and
+widths two or three. Direct source evaluation and compiler-lowered certificates
+match exactly. Their `(candidate bases, feasible vertices)` pairs are `(165,6)`,
+`(3060,14)`, `(6188,49)`, `(364,23)`, `(3060,8)`, and `(792,19)`.
+An independent exact-real Z3 encoding returns `unsat` for all 18 strict queries
+that attempt to improve recorded slack or ratio bounds; every reported rational
+witness re-evaluates exactly. Artifacts: `artifacts/relu_benchmark_results.json`
+and `artifacts/relu_benchmark_z3_certificate.json`. This is a bounded source
+semantic check, not a discovered mechanism or general neural verification.

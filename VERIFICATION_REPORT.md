@@ -14,3 +14,10 @@ original four cost-3 rows retain digest
 The efficient comparator has a budget witness at `(0,2,2)` with payments
 `(0,1,1)` and cost 3. Held-out checks cover all 64 profiles for each threshold
 1–6 and report 207 failures.
+
+For the frozen rational-ReLU benchmark, source-direct and compiler-lowered
+certificate extrema match on all six cases. The independent Z3 verifier checks
+three strict counterexample predicates for each source (budget slack below its
+certificate, ratio below its minimum, and ratio above its maximum); all 18 are
+`unsat`. It also evaluates each serialized rational extremum witness directly.
+The resulting artifact is `artifacts/relu_benchmark_z3_certificate.json`.

@@ -23,7 +23,12 @@ cross-check the theorem. A value-magnitude stress test finds
 profiles. A post-hoc exact value-lattice sensitivity run finds 66 rules and 60
 independently replayed accepted rows at `max_value=3`. The result is a
 reproducible narrow theorem and falsifiable benchmark, not a theorem for
-continuous values or a claim of unrestricted mechanism-design novelty.
+continuous values or a claim of unrestricted mechanism-design novelty. As a
+separate source-integrity study, six preregistered rational one-hidden-layer
+ReLU fixtures with three to five agents have identical direct-source and
+compiled certificates; an exact-real Z3 cross-check returns `unsat` for all
+18 strict-bound counterexample queries. This is bounded verification evidence,
+not a newly discovered mechanism or a generic neural-verification result.
 
 ## 1. Introduction
 
@@ -36,7 +41,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes six deliberately narrow contributions:
+This paper makes seven deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -49,6 +54,8 @@ This paper makes six deliberately narrow contributions:
 6. an executable-specification audit layer for published shallow max-affine
    VCG-redistribution formulas, with a standalone replay from serialized
    rational expressions.
+7. a preregistered source-to-certificate cross-check for rational shallow ReLU
+   fixtures, independently challenged by exact-real SMT queries.
 
 ## 2. Model
 
@@ -203,6 +210,27 @@ The largest frozen entry has 22 planes, 7,315 exact four-plane bases, and 116
 feasible vertices. These are a demonstrated resource boundary, not evidence of
 scalability to arbitrary architecture depth or dimension.
 
+### 4.6 Frozen ReLU source and solver cross-check
+
+Source replay at shared certificate vertices could still conceal a lowering or
+boundary-generation error. We therefore freeze six deterministic rational
+one-hidden-layer fixtures before evaluation: three development and three
+confirmation cases, covering three to five agents and widths two or three.
+The direct route derives activation boundaries and charge values from the
+serialized source network; the other lowers it into the typed max/min-affine
+language. All six pairs agree exactly on extrema and witnesses. Their
+candidate-basis counts are `165,3060,6188,364,3060,792`, with respectively
+`6,14,49,23,8,19` feasible vertices.
+
+An external exact-real Z3 model encodes the source ReLU network without
+importing the compiler or certificate engine. Per fixture it asks whether
+budget slack is strictly smaller than reported, whether charge ratio is
+strictly below the reported minimum, and whether it is strictly above the
+reported maximum. All 18 queries return `unsat`; direct rational evaluation
+also validates every reported extremum witness. This rules out those
+counterexamples for the six frozen source models, not arbitrary learned
+networks or a generic scalable SMT procedure.
+
 This is a reproducibility result about displayed formulas. It does not recover
 training weights, diagnose authors' unshared implementation, prove properties
 of arbitrary neural networks, or establish a new mechanism. Its value is that
@@ -228,7 +256,7 @@ et al. study machine-learning approaches for public-project mechanism design
 | General public-project and cost-sharing theory | A finite, fully enumerated benchmark with explicit payment reconstruction and witnesses | A new impossibility theorem or a continuous-value characterization |
 | Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
-| Computer-aided mechanism and neural-network verification | Typed formula provenance plus exact, standalone replay for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
+| Computer-aided mechanism and neural-network verification | Typed formula provenance, direct-source replay, and exact-real SMT cross-checks for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
 
 The defensible contribution is a compact, replayable certificate and an exact
 theorem for the specified ternary class. It is not a claim of a new universal
@@ -255,9 +283,12 @@ reports, asymmetric rules, or arbitrary payment schemes. The n=3..6 searches
 are computational cross-checks; the proof itself is the all-agent result. The
 stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
-risk. Before submission, a researcher should test the theorem against richer
+risk. The ReLU cross-check covers six frozen synthetic fixtures and publicly
+displayed formulas, not opaque trained weights or a representative network
+corpus. Before submission, a researcher should test the theorem against richer
 value domains and broader mechanisms, compare unrestricted transfers and
-subsidies, and obtain an independent external replication.
+subsidies, evaluate a broader independently sourced formula corpus, and obtain
+an external replication.
 
 ## 8. Reproduction
 
@@ -270,6 +301,11 @@ python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
 python3 scripts/run_max_affine_certification.py
 python3 scripts/verify_max_affine_certificate.py
+python3 scripts/verify_source_network_certificates.py
+python3 scripts/run_relu_benchmark.py
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-verification.txt
+.venv/bin/python scripts/verify_relu_benchmark_z3.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim

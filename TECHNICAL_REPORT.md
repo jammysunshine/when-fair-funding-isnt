@@ -38,3 +38,21 @@ such objective has an extremum at a cell vertex; degenerate vertices are still
 included because all `n`-plane subsets are considered. This is not a result
 for arbitrary programs, arbitrary networks, hidden source weights, or domains
 outside the ordered unit cube.
+
+## Frozen source and exact-real solver cross-check
+
+Six deterministic rational one-hidden-layer ReLU fixtures were frozen before
+evaluation: three development and three confirmation cases with three to five
+agents and widths two or three. The compiler lowers each deleted-input charge
+into the declared max/min-affine language. An independent direct evaluator
+instead obtains activation boundaries and charge values from the serialized
+source network. Exact extrema and witnesses agree for all six fixtures. The
+basis/feasible-vertex pairs are `(165,6)`, `(3060,14)`, `(6188,49)`,
+`(364,23)`, `(3060,8)`, and `(792,19)`.
+
+`scripts/verify_relu_benchmark_z3.py` separately encodes each source network
+over Z3 exact reals. It asks three strict counterexample questions per fixture:
+lower budget slack, lower charge ratio, and higher charge ratio than the
+recorded certificate. All 18 queries are `unsat`, and the script independently
+re-evaluates all rational extremum witnesses. This is a bounded semantic
+cross-check, not a claim about arbitrary architectures or solver scalability.
