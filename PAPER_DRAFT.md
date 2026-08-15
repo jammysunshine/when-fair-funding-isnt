@@ -33,6 +33,14 @@ ReLU fixtures with three to five agents have identical direct-source and
 compiled certificates; an exact-real Z3 cross-check returns `unsat` for all
 18 strict-bound counterexample queries. This is bounded verification evidence,
 not a newly discovered mechanism or a generic neural-verification result.
+Finally, as a post-hoc falsification supplement, we extend the certificate to
+bounded-size coalitions. Cap-2 coalition deviations shrink the cost-3 DSIC
+frontier from 4 to 2 accepted rules, and the canonical efficient/pivotal
+comparator itself -- single-agent DSIC by construction -- fails coalition-cap-2
+DSIC in 66 of 75 audited `(domain, agent count, cost)` cells spanning
+`n=3..6` on the `{0,1,2}` value domain and `n=3` on the wider `{0,1,2,3}`
+value domain. All coalition claims are independently replayed with zero
+mismatches.
 
 ## 1. Introduction
 
@@ -45,7 +53,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes seven deliberately narrow contributions:
+This paper makes eight deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -59,7 +67,10 @@ This paper makes seven deliberately narrow contributions:
    VCG-redistribution formulas, with a standalone replay from serialized
    rational expressions.
 7. a preregistered source-to-certificate cross-check for rational shallow ReLU
-   fixtures, independently challenged by exact-real SMT queries.
+   fixtures, independently challenged by exact-real SMT queries;
+8. a post-hoc bounded-coalition falsification supplement, including an
+   independent audit of whether the canonical single-agent-DSIC comparator
+   itself resists coalitions, with a standalone replay of every claim.
 
 ## 2. Model
 
@@ -277,6 +288,74 @@ exact-real Z3 lower-bound queries are `unsat`, and seven IR queries agree.
 This is a calibrated negative result, not an impossibility theorem for other
 redistribution families.
 
+### 4.9 Bounded-coalition falsification and independent baseline audit
+
+Sections 4.1-4.4 establish DSIC only against unilateral deviations. We add a
+post-hoc, non-preregistered supplement (`PREREGISTRATION.md`, "Post-hoc
+coalition robustness extension") checking whether accepted rules also resist
+joint deviations by small groups. For a coalition `T` of size up to a frozen
+cap `k`, we exhaustively enumerate every joint report deviation `T` could make
+and reject a rule if any joint deviation strictly increases the coalition's
+summed utility over truthful reporting.
+
+**Frontier shrinkage.** On the preregistered three-agent, cost-3 domain, cap-2
+deviations shrink the DSIC frontier from 4 accepted rules to 2
+(`anonymous_monotone_mask_512`, `anonymous_monotone_mask_960`); 6 frontier
+rows are rejected at cap-2 across all six costs, with 0 rejected survivors
+among the cap-2-accepted rules under independent replay.
+
+**Scaling.** The same filter applied to `n=3..5` (cap 3, 32.977s) and
+`n=3..6` (cap 3, 91.758s) reproduces fragility at every selected
+`(n,cost)` checkpoint with 0 independent failures across 24 and 34 selected
+checks respectively. A separate extension to the wider `{0,1,2,3}` value
+domain (`n=3`, costs `1..9`, cap up to 3) reproduces the same qualitative
+result at selected costs `1,3,9` with 0 independent failures.
+
+**Independent baseline audit.** The preceding results only characterize the
+*search-discovered* frontier. A skeptical reader could ask whether coalition
+fragility is an artifact of that search rather than a property of natural
+mechanisms. We therefore separately audit the canonical efficient/pivotal
+comparator from Section 4.1 -- the welfare-maximizing sum-threshold rule with
+critical-value payments, single-agent DSIC and ex-post IR by construction --
+against the identical coalition bar, across all four domains above (75
+`(domain, n, cost)` cells total). Fragility is judged strictly from the
+verifier's `dsic`/`coalitional_dsic` fields, decoupled from that same rule's
+separately documented weak-budget-balance deficit (Section 4.1), so the two
+independent negative results are not conflated. The comparator is
+single-agent DSIC in every cell tested, but fails coalition-cap-2 DSIC in 66
+of 75 cells and in 10 of the 11 preregistered-style selected spot checks (the
+lone survivor is `n=3`, cost `9` on the `{0,1,2,3}` domain). A concrete
+witness at `n=3`, cost `3`: truthful reports `(0,1,1)` (project not built,
+all utilities 0). If agents 0 and 1 jointly misreport `(2,2)` while agent 2
+reports truthfully, the profile becomes `(2,2,1)`, which crosses the cost-3
+threshold and builds the project. Because critical-value payments are
+computed from the *post-deviation* profile, each deviator's payment is the
+smallest report at which the project would still build holding the other
+deviator's inflated report fixed -- which is 0 for both, since the other
+deviator's report alone already covers cost. Both deviators pay nothing and
+jointly gain 1 unit of utility they could not obtain by reporting truthfully,
+at agent 2's expense of unknowingly co-funding a project neither deviator
+truthfully valued at that cost. This single witness generalizes the
+mechanism-design intuition that critical-value payments, calibrated against
+single-agent deviations, do not account for a coalition's ability to jointly
+manufacture the threshold it is then charged against.
+
+Every coalition claim above is replayed by a standalone implementation
+(`public_project_independent.py`) that reconstructs allocation tables and
+payments from serialized JSON without importing the primary verifier: 0
+mismatches across the frontier, scaling, scaling-extension, and baseline-audit
+studies (independent digests recorded in `VERIFICATION_REPORT.md`).
+
+This supplement is deliberately narrow. It bounds coalition size at 2 or 3, it
+does not claim coalition-proofness for arbitrary group size, and it does not
+extend to randomized rules, continuous values, or false-name attacks. It does
+show, with an exact and independently replayed counterexample, that
+single-agent DSIC -- the standard acceptance bar used throughout Sections
+4.1-4.4 and in most automated-mechanism-design search -- is not sufficient
+for robustness against even the smallest possible group manipulation, and
+that this failure is not specific to the search-discovered frontier: it also
+afflicts the textbook efficient/pivotal comparator.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -297,6 +376,7 @@ et al. study machine-learning approaches for public-project mechanism design
 | Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
 | Computer-aided mechanism and neural-network verification | Typed formula provenance, direct-source replay, and exact-real SMT cross-checks for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
+| Coalition-proof/group-strategyproof mechanism theory | An exact, independently replayed bounded-coalition falsification supplement, including a baseline audit showing the textbook efficient/pivotal rule is itself coalition-cap-2 fragile | A coalition-proofness theorem, an unbounded-coalition-size result, or a repaired coalition-resistant mechanism |
 
 The defensible contribution is a compact, replayable certificate and an exact
 theorem for the specified finite integer-value class. It is not a claim of a
@@ -319,8 +399,12 @@ over-generalized. Exact commands and SHA-256 hashes are in
 
 The theorem's mechanism class is anonymous, deterministic, finite-valued, and
 restricted to normalized critical payments. The study does not cover randomized
-rules, subsidies, Bayesian objectives, continuous values, collusion, false-name
-reports, asymmetric rules, or arbitrary payment schemes. The n=3..6 searches
+rules, subsidies, Bayesian objectives, continuous values, arbitrary-size
+collusion, false-name reports, asymmetric rules, or arbitrary payment schemes.
+The coalition supplement (Section 4.9) is bounded to coalitions of size 2 or 3
+within the same finite integer-value class; it establishes fragility, not a
+repair, and does not claim anything about coalitions above the tested cap or
+about mechanisms outside the anonymous-monotone class. The n=3..6 searches
 are computational cross-checks; the finite-lattice proof is the general result. The
 stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
@@ -352,6 +436,16 @@ python3 scripts/run_uniform_repair_study.py
 .venv/bin/python scripts/verify_uniform_repair_z3.py
 python3 scripts/run_repair_ir_tradeoff_study.py
 .venv/bin/python scripts/verify_repair_ir_z3.py
+python3 scripts/run_public_project_coalition_frontier.py
+python3 scripts/verify_public_project_coalition_frontier.py
+python3 scripts/run_public_project_coalition_scaling.py
+python3 scripts/verify_public_project_coalition_scaling.py
+python3 scripts/run_public_project_coalition_scaling_extended.py
+python3 scripts/verify_public_project_coalition_scaling_extended.py
+python3 scripts/run_public_project_coalition_value3_frontier.py
+python3 scripts/verify_public_project_coalition_value3_frontier.py
+python3 scripts/run_public_project_coalition_baseline_audit.py
+python3 scripts/verify_public_project_coalition_baseline_audit.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
@@ -363,7 +457,9 @@ Exact search does not magically produce a universally optimal mechanism. This
 study does provide a finite-lattice characterization that a skeptical reader
 can inspect: the proof fixes the accepted family, a preregistered larger-lattice
 enumeration reproduces it exactly, the efficient comparator has a concrete
-failure, and the held-out stress test records where the result stops
-generalizing. It is a credible foundation for a theory/verification paper, but
-publication still requires external novelty review, broader theory, and peer
-review.
+budget-balance failure, a bounded-coalition supplement shows the same
+comparator also has a concrete, independently replayed incentive failure
+against groups as small as size 2, and the held-out stress test records where
+the result stops generalizing. It is a credible foundation for a
+theory/verification paper, but publication still requires external novelty
+review, broader theory, and peer review.

@@ -19,11 +19,11 @@ Post-hoc finite-domain coalition robustness:
   frontier names (`anonymous_monotone_mask_512`, `anonymous_monotone_mask_960`).
 - `scripts/run_public_project_coalition_scaling.py` plus
   `scripts/verify_public_project_coalition_scaling.py` recorded cap-keyed
-  fragility summaries on `n=3..5`, elapsed `65.24s`, and `0` selected failures
+  fragility summaries on `n=3..5`, elapsed `32.977s`, and `0` selected failures
   across 24 selected checks.
 - `scripts/run_public_project_coalition_scaling_extended.py` plus
   `scripts/verify_public_project_coalition_scaling_extended.py` extended the
-  same coalition filter to `n=3..6`, elapsed `226.916s`, with `34` selected
+  same coalition filter to `n=3..6`, elapsed `91.758s`, with `34` selected
   checks and `0` selected failures.
 - `scripts/run_public_project_coalition_value3_frontier.py` plus
   `scripts/verify_public_project_coalition_value3_frontier.py` extended the
