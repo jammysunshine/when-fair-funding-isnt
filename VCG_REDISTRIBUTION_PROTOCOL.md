@@ -17,9 +17,11 @@ two-agent inputs. We require nonnegative `h`, ex-post IR
 `h(theta_-i) <= max(sum(theta), 1)`, and no deficit
 `sum_i h(theta_-i) >= 2 max(sum(theta), 1)` at all 27 profiles.
 
-The primary pilot objective minimizes expected total charge under the uniform
-product prior. This maximizes total agent utility within the frozen class;
-allocation and DSIC are inherited from the Groves representation.
+The primary pilot objective minimizes expected total Groves offset under the
+uniform product prior. At a fixed allocation and prior this is equivalent to
+maximizing total agent utility, but an offset is not itself a realized payment:
+the outcome-dependent Groves term must be included when discussing transfers.
+Allocation and DSIC are inherited from the Groves representation.
 
 ## Two paths and checks
 

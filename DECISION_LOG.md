@@ -176,3 +176,14 @@ corpus and scalar repair fixed, then certify minimum `S-h` utility before and
 after repair for every omitted report. Require direct-source agreement and a
 strict-lower-bound exact-real Z3 check. Rationale: no-deficit alone is not an
 economic mechanism property; a negative result must block any stronger claim.
+
+2026-08-15 (withdrawn Phase VIII pilot): do not retain the uncommitted
+four-value Groves-table optimization as a discovery result. Its apparent
+improvement was produced by comparing against `max(sum(theta_-i),1)` while the
+repository's pivot-VCG normalization is `max(sum(theta_-i),(n-1)/n)`; the
+optimizer returned that latter pivot rule. Rationale: a mislabeled comparator
+would turn a rediscovery into a false contribution. Preserve this audit note,
+withdraw the pilot code, archive the raw output under the explicit
+`withdrawn_phase_viii_comparator_failure_*` names, and require a
+source-checked baseline-equivalence gate before any future constrained
+synthesis is preregistered.

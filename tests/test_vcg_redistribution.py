@@ -9,6 +9,7 @@ from src.mechanism_discovery.vcg_redistribution import (
     verify_solution,
 )
 from src.mechanism_discovery.vcg_redistribution_independent import replay
+from src.mechanism_discovery.guo_2016_baseline import pivot_groves_term, vcg_revenue
 
 
 class ExactRedistributionSynthesisTests(unittest.TestCase):
@@ -54,6 +55,15 @@ class ExactRedistributionSynthesisTests(unittest.TestCase):
         # under both priors.  The test guards against treating an absent shift
         # effect as evidence of a distribution-specific discovery.
         self.assertEqual(result.values, solve_by_vertex_enumeration(self.constraints, self.uniform).values)
+
+    def test_pivot_offset_matches_normalized_vcg_revenue(self):
+        profile = (Fraction(0), Fraction(1, 3), Fraction(1))
+        total_offsets = sum(
+            (pivot_groves_term(profile[:agent] + profile[agent + 1:]) for agent in range(3)),
+            Fraction(0),
+        )
+        self.assertEqual(total_offsets - 2 * max(sum(profile), Fraction(1)), vcg_revenue(profile))
+        self.assertEqual(pivot_groves_term((Fraction(0), Fraction(1, 3))), Fraction(2, 3))
 
 
 if __name__ == "__main__":

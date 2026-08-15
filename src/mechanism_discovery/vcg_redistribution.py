@@ -79,9 +79,11 @@ def _others(profile: Sequence[Fraction], agent: int) -> tuple[Fraction, ...]:
 def synthesis_constraints(values: Sequence[Fraction], agents: int) -> tuple[tuple[tuple[Fraction, ...], ...], tuple[Inequality, ...]]:
     """Return anonymous h inputs and all frozen grid constraints.
 
-    We include nonnegative charges.  This is a pre-specified restriction that
-    avoids financing redistribution by subsidies; it is stronger than weak
-    budget balance alone and is checked separately in the certificate.
+    We include nonnegative Groves terms as a pre-specified normalization.
+    A Groves term is not, by itself, a realized payment: the outcome-dependent
+    term also enters transfers.  Thus this restriction must not be described
+    as ruling out subsidies; no-deficit is the economic constraint checked
+    separately below.
     """
     if agents < 2:
         raise ValueError("at least two agents are required")

@@ -1,7 +1,9 @@
 # Status
 
-Phase: Phase VI exact uniform-repair synthesis for declared rational ReLU sources; the
-completed ternary-frontier theorem remains a baseline.
+Phase: Phase VII budget--IR trade-off is complete for declared rational ReLU
+sources; the completed ternary-frontier theorem remains a baseline. A proposed
+Phase VIII finite synthesis result was withdrawn because it was exactly the
+normalized pivotal VCG rule under a mismatched comparator.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An

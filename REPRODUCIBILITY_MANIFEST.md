@@ -96,6 +96,11 @@ and `artifacts/repair_ir_tradeoff_z3_certificate.json` (SHA-256
 The direct source and compiler minima agree. Z3 records 28 `unsat`
 strict-lower-bound queries and seven IR outcome queries; no repaired source is
 ex-post IR in the declared efficient-Groves model.
+The withdrawn Phase-VIII comparator-normalization audit is retained at
+`artifacts/withdrawn_phase_viii_comparator_failure.json`, together with its
+raw optimizer output and raw certificate. It is not regenerated or reported
+as an experiment result: the candidate equals normalized pivotal VCG and the
+record exists to prevent a repeat of the comparator error.
 
 Hashes for the clean run:
 

@@ -1,7 +1,8 @@
 # Project Charter
 
-Status: original study frozen 2026-08-15; Phase VII is complete and Phase VIII
-joint constrained synthesis is the next gate. The original
+Status: original study frozen 2026-08-15; Phase VII is complete. A proposed
+Phase VIII constrained-synthesis pilot was withdrawn at its semantic-baseline
+gate because it rediscovered pivotal VCG. The original
 binary-table audit remains a baseline and Phase II--IV results remain bounded
 replication evidence.
 
@@ -68,8 +69,11 @@ ex-post IR. This gate is deliberately falsifying: all seven repaired sources
 fail IR under the stated efficient-Groves convention. It rules out claiming
 that scalar repair itself discovers a viable mechanism.
 
-Phase VIII question: can an exact finite constrained search discover a
-nontrivial anonymous redistribution rule that simultaneously satisfies budget
-and IR, and does that constrained frontier survive untouched prior shifts and
-an independent optimizer/replay? This is the next discovery task, not an
-extension of the rejected scalar-repair claim.
+Phase VIII baseline gate: before any constrained synthesis is preregistered,
+the proposed comparator must be symbolically checked against the normalized
+pivotal VCG term. The first four-value pilot failed this gate: its apparent
+candidate was exactly `max(sum(theta_-i), 2/3)`, the three-agent pivotal VCG
+term, while its comparator incorrectly used threshold one. The raw output is
+preserved in `artifacts/withdrawn_phase_viii_comparator_failure.json`; it is a
+negative control, not a discovery. A viable next question must quantify a
+property distinct from known pivotal VCG and include this equivalence test.
