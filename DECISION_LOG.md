@@ -144,3 +144,12 @@ checks source-to-formula semantics, whereas this second route checks the
 reported extrema directly from source coefficients. It is deliberately framed
 as a bounded independent-verifier baseline, not as a replacement for an
 external solver or a general neural-verification contribution.
+
+2026-08-15 (Phase V frozen benchmark, observed failure): confirmation seed
+`670203` initially disagreed only in the reported vertex set because the
+source-only route retained activation boundaries of a hidden unit with zero
+output weight while the compiler correctly eliminated that semantically inert
+unit. Preserve the failed run in the research record, then align the source
+route to the function-level arrangement by skipping zero-output units. This is
+an implementation correction discovered by the frozen confirmation case; no
+case, seed, or coefficient was changed.

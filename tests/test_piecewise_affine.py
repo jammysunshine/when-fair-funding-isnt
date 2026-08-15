@@ -20,6 +20,7 @@ from src.mechanism_discovery.max_affine_corpus import (
 from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
 from src.mechanism_discovery.rational_relu import compile_one_hidden_layer
 from src.mechanism_discovery.max_affine_independent import replay_deleted_input_network, replay_payload
+from src.mechanism_discovery.relu_benchmark import deleted_input_charge, deterministic_network
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
 
 
@@ -38,6 +39,16 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             compile_one_hidden_layer({"output_weights": (0.5,), "output_bias": 0,
                                       "hidden": ()}, (affine(1),))
+
+    def test_rational_relu_compiler_elides_zero_output_activation_boundary(self):
+        from src.mechanism_discovery.piecewise_affine import affine
+        source = {
+            "output_weights": ("0",), "output_bias": "0",
+            "hidden": ({"weights": ("1",), "bias": "-1/2", "output_weight": "0"},),
+        }
+        expression = compile_one_hidden_layer(source, (affine(1),))
+        self.assertEqual(expression.evaluate((Fraction(3, 4),)), Fraction(0))
+        self.assertEqual(expression.break_planes(), ())
 
     def test_published_relu_source_specification_compiles_to_four_agent_rule(self):
         compiled = guo_2024_four_agent_charge()
@@ -136,6 +147,19 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
             replay_deleted_input_network(corrupted, 4),
             payload["entries"][name]["certificate"],
         )
+
+    def test_frozen_synthetic_relu_fixture_crosschecks_two_certificate_routes(self):
+        source = deterministic_network(670202, input_dimension=3, width=3)
+        compiled = certify_ordered_public_project_charge(deleted_input_charge(source, 4), 4)
+        def encode(value):
+            if isinstance(value, Fraction):
+                return f"{value.numerator}/{value.denominator}"
+            if isinstance(value, tuple):
+                return [encode(item) for item in value]
+            if hasattr(value, "__dict__"):
+                return {key: encode(item) for key, item in value.__dict__.items()}
+            return value
+        self.assertEqual(replay_deleted_input_network(source, 4), encode(compiled))
 
 
 if __name__ == "__main__":

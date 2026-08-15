@@ -21,6 +21,7 @@ python3 scripts/run_guo_2019_three_agent_optimal_audit.py
 python3 scripts/run_max_affine_certification.py
 python3 scripts/verify_max_affine_certificate.py
 python3 scripts/verify_source_network_certificates.py
+python3 scripts/run_relu_benchmark.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -56,6 +57,13 @@ The direct source-network replay writes
 embedded public source network without reading a compiled expression.
 Its frozen SHA-256 is
 `1bcde48fc4f23e58a510027310fc723195a6553f23354472c904332111745d4f`.
+The frozen Phase-V source/compiler crosscheck uses
+`configs/relu_benchmark.json` (SHA-256
+`0eadd9b57f377174cc370af5c122db81e09f00e2d98c1a7022c72f8d4c79a6e8`)
+and emits `artifacts/relu_benchmark_results.json` (SHA-256
+`8589d83fb5fcd4b3c9721ff4d3c2de2d7723c71a08fb5c46a518c88f96fd5cbd`).
+It contains six deterministic rational fixtures over 3--5 agents; both exact
+routes agree on every field after the retained zero-output-boundary bug fix.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
 
@@ -78,4 +86,6 @@ artifacts/guo_2019_three_agent_optimal_audit.json 45df2f83d27eb70dd4874c7faf1ee3
 artifacts/max_affine_certification.json 3bdb0c02b39107994f989894d1fcbe04157e0dce6814004e1cd11b217916f882
 artifacts/max_affine_independent_certificate.json 8b89a8ca8b4ed937f865be2b33c72f7d0d35518870c8bfbc3a9644bd13194f98
 artifacts/max_affine_source_network_certificate.json 1bcde48fc4f23e58a510027310fc723195a6553f23354472c904332111745d4f
+configs/relu_benchmark.json 0eadd9b57f377174cc370af5c122db81e09f00e2d98c1a7022c72f8d4c79a6e8
+artifacts/relu_benchmark_results.json 8589d83fb5fcd4b3c9721ff4d3c2de2d7723c71a08fb5c46a518c88f96fd5cbd
 ```

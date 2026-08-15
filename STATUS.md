@@ -102,3 +102,11 @@ against the same public source rules and must agree exactly with both prior
 routes; a coefficient mutation is a negative control. This is a meaningful
 falsification check, but still does not substitute for the broader corpus and
 external baseline required for a publication-grade methodological claim.
+
+Phase V benchmark: a frozen six-case synthetic rational-ReLU crosscheck spans
+three through five agents and widths two through three, with separate
+development and confirmation seeds. Its first confirmation execution exposed
+a zero-output hidden-unit boundary mismatch; the source verifier now removes
+only semantically inert zero-output activations, matching the compiler's
+function-level arrangement. The original failed result and correction are
+retained in `DECISION_LOG.md`; no benchmark seed was changed.

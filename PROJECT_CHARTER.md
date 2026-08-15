@@ -39,3 +39,11 @@ source networks must be certified by a direct activation-boundary enumerator
 that does not consume compiled expressions. Exact equality of every reported
 metric and witness is the acceptance predicate; any mismatch is retained as a
 failure. This crosscheck is a verifier comparison, not a new mechanism search.
+
+Phase V benchmark extension: `configs/relu_benchmark.json` fixes six
+deterministic rational one-hidden-layer fixtures across 3--5 agents, split
+before execution into development and confirmation cases. The acceptance
+predicate is exact equality between compiled and source-only certificates;
+the bounded compute metric is candidate bases. This is a stress test for the
+declared verifier class only, with no claim about neural training or new
+economic mechanisms.

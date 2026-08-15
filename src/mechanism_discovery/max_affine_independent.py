@@ -55,6 +55,11 @@ def _network_break_planes(specification: dict[str, Any], dimension: int) -> tupl
     planes = []
     for deleted in range(dimension):
         for unit in specification["hidden"]:
+            # A zero output coefficient makes the activation semantically
+            # irrelevant. The compiler eliminates it, so the direct route
+            # must certify the same minimal function arrangement.
+            if _fraction(unit["output_weight"]) == 0:
+                continue
             weights = tuple(_fraction(weight) for weight in unit["weights"])
             if len(weights) != dimension - 1:
                 raise ValueError("source network input dimension disagrees with certificate")

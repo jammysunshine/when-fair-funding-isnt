@@ -62,5 +62,8 @@ def compile_one_hidden_layer(specification: Mapping[str, object], inputs: Sequen
             output_weight = _fraction(unit["output_weight"])
         except KeyError as error:
             raise ValueError(f"missing hidden-unit key: {error.args[0]}") from error
-        expression = expression + Expr.maximum(zero, preactivation).scale(output_weight)
+        # Preserve function semantics while avoiding a spurious arrangement
+        # boundary for a ReLU that contributes exactly zero to the output.
+        if output_weight != 0:
+            expression = expression + Expr.maximum(zero, preactivation).scale(output_weight)
     return expression
