@@ -44,6 +44,21 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
   "prove a general lemma instead of relying on brute-force counterexamples"
   novelty lever discussed with the user after they asked how to make the
   work publishable — the user replied "ok" to proceeding with it.
+- Also new this session: `scripts/verify_public_project_coalition_characterization.py`
+  closes the gap the lemma above left open (14/75 baseline-audit rows with
+  `(n-1)*m<cost<n*m` were fragile but unexplained). Derives, by convexity, the
+  exact minimum coalition payment `k*max(0,(cost-S_O)-(k-1)*m)` for any
+  coalition size and outsider value-sum, plus the exact worst-case
+  (bang-bang-extremal) truthful payment distribution, and combines them into a
+  bounded-sweep existence check — no report-level search. Reproduces the
+  baseline audit's exact `min_failing_coalition_size` on all `75/75` rows
+  (exact match, not just no-false-positives) and evaluates at `n=20` in
+  microseconds, far beyond brute-force reach. This is the full
+  necessary-and-sufficient characterization the user asked for after "can you
+  turn it into from a modest contribution to a fantastic contribution."
+  Folded into `PAPER_DRAFT.md` (new §4.12, abstract, contribution 11,
+  positioning table, limitations, conclusion), `CLAIM_LEDGER.md`, `STATUS.md`,
+  `VERIFICATION_REPORT.md`, `REPRODUCIBILITY_MANIFEST.md`.
 
 ## Frozen configuration
 - Core domain: public-project mechanism design with anonymous monotone rules
@@ -84,6 +99,8 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
 - `artifacts/public_project_false_name_audit_certificate.json`
 - `scripts/verify_public_project_coalition_lemma.py`
 - `artifacts/public_project_coalition_lemma_certificate.json`
+- `scripts/verify_public_project_coalition_characterization.py`
+- `artifacts/public_project_coalition_characterization_certificate.json`
 
 ## Exact commands already expected
 ```bash
@@ -100,6 +117,7 @@ python3 scripts/verify_public_project_coalition_baseline_audit.py
 python3 scripts/run_public_project_false_name_audit.py
 python3 scripts/verify_public_project_false_name_audit.py
 python3 scripts/verify_public_project_coalition_lemma.py
+python3 scripts/verify_public_project_coalition_characterization.py
 python3 scripts/generate_frontier_report.py
 python3 -m unittest discover -s tests -v
 ```
@@ -125,7 +143,16 @@ python3 -m unittest discover -s tests -v
    row (`cost=n*m`). Folded into `PAPER_DRAFT.md` §4.11, positioning table,
    abstract, contribution list, limitations, conclusion, plus
    `CLAIM_LEDGER.md`/`STATUS.md`/`VERIFICATION_REPORT.md`/
-   `REPRODUCIBILITY_MANIFEST.md`. Not yet committed as of this writing.
+   `REPRODUCIBILITY_MANIFEST.md`. Committed as `976d753`.
+7. ~~Close the gap the lemma leaves open (14/75 fragile rows with
+   `(n-1)*m<cost<n*m` unexplained) into a full necessary-and-sufficient
+   characterization.~~ Done this session:
+   `scripts/verify_public_project_coalition_characterization.py` derives
+   exact minimum-payment and worst-case-truthful-payment formulas by
+   convexity, reproduces `min_failing_coalition_size` exactly on all 75
+   baseline-audit rows, and scales to `n=20` in microseconds. Folded into
+   `PAPER_DRAFT.md` §4.12 plus all other tracking docs. Not yet committed as
+   of this writing.
 
 ## Possible further extensions (not started, optional)
 - Randomized mechanisms (lottery allocation) — would need a larger model change; not attempted.

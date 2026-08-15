@@ -127,8 +127,31 @@ checked by exhaustive enumeration over all truthful profiles and all proper
 coalition subsets for `n=3,4` and `m=2,3` (`0` counterexamples). Digest
 `fc030d4f60bc63f815224c070a4626b579f6c0a6efe8c91e079739d27a760db5`.
 
-All eight scripts are fully replayable from frozen config files in
+Phase X complete coalition characterization (analytical, not search-based):
+`scripts/verify_public_project_coalition_characterization.py` closes the gap
+left by the Section-4.11-equivalent sufficient condition above. It derives
+two closed-form facts by convexity of the critical-value payment: (1) the
+minimum total payment a coalition of size `k` can achieve against outsider
+true-value sum `S_O` is exactly
+`k*max(0,(cost-S_O)-(k-1)*max_value)`, attained by every member reporting
+`max_value`; (2) the truthful payment that is hardest to beat, for a fixed
+coalition value-sum, comes from the extremal "bang-bang" distribution (as
+many members as possible at `max_value`, one remainder, the rest `0`).
+Combining both gives an existence check for coalition-cap-`k`
+manipulability via a bounded sweep over integer value sums, not a search
+over reports or profiles. Cross-checked against all 75 rows of
+`artifacts/public_project_coalition_baseline_audit.json`, it reproduces the
+searched `min_failing_coalition_size` exactly on every row
+(`rows_checked=75 exact_matches=75 mismatches=0`) -- an exact match, not
+merely a no-false-positive bound like the Section-4.11 sufficient condition,
+closing the 14-row gap that condition left unexplained. Because it never
+enumerates reports, it also evaluates at agent counts unreachable by brute
+force (e.g. `n=20`, `max_value=8` in microseconds, versus `9^20` infeasible
+profiles). Digest
+`9dd70ad48733e6be95cd8ff4b0f37e5638e7347ccb7d044ab0a2adf80ebe7be0`.
+
+All nine scripts are fully replayable from frozen config files in
 `configs/public_project_coalition_*.json` and
-`configs/public_project_false_name_audit.json`; the lemma script needs no
-config of its own since it is a direct proof cross-checked against the
-existing baseline-audit artifact.
+`configs/public_project_false_name_audit.json`; the lemma and characterization
+scripts need no config of their own since they are direct proofs
+cross-checked against the existing baseline-audit artifact.

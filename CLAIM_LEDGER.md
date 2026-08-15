@@ -63,6 +63,18 @@
   `n=3,4` and `m=2,3`, zero counterexamples) shows any proper-coalition
   deviation that reaches the threshold at `cost=n*m` forces coalition members
   to pay exactly their own report, eliminating any free-ride gain.
+- (Complete characterization, not a search result.) For the same mechanism, the
+  minimum achievable total coalition payment for a size-`k` coalition against
+  outsider true-value sum `S_O` is exactly
+  `k*max(0,(cost-S_O)-(k-1)*m)`, and the worst-case (payment-maximizing)
+  truthful distribution of a fixed coalition value-sum is the bang-bang
+  extremal split (as many members at `m` as possible, one remainder, rest 0);
+  both are proven by convexity of the critical-value payment. Combining them
+  gives an existence check for coalition-cap-`k` manipulability by bounded
+  integer sweep, with no report-level search. This reproduces the baseline
+  audit's exact `min_failing_coalition_size` on all 75 rows (`75/75` exact
+  matches, not merely zero false positives) and evaluates at agent counts
+  (e.g. `n=20`) far beyond brute-force reach.
 
 ## EMPIRICALLY EVALUATED
 

@@ -62,6 +62,17 @@ Post-hoc finite-domain coalition robustness:
   converts the empirically-found frontier from a finite search result into a
   proven general theorem, and pinpoints exactly why the sole robust row in the
   baseline audit is robust.
+- Complete closed-form characterization (not a search result):
+  `scripts/verify_public_project_coalition_characterization.py` derives, by
+  convexity, the exact minimum total coalition payment
+  `k*max(0,(cost-S_O)-(k-1)*m)` for any coalition size `k` and outsider
+  value-sum `S_O`, plus the exact worst-case (extremal bang-bang) truthful
+  payment distribution, and combines them into a bounded integer-sweep
+  existence check for coalition-cap-`k` manipulability -- no report-level
+  search required. It reproduces the baseline audit's exact
+  `min_failing_coalition_size` on all `75/75` rows (closing the 14-row gap the
+  Section-4.11 sufficient-only lemma left open) and evaluates at agent counts
+  (e.g. `n=20`) far beyond brute-force enumeration.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An
