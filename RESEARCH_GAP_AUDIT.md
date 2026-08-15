@@ -36,7 +36,9 @@ complete all of the following:
    baseline, including success/failure and resource measurements.
 3. A theorem proving the compiler/checker sound for its declared network and
    public-project class; if claiming completeness, state the exact complexity
-   bound and test it independently.
+   bound and test it independently. `MAX_AFFINE_SOUNDNESS.md` now supplies the
+   stated-language proof and basis bound, but not a proof-assistant development
+   or a claim beyond the declared language.
 4. At least one result not already implied by the displayed formulas—for
    example a certified repair or a certified architecture/training constraint
    whose benefit is measured on untouched instances.
