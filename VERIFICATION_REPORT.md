@@ -77,5 +77,32 @@ ten fail at coalition size 2, including every selected row in `frontier`,
 with 0 mismatches and digest
 `825ded27f5889dd1a48b9ff4ae6459a4fc566dfb5919bf64bfdf345217e86f96`.
 
-All five scripts are fully replayable from frozen config files in
-`configs/public_project_coalition_*.json`.
+Phase X false-name manipulation supplement: `scripts/run_public_project_false_name_audit.py`
+and `scripts/verify_public_project_false_name_audit.py` test a different attack
+against the same canonical efficient/pivotal mechanism: a single real agent
+fabricating extra fake report identities, instead of a coalition of distinct
+real agents. Because the sum-threshold rule with critical-value payments is
+defined identically for any agent count, the check compares the mechanism at
+`n_real` real agents (baseline, truthful) against the same rule at
+`n_real+fake_budget` agents (attacker controls one real slot plus
+`fake_budget` fake slots, other `n_real-1` real agents held truthful), across
+`n_real=3,4,5` and `fake_budget in {0,1,2}` (72 rows). `fake_budget=0` is a
+positive control and shows 0 manipulable rows everywhere, confirming the
+harness reduces to ordinary single-agent DSIC when there is no attack. At
+`fake_budget=1` or `2`, 48 of 72 rows are manipulable, and 6 of 9 selected
+spot checks are manipulable (every selected row with `fake_budget>=1`). A
+concrete witness at `n_real=3`, `cost=3`: truthful profile `(0,1,1)` does not
+build the project (attacker utility 0); if the true-value-1 agent reports
+`2` in their own slot and fabricates one fake identity also reporting `2`,
+the extended 4-agent profile `(0,1,2,2)` builds, and both the real and fake
+slot's critical-value payment computes to 0 (each slot's threshold, holding
+the other inflated slot fixed, is already met at report 0), so the attacker
+nets a utility gain of 1 for free. The independent verifier recomputes the
+sum-threshold/critical-value rule from its closed-form definition without
+importing `public_project.py`, and reproduces every row's manipulable count
+with 0 mismatches and digest
+`9e2e5ca254dfde9b2c3987f6cf35973e836fc15e429213a5356dcb3bd1ea69d3`.
+
+All seven scripts are fully replayable from frozen config files in
+`configs/public_project_coalition_*.json` and
+`configs/public_project_false_name_audit.json`.

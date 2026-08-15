@@ -47,3 +47,30 @@ coalition robustness sweep on the same frozen class:
 
 This extension is explicitly not part of the original headline preregistration.
 It is logged as a falsification-focused, finite robustness supplement.
+
+## Post-hoc false-name manipulation extension
+
+A second post-hoc supplement audits a different attack: a single real agent
+fabricating extra fake report identities, instead of a coalition of distinct
+real agents.
+
+- domain: `n_real in {3,4,5}` real agents, values `{0,1,2}`, project costs
+  spanning `1..2*n_real`, fake-identity budgets `{0,1,2}`,
+- objective: for the canonical efficient/pivotal (sum-threshold,
+  critical-value payment) mechanism, check whether a real agent controlling
+  their own report slot plus `f` fake slots can gain versus truthful
+  single-identity reporting, holding the other `n_real-1` real agents' reports
+  fixed at their truthful values,
+- mechanism class: same closed-form rule evaluated at `n_real` agents
+  (baseline) versus `n_real+f` agents (attack), since sum-threshold with
+  critical-value payments is defined identically for any agent count,
+- acceptance predicate: `fake_budget=0` is a positive control and must show
+  zero manipulable rows (reduces to ordinary single-agent DSIC); independent
+  replay from a closed-form reimplementation must match every row's
+  manipulable count,
+- non-goal: no claim about the anonymous-monotone frontier's false-name
+  robustness (only the canonical comparator is audited here), no bound on
+  fake budgets beyond 2, no randomized or continuous extensions.
+
+This extension is also not part of the original headline preregistration. It
+is logged as a second falsification-focused, finite robustness supplement.

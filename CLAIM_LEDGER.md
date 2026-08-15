@@ -40,6 +40,13 @@
   tested but fails coalition-cap-2 DSIC in 66 of 75 audited `(domain, n,
   cost)` rows, independently of its separate weak-budget-balance deficit;
   the independent checker reproduces all 75 rows with 0 mismatches.
+- The same canonical efficient/pivotal mechanism is manipulable by a false-name
+  attack: a single real agent controlling their own report slot plus fake
+  slots gains against 48 of 72 audited `(n_real, cost, fake_budget)` rows for
+  fake budgets 1-2 across `n_real=3,4,5`, while the zero-fake-budget positive
+  control shows no manipulable rows anywhere; an independent closed-form
+  reimplementation (no import of `public_project.py`) reproduces all 72 rows'
+  manipulable counts with 0 mismatches.
 
 ## EMPIRICALLY EVALUATED
 

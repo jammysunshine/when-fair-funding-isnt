@@ -18,6 +18,20 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
   from its separately known budget-balance deficit. 0 independent-replay
   mismatches across 75 rows. This is HANDOFF.md task 4's independent baseline
   audit, now complete.
+- Also new this session: `scripts/run_public_project_false_name_audit.py` /
+  `scripts/verify_public_project_false_name_audit.py` (config
+  `configs/public_project_false_name_audit.json`) extend the falsification
+  program to false-name manipulation: can a single real agent gain by
+  fabricating extra fake report identities against the canonical
+  efficient/pivotal mechanism? Finding: `fake_budget=0` positive control
+  shows 0 manipulable rows (confirms harness correctness); at
+  `fake_budget in {1,2}` across `n_real=3,4,5`, 48 of 72 rows and 6 of 9
+  selected checks are manipulable. Independent verifier is a standalone
+  closed-form reimplementation (no import of `public_project.py`); 0
+  mismatches across 72 rows. This is the coalition-class extension
+  requested after task 4 ("the second part": false-name attacks, in
+  preference to randomized mechanisms which would need a larger model
+  change to support lottery allocation).
 
 ## Frozen configuration
 - Core domain: public-project mechanism design with anonymous monotone rules
@@ -51,6 +65,11 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
 - `scripts/verify_public_project_coalition_baseline_audit.py`
 - `artifacts/public_project_coalition_baseline_audit.json`
 - `artifacts/public_project_coalition_baseline_audit_certificate.json`
+- `configs/public_project_false_name_audit.json`
+- `scripts/run_public_project_false_name_audit.py`
+- `scripts/verify_public_project_false_name_audit.py`
+- `artifacts/public_project_false_name_audit.json`
+- `artifacts/public_project_false_name_audit_certificate.json`
 
 ## Exact commands already expected
 ```bash
@@ -64,6 +83,8 @@ python3 scripts/run_public_project_coalition_value3_frontier.py
 python3 scripts/verify_public_project_coalition_value3_frontier.py
 python3 scripts/run_public_project_coalition_baseline_audit.py
 python3 scripts/verify_public_project_coalition_baseline_audit.py
+python3 scripts/run_public_project_false_name_audit.py
+python3 scripts/verify_public_project_false_name_audit.py
 python3 scripts/generate_frontier_report.py
 python3 -m unittest discover -s tests -v
 ```
@@ -78,10 +99,11 @@ python3 -m unittest discover -s tests -v
 1. ~~Stage/commit `HANDOFF` plus untracked Phase X configs/scripts/artifacts.~~ Done (`41fa06c`).
 2. ~~Re-run experiment commands from clean state and refresh `REPRODUCIBILITY_MANIFEST.md` hashes.~~ Done, all zero-failure.
 3. ~~Reconcile mismatches in `STATUS.md`, `EVIDENCE_INDEX.md`, `VERIFICATION_REPORT.md`.~~ Done.
-4. ~~Add paper-grade extension: independent baseline audit before any submission claim.~~ Done this session: the canonical efficient/pivotal mechanism is coalition-fragile (fails cap-2 DSIC in 66/75 rows), independently replayed with 0 mismatches. Not yet committed as of this writing — commit `configs/public_project_coalition_baseline_audit.json`, the two new scripts, the two new artifacts (already `.gitignore`d — regenerated locally, not tracked), and the doc edits (`STATUS.md`, `EVIDENCE_INDEX.md`, `VERIFICATION_REPORT.md`, `CLAIM_LEDGER.md`, `REPRODUCIBILITY_MANIFEST.md`, this file).
+4. ~~Add paper-grade extension: independent baseline audit before any submission claim.~~ Done: the canonical efficient/pivotal mechanism is coalition-fragile (fails cap-2 DSIC in 66/75 rows), independently replayed with 0 mismatches.
+5. ~~Extend the coalition claim (false-name attacks or randomized mechanisms).~~ Done this session: chose false-name attacks (tractable with the existing sum-threshold rule, which is defined identically for any agent count) over randomized mechanisms (would need a larger model change to support lottery allocation). The mechanism is manipulable by fabricated fake identities: 48/72 rows, 6/9 selected checks, positive control clean, 0 independent-replay mismatches. Not yet committed as of this writing — commit `configs/public_project_false_name_audit.json`, the two new scripts, the two new artifacts (`.gitignore`d — regenerated locally, not tracked), and the doc edits (`STATUS.md`, `EVIDENCE_INDEX.md`, `VERIFICATION_REPORT.md`, `CLAIM_LEDGER.md`, `REPRODUCIBILITY_MANIFEST.md`, `PREREGISTRATION.md`, `PAPER_DRAFT.md`, this file).
 
 ## Possible further extensions (not started, optional)
-- Broaden the mechanism class beyond anonymous monotone Boolean allocation rules (e.g. randomized or multi-level decisions).
+- Randomized mechanisms (lottery allocation) — would need a larger model change; not attempted.
 - Stronger benchmarks: larger `n`/`max_value` scaling beyond current `n<=6`.
 
 ## Commit practice

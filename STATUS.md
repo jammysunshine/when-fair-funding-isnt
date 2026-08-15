@@ -1,7 +1,8 @@
 # Status
 
 Phase: Phase X coalition-robustness extension, including its independent
-baseline audit, is complete as a post-hoc falsification study.
+baseline audit and false-name-manipulation supplement, is complete as a
+post-hoc falsification study.
 Phase VII budget--IR trade-off is complete for declared rational ReLU
 sources. Phase VIII independently confirmed the finite value-lattice theorem
 on an untouched `n=3,m=4,c=1..12` grid: exact predicted/exhaustive rule-set
@@ -38,6 +39,17 @@ Post-hoc finite-domain coalition robustness:
   (only `value3_frontier` cost `9` survives). This is independent of, and
   decoupled from, that mechanism's separately known budget-balance deficit.
   `0` independent replay mismatches across all 75 rows.
+- False-name manipulation audit: `scripts/run_public_project_false_name_audit.py`
+  plus `scripts/verify_public_project_false_name_audit.py` test whether a
+  single real agent gains by fabricating extra fake report identities against
+  the same canonical efficient/pivotal mechanism, across `n_real=3,4,5`, fake
+  budgets `{0,1,2}`. `fake_budget=0` is a positive control (0 manipulable
+  rows everywhere, confirming ordinary single-agent DSIC). At `fake_budget=1`
+  or `2`, 48 of 72 `(n_real, cost, fake_budget)` rows are manipulable, and 6
+  of 9 selected checks are manipulable. The independent verifier recomputes
+  the sum-threshold/critical-value rule from its closed-form definition
+  (no import of `public_project.py`) and reproduces every row's manipulable
+  count with `0` mismatches.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An

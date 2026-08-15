@@ -40,7 +40,15 @@ comparator itself -- single-agent DSIC by construction -- fails coalition-cap-2
 DSIC in 66 of 75 audited `(domain, agent count, cost)` cells spanning
 `n=3..6` on the `{0,1,2}` value domain and `n=3` on the wider `{0,1,2,3}`
 value domain. All coalition claims are independently replayed with zero
-mismatches.
+mismatches. A second post-hoc supplement audits a different attack on the
+same comparator: false-name manipulation, where one real agent fabricates
+extra fake report identities instead of a coalition of distinct agents.
+Because the sum-threshold rule is defined identically at any agent count, we
+compare it at `n` real agents against the same rule at `n+f` agents for fake
+budgets `f in {1,2}`. A zero-fake-budget positive control shows no
+manipulable rows; at `f>=1`, 48 of 72 audited `(agent count, cost, fake
+budget)` cells are manipulable across `n=3,4,5`, independently replayed with
+zero mismatches from a closed-form reimplementation.
 
 ## 1. Introduction
 
@@ -53,7 +61,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes eight deliberately narrow contributions:
+This paper makes nine deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -70,7 +78,10 @@ This paper makes eight deliberately narrow contributions:
    fixtures, independently challenged by exact-real SMT queries;
 8. a post-hoc bounded-coalition falsification supplement, including an
    independent audit of whether the canonical single-agent-DSIC comparator
-   itself resists coalitions, with a standalone replay of every claim.
+   itself resists coalitions, with a standalone replay of every claim;
+9. a second post-hoc supplement auditing the same comparator against
+   false-name manipulation (fabricated fake report identities), independently
+   replayed from a closed-form reimplementation.
 
 ## 2. Model
 
@@ -348,13 +359,61 @@ studies (independent digests recorded in `VERIFICATION_REPORT.md`).
 
 This supplement is deliberately narrow. It bounds coalition size at 2 or 3, it
 does not claim coalition-proofness for arbitrary group size, and it does not
-extend to randomized rules, continuous values, or false-name attacks. It does
+extend to randomized rules or continuous values. It does
 show, with an exact and independently replayed counterexample, that
 single-agent DSIC -- the standard acceptance bar used throughout Sections
 4.1-4.4 and in most automated-mechanism-design search -- is not sufficient
 for robustness against even the smallest possible group manipulation, and
 that this failure is not specific to the search-discovered frontier: it also
 afflicts the textbook efficient/pivotal comparator.
+
+### 4.10 False-name manipulation of the same comparator
+
+Distinct-agent coalitions are one attack; false-name manipulation (Yokoo,
+Sakurai and Matsubara, 2004) is another and structurally different one: a
+single real agent fabricates extra fake report identities and controls all of
+them, so there is one true value behind several report slots, and the
+attacker pays whatever the mechanism charges each slot it controls. This is
+also a post-hoc, non-preregistered supplement
+(`PREREGISTRATION.md`, "Post-hoc false-name manipulation extension").
+
+Because the sum-threshold rule `q(reports)=1[sum(reports)>=cost]` with
+critical-value payments is defined identically for any agent count, we check
+it by comparing the same rule at `n_real` real agents (truthful baseline)
+against the same rule at `n_real+f` agents, where the attacker occupies one
+real slot plus `f` fake slots and the other `n_real-1` real agents keep
+reporting truthfully. We sweep `n_real in {3,4,5}`, `f in {0,1,2}`, and costs
+`1..2*n_real` (72 `(n_real, cost, f)` cells). `f=0` is a positive control: it
+must reduce to ordinary single-agent DSIC, and indeed shows zero manipulable
+cells everywhere, confirming the harness before trusting `f>=1`.
+
+At `f in {1,2}`, 48 of the 72 cells are manipulable, including 6 of 9
+preregistered-style selected spot checks (every selected cell with `f>=1`). A
+concrete witness at `n_real=3`, cost `3`: truthful profile `(0,1,1)` does not
+build the project (all utilities 0). If the agent with true value 1 reports 2
+in its own slot and fabricates one fake identity also reporting 2, the
+extended 4-slot profile `(0,1,2,2)` builds. Because critical-value payments
+are computed per slot holding the *other* slots fixed, and the attacker's own
+inflated fake slot is one of those "other" slots for its real slot's
+threshold (and vice versa), each of the attacker's two controlled slots has
+threshold 0: the other slot's report of 2 already exceeds the remaining
+`cost - 1 = 2` needed. Both controlled slots are charged 0, and the attacker
+nets a utility gain of 1 that single-identity truthful reporting could not
+achieve. This is the same critical-value mechanism the Section 4.9 coalition
+witness exploits, applied through a different channel: instead of splitting
+the threshold-clearing burden across distinct agents' true values, a single
+agent splits it across its own report and self-created fake reports, each of
+which is charged as if the others' (also attacker-controlled) reports were
+independent evidence of demand.
+
+Every cell is replayed by a standalone implementation
+(`scripts/verify_public_project_false_name_audit.py`) that recomputes the
+sum-threshold/critical-value rule from its closed-form definition without
+importing the primary mechanism module: 0 mismatches across all 72 cells,
+independent digest recorded in `VERIFICATION_REPORT.md`. This supplement is
+also narrow: it audits only the canonical comparator (not the
+anonymous-monotone frontier), bounds the fake-identity budget at 2, and makes
+no randomized- or continuous-domain claim.
 
 ## 5. Positioning and contribution boundary
 
@@ -377,6 +436,7 @@ et al. study machine-learning approaches for public-project mechanism design
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
 | Computer-aided mechanism and neural-network verification | Typed formula provenance, direct-source replay, and exact-real SMT cross-checks for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
 | Coalition-proof/group-strategyproof mechanism theory | An exact, independently replayed bounded-coalition falsification supplement, including a baseline audit showing the textbook efficient/pivotal rule is itself coalition-cap-2 fragile | A coalition-proofness theorem, an unbounded-coalition-size result, or a repaired coalition-resistant mechanism |
+| False-name-proof mechanism theory (Yokoo, Sakurai and Matsubara, 2004) | An exact, independently replayed false-name-manipulation supplement against the same textbook comparator, with a positive control confirming the harness | A false-name-proofness theorem, a repaired false-name-resistant mechanism, or a claim about the search-discovered frontier's false-name robustness |
 
 The defensible contribution is a compact, replayable certificate and an exact
 theorem for the specified finite integer-value class. It is not a claim of a
@@ -400,11 +460,14 @@ over-generalized. Exact commands and SHA-256 hashes are in
 The theorem's mechanism class is anonymous, deterministic, finite-valued, and
 restricted to normalized critical payments. The study does not cover randomized
 rules, subsidies, Bayesian objectives, continuous values, arbitrary-size
-collusion, false-name reports, asymmetric rules, or arbitrary payment schemes.
+collusion, asymmetric rules, or arbitrary payment schemes.
 The coalition supplement (Section 4.9) is bounded to coalitions of size 2 or 3
 within the same finite integer-value class; it establishes fragility, not a
 repair, and does not claim anything about coalitions above the tested cap or
-about mechanisms outside the anonymous-monotone class. The n=3..6 searches
+about mechanisms outside the anonymous-monotone class. The false-name
+supplement (Section 4.10) is bounded to fake-identity budgets of 1 or 2 on the
+canonical comparator only, not the search-discovered frontier; it likewise
+establishes fragility, not a repair. The n=3..6 searches
 are computational cross-checks; the finite-lattice proof is the general result. The
 stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
@@ -446,6 +509,8 @@ python3 scripts/run_public_project_coalition_value3_frontier.py
 python3 scripts/verify_public_project_coalition_value3_frontier.py
 python3 scripts/run_public_project_coalition_baseline_audit.py
 python3 scripts/verify_public_project_coalition_baseline_audit.py
+python3 scripts/run_public_project_false_name_audit.py
+python3 scripts/verify_public_project_false_name_audit.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
@@ -459,7 +524,9 @@ can inspect: the proof fixes the accepted family, a preregistered larger-lattice
 enumeration reproduces it exactly, the efficient comparator has a concrete
 budget-balance failure, a bounded-coalition supplement shows the same
 comparator also has a concrete, independently replayed incentive failure
-against groups as small as size 2, and the held-out stress test records where
+against groups as small as size 2, a second supplement shows the same
+comparator is manipulable by a single agent fabricating fake report
+identities, and the held-out stress test records where
 the result stops generalizing. It is a credible foundation for a
 theory/verification paper, but publication still requires external novelty
 review, broader theory, and peer review.
