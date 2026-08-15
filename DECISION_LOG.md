@@ -90,3 +90,9 @@ engine on a higher-dimensional formula with signed ReLU terms and a
 rounding-sensitive budget boundary; any disagreement with the separate exact
 evaluator is a falsifiable implementation failure. Record inaccessible 2012
 and 2017 sources as exclusions, not inferred formula targets.
+
+2026-08-15 (Phase IV verification): serialize the typed rational formula with
+each generic certificate and require an independent parser/enumerator to
+replay it without importing the producer or formula-specific code. Rationale:
+agreement between two transcriptions alone is not enough to make the generic
+method inspectable; the artifact must be sufficient for a separate replay.

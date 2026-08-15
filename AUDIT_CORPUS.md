@@ -54,3 +54,8 @@ correction signs are visually checked against the rendered page before the
 certificate is accepted. This safeguard caught an initially omitted outer
 denominator while transcribing the PRIMA-2016 expression; the failed reading
 was discarded before the final artifact was emitted.
+
+The Phase-IV artifact adds a second independence layer: its standalone replay
+reads only the serialized typed expression, derives all max/min branch planes,
+and re-enumerates the ordered-cube arrangement without importing the primary
+certificate engine or any formula transcription.

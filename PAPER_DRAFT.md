@@ -1,4 +1,4 @@
-# Certificate-first exact frontiers for no-deficit public-project mechanisms
+# Certificate-first exact frontiers and executable audits for public-project mechanisms
 
 ## Abstract
 
@@ -36,7 +36,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes five deliberately narrow contributions:
+This paper makes six deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -46,6 +46,9 @@ This paper makes five deliberately narrow contributions:
    the primary mechanism code.
 5. a human-checkable all-agent proof explaining the accepted-count sequence,
    with a construction certificate covering n=1..12.
+6. an executable-specification audit layer for published shallow max-affine
+   VCG-redistribution formulas, with a standalone replay from serialized
+   rational expressions.
 
 ## 2. Model
 
@@ -167,6 +170,32 @@ artifact of the three-value coding, but it remains exploratory: it does not
 replace the preregistered `{0,1,2}` headline or establish a continuous-value
 characterization.
 
+### 4.5 Executable audit of published max-affine rules
+
+The finite frontier is complemented, but not replaced, by an external audit
+lane. We define a deliberately restricted typed language: rational affine
+forms combined by addition, scalar multiplication, and finite `max`/`min`.
+On an ordered unit cube, every branch boundary and the public-project
+first-best boundary are affine. Enumerating every intersection of the declared
+boundaries therefore gives a finite exact certificate for extrema of total
+Groves charge divided by first-best cost.
+
+The generic engine reproduces three pre-existing continuous formulas: the
+three-agent optimum displayed as Guo (IJCAI 2019) Equation (2), and the
+three- and four-agent printed formulas in Guo (AAAI 2024). The four-agent
+case is the hard control: it includes signed ReLU terms and terminating
+decimal coefficients. The generic certificate reproduces the displayed
+formula's `1/5000` deficit and its published `1/20000` per-term uniform repair.
+An independent program consumes only the serialized rational expression,
+derives branch planes and arrangement vertices itself, and exactly matches all
+four certificates (including the repaired four-agent entry).
+
+This is a reproducibility result about displayed formulas. It does not recover
+training weights, diagnose authors' unshared implementation, prove properties
+of arbitrary neural networks, or establish a new mechanism. Its value is that
+the claim boundary, formula, arithmetic, witness, and independent replay are
+all inspectable.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -186,6 +215,7 @@ et al. study machine-learning approaches for public-project mechanism design
 | General public-project and cost-sharing theory | A finite, fully enumerated benchmark with explicit payment reconstruction and witnesses | A new impossibility theorem or a continuous-value characterization |
 | Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
+| Computer-aided mechanism and neural-network verification | Typed formula provenance plus exact, standalone replay for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
 
 The defensible contribution is a compact, replayable certificate and an exact
 theorem for the specified ternary class. It is not a claim of a new universal
@@ -225,6 +255,8 @@ python3 scripts/verify_public_project_certificate.py
 python3 scripts/run_value_extension.py
 python3 scripts/run_n6_extension.py
 python3 scripts/verify_scaling_theorem.py
+python3 scripts/run_max_affine_certification.py
+python3 scripts/verify_max_affine_certificate.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim

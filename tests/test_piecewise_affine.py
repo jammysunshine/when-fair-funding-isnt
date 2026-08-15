@@ -1,4 +1,6 @@
 from fractions import Fraction
+import json
+from pathlib import Path
 import unittest
 
 from src.mechanism_discovery.guo_2019_three_agent_optimal import audit as equation_two_audit
@@ -8,6 +10,7 @@ from src.mechanism_discovery.max_affine_corpus import (
     guo_2024_four_agent_charge,
 )
 from src.mechanism_discovery.piecewise_affine import certify_ordered_public_project_charge
+from src.mechanism_discovery.max_affine_independent import replay_payload
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
 
 
@@ -37,6 +40,12 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
             self.assertEqual(generic.minimum_budget_slack, known.minimum_deficit)
             self.assertEqual(generic.maximum_charge_ratio, known.maximum_charge_ratio)
             self.assertEqual(generic.worst_case_efficiency, known.worst_case_efficiency)
+
+    def test_serialized_certificate_replays_without_primary_engine(self):
+        root = Path(__file__).resolve().parents[1]
+        payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
+        expected = {name: entry["certificate"] for name, entry in payload["entries"].items()}
+        self.assertEqual(replay_payload(payload), expected)
 
 
 if __name__ == "__main__":

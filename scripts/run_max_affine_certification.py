@@ -31,14 +31,24 @@ def encode(value):
 
 
 def main():
+    formulas = {
+        "guo_ijcai_2019_equation_2": (guo_2019_equation_two_charge(), 3),
+        "guo_aaai_2024_printed_3_agent": (guo_2024_three_agent_charge(), 3),
+        "guo_aaai_2024_printed_4_agent": (guo_2024_four_agent_charge(), 4),
+        "guo_aaai_2024_printed_4_agent_uniform_repair": (
+            guo_2024_four_agent_charge(Fraction(1, 20000)), 4
+        ),
+    }
     payload = {
         "scope": "exact shallow max-affine certificates on ordered continuous public-project unit cubes",
         "method_limit": "not a general neural-network verifier; completeness follows only for the declared shallow max-affine representation",
         "entries": {
-            "guo_ijcai_2019_equation_2": encode(certify_ordered_public_project_charge(guo_2019_equation_two_charge(), 3)),
-            "guo_aaai_2024_printed_3_agent": encode(certify_ordered_public_project_charge(guo_2024_three_agent_charge(), 3)),
-            "guo_aaai_2024_printed_4_agent": encode(certify_ordered_public_project_charge(guo_2024_four_agent_charge(), 4)),
-            "guo_aaai_2024_printed_4_agent_uniform_repair": encode(certify_ordered_public_project_charge(guo_2024_four_agent_charge(Fraction(1, 20000)), 4)),
+            name: {
+                "dimension": dimension,
+                "specification": encode(formula),
+                "certificate": encode(certify_ordered_public_project_charge(formula, dimension)),
+            }
+            for name, (formula, dimension) in formulas.items()
         },
     }
     serialized = json.dumps(payload, indent=2, sort_keys=True) + "\n"

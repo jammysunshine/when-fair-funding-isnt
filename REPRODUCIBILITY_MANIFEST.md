@@ -19,6 +19,7 @@ python3 scripts/run_guo_2019_baseline_audit.py
 python3 scripts/run_guo_2016_baseline_audit.py
 python3 scripts/run_guo_2019_three_agent_optimal_audit.py
 python3 scripts/run_max_affine_certification.py
+python3 scripts/verify_max_affine_certificate.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -46,7 +47,9 @@ The Phase III positive-control audit emits
 `45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b`.
 The Phase IV generic shallow-max-affine certificate emits
 `artifacts/max_affine_certification.json`; its SHA-256 is
-`2aed1ebe01a67bfa31611757c05c67013290d62654f0388c0983675445b7f32a`.
+`2602864bf441586ae2370d9b1221ee763ace98aad981e9b35b04976db569f650`.
+Its independent replay is `artifacts/max_affine_independent_certificate.json`;
+its SHA-256 is `eb2e5dcce9f1ff55ebeeb281b0091ba02f10586da49ca1229faae029e5f7fced`.
 
 Hashes for the clean run:
 
@@ -64,5 +67,6 @@ artifacts/published_rule_audit.json       4056655ed759dacaf561b36344b206745f9806
 artifacts/guo_2019_grid_audit.json        61f4dc2efd184375e0ebd79a94dcecfe98a24005e0f78899087a56425ad48fb3
 artifacts/guo_2016_grid_audit.json        92e3078d55320c4d6a9130cab16a07d0d264aef3db648244d61cb97adf7bdbf2
 artifacts/guo_2019_three_agent_optimal_audit.json 45df2f83d27eb70dd4874c7faf1ee3e764b8f4ab194c6df6269afce3a9b69a2b
-artifacts/max_affine_certification.json 2aed1ebe01a67bfa31611757c05c67013290d62654f0388c0983675445b7f32a
+artifacts/max_affine_certification.json 2602864bf441586ae2370d9b1221ee763ace98aad981e9b35b04976db569f650
+artifacts/max_affine_independent_certificate.json eb2e5dcce9f1ff55ebeeb281b0091ba02f10586da49ca1229faae029e5f7fced
 ```
