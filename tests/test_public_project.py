@@ -32,6 +32,8 @@ class PublicProjectTests(unittest.TestCase):
         spec = PublicProjectSpec(3, 2, 3)
         self.assertEqual(len(list(enumerate_anonymous_monotone(spec))), 16)
         self.assertEqual(len(frontier(spec)), 4)
+        self.assertEqual(len(frontier(spec, max_coalition_size=1)), 4)
+        self.assertEqual(len(frontier(spec, max_coalition_size=2)), 2)
 
     def test_antichain_enumerator_scales_exactly_through_five_agents(self):
         counts = [len(list(enumerate_anonymous_monotone(PublicProjectSpec(n, 2, n)))) for n in range(3, 6)]
@@ -74,6 +76,43 @@ class PublicProjectTests(unittest.TestCase):
         report = verify_public_project(sum_threshold_mechanism(spec, 4))
         self.assertTrue(report["dsic"])
         self.assertTrue(report["ex_post_ir"])
+
+    def test_coalitional_dsic_shrinks_frontier_at_cost_three(self):
+        spec = PublicProjectSpec(3, 2, 3)
+        base = frontier(spec)
+        coalitional = frontier(spec, max_coalition_size=2)
+        self.assertEqual(len(base), 4)
+        self.assertEqual(len(coalitional), 2)
+        names = {row["mechanism"].name for row in coalitional}
+        self.assertEqual(names, {"anonymous_monotone_mask_960", "anonymous_monotone_mask_512"})
+
+    def test_independent_checker_rejects_noncoalition_robust_frontier_row(self):
+        spec = PublicProjectSpec(3, 2, 3)
+        base = frontier(spec)
+        fragile = next(row["mechanism"] for row in base if row["mechanism"].name in {"anonymous_monotone_mask_896", "anonymous_monotone_mask_768"})
+        fragile_report = check({
+            "name": fragile.name,
+            "n_agents": fragile.spec.n_agents,
+            "max_value": fragile.spec.max_value,
+            "cost": fragile.spec.cost,
+            "allocation_by_state": [[list(s), q] for s, q in fragile.allocation_by_state],
+        }, max_coalition_size=2)
+        # The first serialized rule in the unbounded frontier is not robust to
+        # coalition deviations for the bounded model.
+        self.assertFalse(fragile_report["coalitional_dsic"] or fragile_report["accepted"])
+
+    def test_coalitional_and_universal_independent_checker_align(self):
+        spec = PublicProjectSpec(3, 2, 3)
+        for row in frontier(spec, max_coalition_size=2):
+            mechanism = row["mechanism"]
+            serialised = {
+                "name": mechanism.name,
+                "n_agents": mechanism.spec.n_agents,
+                "max_value": mechanism.spec.max_value,
+                "cost": mechanism.spec.cost,
+                "allocation_by_state": [[list(s), q] for s, q in mechanism.allocation_by_state],
+            }
+            self.assertTrue(check(serialised, max_coalition_size=2)["accepted"])
 
 
 if __name__ == "__main__":

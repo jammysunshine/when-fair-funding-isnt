@@ -1,11 +1,14 @@
 # Project Charter
 
 Status: original study frozen 2026-08-15; Phase VII is complete. Phase VIII
-now has a preregistered, independently replayed finite value-lattice theorem
+has a preregistered, independently replayed finite value-lattice theorem
 confirmation. A separate constrained-synthesis pilot was withdrawn at its
 semantic-baseline gate because it rediscovered pivotal VCG. The original
 binary-table audit remains a baseline and Phase II--IV results remain bounded
 replication evidence.
+Phase X adds a bounded coalition-robustness extension on the same finite class:
+for cap-2 deviations in the three-agent ternary frontier, only 2 of 4 DSIC
+survivors remain at cost 3, and those rows are independently replayed.
 
 ## Phase II feasibility question (active; not yet a headline claim)
 
@@ -86,6 +89,12 @@ independent replay of every accepted rule. The run met those criteria for
 `n=3,m=4,c=1..12`, with 255 accepted-rule replays and zero failures. This is
 an exact result for the declared discrete critical-payment model, not a claim
 about continuous values or a new neural mechanism.
+
+Phase X coalition-robustness extension: run cap-2 coalition replay on all costs
+`1..6` at three agents, then scale survivors to `n=4` and `n=5` with cap 3 as
+an exact finite sensitivity and robustness stress test. This extension is
+post-hoc relative to the Phase VIII frozen objective and is logged as a falsification
+supplement.
 
 Phase IX question: does the source-aware exact rational-ReLU certificate remain
 semantically consistent as the public-project dimension rises from three to

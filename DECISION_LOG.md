@@ -211,6 +211,27 @@ per source. Rationale: expose the actual combinatorial boundary rather than
 retain a four-agent-only demonstration.
 
 2026-08-15 (Phase IX rational-ReLU scaling, after evaluation): retain all five
-cases unchanged. Equality, mutation, and 15 Z3 checks passed, while the final
-case took 112.935 seconds versus 0.006 seconds at three agents. This supports
-bounded semantic correctness but does not support a scalability claim.
+ cases unchanged. Equality, mutation, and 15 Z3 checks passed, while the final
+ case took 112.935 seconds versus 0.006 seconds at three agents. This supports
+ bounded semantic correctness but does not support a scalability claim.
+
+2026-08-15 (Phase X coalition robustness, post-hoc): keep the original Phase
+VIII acceptance boundary frozen and add bounded coalition deviations as a falsification
+supplement on the same finite class instead of redefining the headline hypothesis.
+Rationale: this preserves preregistered scope discipline and strengthens the economic
+robustness story without retroactively altering baseline criteria.
+
+2026-08-15 (Phase X frontier): define coalition-cap checks for `max_coalition_size`
+at `2` on the frozen three-agent ternary frontier (`cost=1..6`) before running any
+new exploratory claims. Rationale: one can only claim robustness after confirming
+exact frontier geometry in a separate falsification lane.
+
+2026-08-15 (Phase X scaling): require cap-by-cap replay for every serialized frontier
+survivor with exact name signatures and min-failing coalition-size summaries
+(`cap=2..3` for `n=3..6`) to avoid survivorship bias in fragility claims.
+Rationale: scalability claims must preserve exact serialized evidence and independent
+replay at every threshold.
+
+2026-08-15 (Command hygiene): a verification command typo (`verify_public_project_coalition_scaled_extended.py`)
+was corrected to `..._scaling_extended.py` and re-run. Rationale: exact command
+reproducibility is part of the required handoff artifact.

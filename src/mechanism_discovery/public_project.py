@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import lru_cache
-from itertools import product
+from itertools import combinations, product
 from typing import Iterable
 
 
@@ -138,8 +138,16 @@ def enumerate_anonymous_monotone(spec: PublicProjectSpec) -> Iterable[PublicProj
         yield PublicProjectMechanism(spec, rows, name=f"anonymous_monotone_mask_{mask}")
 
 
-def verify_public_project(mechanism: PublicProjectMechanism, *, require_budget: bool = True, check_anonymity: bool = True) -> dict:
+def verify_public_project(
+    mechanism: PublicProjectMechanism,
+    *,
+    require_budget: bool = True,
+    check_anonymity: bool = True,
+    max_coalition_size: int = 1,
+) -> dict:
     spec = mechanism.spec
+    if max_coalition_size < 1:
+        raise ValueError("max_coalition_size must be at least 1")
     witnesses: list[dict] = []
     for reports in spec.profiles:
         allocation = mechanism.allocation(reports)
@@ -162,6 +170,39 @@ def verify_public_project(mechanism: PublicProjectMechanism, *, require_budget: 
                 gain = mechanism.utility(reports, tuple(deviating), agent) - truthful
                 if gain > 0:
                     witnesses.append({"property": "dsic", "profile": reports, "agent": agent, "deviation": deviation, "gain": gain})
+    if max_coalition_size >= 2:
+        coalition_sizes = range(2, min(max_coalition_size, spec.n_agents) + 1)
+        for reports in spec.profiles:
+            truthful_utils = [mechanism.utility(reports, reports, agent) for agent in range(spec.n_agents)]
+            for coalition_size in coalition_sizes:
+                for coalition in combinations(range(spec.n_agents), coalition_size):
+                    for deviations in product(range(spec.max_value + 1), repeat=coalition_size):
+                        if all(reports[agent] == deviated for agent, deviated in zip(coalition, deviations)):
+                            continue
+                        deviating = list(reports)
+                        for agent, deviated in zip(coalition, deviations):
+                            deviating[agent] = deviated
+                        deviating_reports = tuple(deviating)
+                        baseline_total = sum(truthful_utils[i] for i in coalition)
+                        deviating_total = sum(
+                            mechanism.utility(reports, deviating_reports, agent)
+                            for agent in coalition
+                        )
+                        if deviating_total > baseline_total:
+                            witnesses.append(
+                                {
+                                    "property": "coalitional_dsic",
+                                    "profile": reports,
+                                    "coalition": list(coalition),
+                                    "deviation": list(deviations),
+                                    "gain": deviating_total - baseline_total,
+                                    "coalition_size": coalition_size,
+                                }
+                            )
+                            break
+                    else:
+                        continue
+                    break
     # Anonymous state tables are exact by construction; retain a check so the
     # certificate catches malformed serialized mechanisms.
     if check_anonymity:
@@ -178,6 +219,8 @@ def verify_public_project(mechanism: PublicProjectMechanism, *, require_budget: 
         "weak_budget_balance": "weak_budget_balance" not in properties,
         "feasibility": "feasibility" not in properties,
         "anonymity": "anonymity" not in properties,
+        "coalitional_dsic": "coalitional_dsic" not in properties,
+        "max_coalition_size": max_coalition_size,
         "witnesses": witnesses,
     }
 
@@ -221,11 +264,16 @@ def public_project_metrics(mechanism: PublicProjectMechanism) -> dict[str, float
     }
 
 
-def frontier(spec: PublicProjectSpec, *, check_anonymity: bool = True) -> list[dict]:
+def frontier(
+    spec: PublicProjectSpec,
+    *,
+    check_anonymity: bool = True,
+    max_coalition_size: int = 1,
+) -> list[dict]:
     """Return all accepted mechanisms, sorted by regret then expected welfare."""
     accepted = []
     for mechanism in enumerate_anonymous_monotone(spec):
-        verification = verify_public_project(mechanism, check_anonymity=check_anonymity)
+        verification = verify_public_project(mechanism, check_anonymity=check_anonymity, max_coalition_size=max_coalition_size)
         if verification["accepted"] and mechanism.allocation(tuple([spec.max_value] * spec.n_agents)):
             accepted.append({"mechanism": mechanism, "verification": verification, "metrics": public_project_metrics(mechanism)})
     return sorted(accepted, key=lambda row: (row["metrics"]["worst_case_regret"], -row["metrics"]["expected_welfare"], row["mechanism"].name))

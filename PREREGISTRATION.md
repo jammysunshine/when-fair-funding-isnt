@@ -26,3 +26,24 @@ After the frozen analysis, a separate proof and regression certificate were
 added for all `n>=1` in the same ternary mechanism class. This does not alter
 the preregistered estimand: it explains the finite scaling counts and is
 reported as post-hoc mathematical analysis, with its own artifact and tests.
+
+## Post-hoc coalition robustness extension
+
+To harden the contribution beyond single-agent deviations, we add a bounded
+coalition robustness sweep on the same frozen class:
+
+- domain: 3 agents, values `{0,1,2}`, project costs `1..6`, anonymous monotone
+  Boolean allocation tables (all 16 candidates at each cost),
+- objective: quantify how many frontier rules survive coalition-group deviations of
+  size 2 (`max_coalition_size=2`) and report the exact shrinkage from the DSIC
+  frontier,
+- mechanism class: same payment map (normalized discrete critical values, zero
+  when project is off),
+- acceptance predicate for each `(n,c)`: all serialized frontier rows pass the
+  independent checker with coalition cap 2, plus exact count alignment against
+  the primary-generated rows from the same cap,
+- non-goal: no claim of general coalition-proofness beyond size 2 in the frozen
+  integer domain, no randomized or continuous extensions in this lane.
+
+This extension is explicitly not part of the original headline preregistration.
+It is logged as a falsification-focused, finite robustness supplement.

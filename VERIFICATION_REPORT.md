@@ -34,3 +34,32 @@ Phase VII independently replays minimum truthful utility directly from source
 coefficients and issues 28 exact-real strict-lower-bound Z3 queries, one per
 source and omitted report. All are `unsat`; seven separate negative-utility
 queries match the compiled conclusion that every repaired source fails IR.
+
+Phase X post-hoc coalition robustness adds bounded-group deviation replay on the
+finite public-project class used in Phase VIII:
+
+- `scripts/run_public_project_coalition_frontier.py` writes
+  `artifacts/public_project_coalition_frontier.json` and
+  `scripts/verify_public_project_coalition_frontier.py` writes
+  `artifacts/public_project_coalition_frontier_certificate.json` with 6
+  rejected cap-2 rows, 0 rejected survivors, matching frozen names
+  (`anonymous_monotone_mask_512`, `anonymous_monotone_mask_960`), and
+  independent digest
+  `495ec29b412247f4278f6bc2493c0eabe6dc76e421c21a24e835c8986aea239d`.
+- `scripts/run_public_project_coalition_scaling.py` and
+  `scripts/verify_public_project_coalition_scaling.py` cover `n=3..5` with
+  `max_coalition_size=3`, no independent failures, and independent digest
+  `18c3aec976f666e62af712a057000588586fc9fefc606affc1ed546d57a1009e`.
+- `scripts/run_public_project_coalition_scaling_extended.py` and
+  `scripts/verify_public_project_coalition_scaling_extended.py` cover `n=3..6`
+  with `max_coalition_size=3`, 34 selected checks, and independent digest
+  `5fb957dc1ef2fa327800d6072139f3d89fe0aa2df06a6f5beca23cd4dd2aedf1`.
+
+- `scripts/run_public_project_coalition_value3_frontier.py` and
+  `scripts/verify_public_project_coalition_value3_frontier.py` extend the
+  same coalition filter to `n=3`, `max_value=3`, `cost=1..9` with cap up to
+  3, checking selected costs `1,3,9`, and independent digest
+  `cfe838d49e8814069f0c6e08da310cedba1df6f6d492a234c775ae5de34e41c1`.
+
+All four scripts are fully replayable from frozen config files in
+`configs/public_project_coalition_*.json`.

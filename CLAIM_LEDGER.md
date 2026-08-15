@@ -12,6 +12,10 @@
 - The implementation enumerates all 16 anonymous monotone Boolean allocation rules for the frozen three-agent, three-level domain.
 - The antichain implementation enumerates 16, 32, and 64 rules exactly for `n=3,4,5` on the declared domains.
 - Every reported accepted row passes the primary verifier; all 74 serialized cross-agent rows pass the independent checker.
+- In the finite integer-value public-project lattice (`n=3, max_value=2`), the
+  cap-2 coalition-robust frontier at cost 3 is exactly
+  `{anonymous_monotone_mask_512, anonymous_monotone_mask_960}` after checking all
+  serialized DSIC frontier survivors.
 - The efficient critical-payment rule has explicit weak-budget-balance witnesses at cost 3.
 - For the declared rational sum-of-max/min-affine language on an ordered unit
   cube, the arrangement-vertex reduction exactly certifies the reported
@@ -24,6 +28,9 @@
   nonnegative uniform output-bias offset that eliminates a certified minimum
   slack `s` is `max(0,-s/n)`. The Phase-VI seven-source corpus is certified
   through compiled, direct-source, and Z3 exact-real routes.
+- For cap sizes `2` and `3` on `n=3..6`, coalition-robustness filtering of the
+  DSIC frontier is reproducible at every serialized row, and the independent
+  checker produces 0 selected failures on configured selected-cost checks.
 - In the declared efficient-Groves model, the uniform offset lowers every
   truthful utility by exactly that offset. Across the frozen Phase-VII corpus,
   no repaired source is simultaneously no-deficit and ex-post IR; compiler,

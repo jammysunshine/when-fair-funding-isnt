@@ -1,11 +1,33 @@
 # Status
 
-Phase: Phase VII budget--IR trade-off is complete for declared rational ReLU
+Phase: Phase X coalition-robustness extension is complete as a post-hoc falsification study.
+Phase VII budget--IR trade-off is complete for declared rational ReLU
 sources. Phase VIII independently confirmed the finite value-lattice theorem
 on an untouched `n=3,m=4,c=1..12` grid: exact predicted/exhaustive rule-set
 equality, 255 accepted-rule replays, and zero independent failures. A separate
 Phase VIII constrained-synthesis pilot was withdrawn because it was exactly
 the normalized pivotal VCG rule under a mismatched comparator.
+
+Post-hoc finite-domain coalition robustness:
+
+- `configs/public_project_coalition_frontier.json` (frozen `n=3`, `max_value=2`, `cost=1..6`, `max_coalition_size=2`)
+  shrinks the cost-3 DSIC frontier from 4 rows to 2 at coalition-cap-2.
+- `scripts/run_public_project_coalition_frontier.py` and
+  `scripts/verify_public_project_coalition_frontier.py` produced 6
+  rejected frontier rows at cap-2, 0 rejected survivors, and matching
+  frontier names (`anonymous_monotone_mask_512`, `anonymous_monotone_mask_960`).
+- `scripts/run_public_project_coalition_scaling.py` plus
+  `scripts/verify_public_project_coalition_scaling.py` recorded cap-keyed
+  fragility summaries on `n=3..5`, elapsed `65.24s`, and `0` selected failures
+  across 24 selected checks.
+- `scripts/run_public_project_coalition_scaling_extended.py` plus
+  `scripts/verify_public_project_coalition_scaling_extended.py` extended the
+  same coalition filter to `n=3..6`, elapsed `226.916s`, with `34` selected
+  checks and `0` selected failures.
+- `scripts/run_public_project_coalition_value3_frontier.py` plus
+  `scripts/verify_public_project_coalition_value3_frontier.py` extended the
+  value domain to `n=3`, `max_value=3`, `cost=1..9`, cap up to 3, at selected
+  costs `1,3,9`, with `9` cost rows and `0` independent failures.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An
