@@ -22,6 +22,7 @@ from src.mechanism_discovery.rational_relu import compile_one_hidden_layer
 from src.mechanism_discovery.max_affine_independent import replay_deleted_input_network, replay_payload
 from src.mechanism_discovery.relu_benchmark import deleted_input_charge, deterministic_network
 from src.mechanism_discovery.published_rule_audit import audit_printed_four_agent_rule, audit_printed_rule
+from src.mechanism_discovery.uniform_repair import add_output_bias_offset, synthesize_minimal_uniform_repair
 
 
 class PiecewiseAffineCertificateTest(unittest.TestCase):
@@ -91,6 +92,19 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
             self.assertEqual(generic.minimum_budget_slack, known.minimum_deficit)
             self.assertEqual(generic.maximum_charge_ratio, known.maximum_charge_ratio)
             self.assertEqual(generic.worst_case_efficiency, known.worst_case_efficiency)
+
+    def test_uniform_repair_synthesizes_known_four_agent_offset_and_is_minimal(self):
+        source = guo_2024_four_agent_network_spec()
+        baseline = certify_ordered_public_project_charge(deleted_input_charge(source, 4), 4)
+        repair = synthesize_minimal_uniform_repair(baseline, 4)
+        self.assertEqual(repair.per_term_offset, Fraction(1, 20000))
+        repaired = certify_ordered_public_project_charge(
+            deleted_input_charge(add_output_bias_offset(source, repair.per_term_offset), 4), 4
+        )
+        self.assertEqual(repaired.minimum_budget_slack, 0)
+        under_repaired = deleted_input_charge(add_output_bias_offset(source, repair.per_term_offset / 2), 4)
+        point = baseline.minimum_slack_witness
+        self.assertLess(under_repaired.evaluate(point) - 3 * max(sum(point), Fraction(1)), 0)
 
     def test_certificate_reports_exact_arrangement_work(self):
         certificate = certify_ordered_public_project_charge(guo_2024_four_agent_charge(), 4)

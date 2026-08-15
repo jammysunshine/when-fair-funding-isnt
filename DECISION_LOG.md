@@ -161,3 +161,12 @@ baseline. Rationale: a strict-improvement `unsat` result paired with an exact
 certificate witness establishes the stated bound without relying on
 nonlinear-optimization heuristics. Scope is deliberately limited to the six
 frozen shallow rational source networks.
+
+2026-08-15 (Phase VI repair, before evaluation): freeze a seven-source corpus
+consisting of the public printed four-agent source and all six existing
+fixtures, then synthesize only the minimum uniform output-bias offset implied
+by each baseline certificate. Rationale: this adds a proof-backed repair
+operation without pretending that an unconstrained search over transfers or a
+synthetic benchmark establishes an economically useful mechanism. Require
+direct-source replay, a half-offset minimality witness, and a Z3 no-deficit
+challenge for every repaired source.

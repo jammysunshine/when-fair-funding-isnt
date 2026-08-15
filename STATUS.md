@@ -1,6 +1,6 @@
 # Status
 
-Phase: Phase V rational-ReLU compiler validation for VCG redistribution; the
+Phase: Phase VI exact uniform-repair synthesis for declared rational ReLU sources; the
 completed ternary-frontier theorem remains a baseline.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
@@ -117,3 +117,14 @@ budget slack, lower charge ratio, higher charge ratio) returned `unsat`, and
 all serialized witnesses evaluate exactly from source coefficients. This meets
 the previously missing solver-backed baseline gate for this bounded benchmark,
 but the corpus remains synthetic and too small for a broad publication claim.
+
+Phase VI: the frozen seven-source repair study synthesizes the minimal uniform
+per-deleted-input output-bias offset `max(0,-s/n)` from each exact baseline
+slack `s`. Six sources require a positive offset and one requires none. Every
+repaired compiled certificate exactly matches the direct source certificate;
+all repaired slacks are exactly zero, and a half-offset fails at the original
+minimum-slack witness for each positive case. A separate Z3 exact-real query
+finds no repaired deficit in any of the seven sources. This is a small,
+provable repair primitive, not an economically validated new mechanism: the
+synthetic offsets can be large and do not preserve the broader constraints
+needed for a deployable redistribution rule.

@@ -53,3 +53,11 @@ give efficiency `2/3`; it differs from the later AAAI-2024 printed formula at
 `(0,1/3,1/3)`. During the PRIMA-2016 audit, rendered-PDF inspection corrected
 an initially missed outer denominator and a max threshold before any artifact
 was accepted. This is retained as a transcription-risk finding, not hidden.
+
+2026-08-15 — Frozen and executed the Phase-VI uniform-repair study. The exact
+identity that a per-term output-bias offset changes total slack by `n*delta`
+derives the smallest scalar non-deficit repair from the baseline certificate.
+All seven repaired sources passed compiler/direct replay and exact-real Z3
+no-deficit challenges. Five synthetic fixtures require large offsets, which is
+retained as negative evidence: the result is a certified repair primitive, not
+an economically persuasive new mechanism.

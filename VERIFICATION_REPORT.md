@@ -21,3 +21,11 @@ three strict counterexample predicates for each source (budget slack below its
 certificate, ratio below its minimum, and ratio above its maximum); all 18 are
 `unsat`. It also evaluates each serialized rational extremum witness directly.
 The resulting artifact is `artifacts/relu_benchmark_z3_certificate.json`.
+
+Phase VI uses the certified baseline minimum slack to derive the smallest
+uniform per-term output-bias repair. The direct source route agrees exactly
+with the compiler certificate on all seven repaired sources; for every
+positive repair, half the offset remains deficit-producing at the baseline
+witness. `scripts/verify_uniform_repair_z3.py` encodes the repaired sources
+over exact reals and returns `unsat` for all seven strict-negative-slack
+queries. The artifact is `artifacts/uniform_repair_z3_certificate.json`.

@@ -53,3 +53,10 @@ an external Z3 exact-real satisfiability query for a strict improvement in its
 reported extrema. Acceptance requires `unsat` for all three queries per case
 and direct rational validation of each witness. This is an adversarial solver
 check for the fixed source language, not a generic MIP/SMT performance study.
+
+Phase VI repair extension: for a declared deleted-input rational ReLU source,
+compute the exact smallest nonnegative uniform output-bias offset that removes
+the certificate's minimum budget deficit. The frozen corpus is the printed
+four-agent source plus all six Phase-V fixtures; every entry is reported. The
+claim is restricted to this scalar repair family and requires compiler,
+direct-source, and exact-real solver non-deficit checks.

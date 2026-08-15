@@ -237,6 +237,25 @@ of arbitrary neural networks, or establish a new mechanism. Its value is that
 the claim boundary, formula, arithmetic, witness, and independent replay are
 all inspectable.
 
+### 4.7 Exact uniform repair synthesis
+
+We add a deliberately small synthesis result rather than another synthetic
+benchmark. If an `n`-agent deleted-input source has certified minimum slack
+`s`, adding `delta` uniformly to its output bias changes total charge by
+`n*delta` at every profile. Consequently `max(0,-s/n)` is the smallest
+nonnegative offset that removes deficit within this one-parameter family: the
+baseline slack witness establishes necessity and the identity establishes
+sufficiency.
+
+The seven frozen sources include the printed four-agent decimal rule and all
+six Phase-V fixtures. The printed control recovers `1/20000`; six sources need
+positive repairs and one needs none. Compiled and direct-source certificates
+agree after every repair, all positive repairs bind at zero slack, every
+half-sized repair fails at the original witness, and seven exact-real Z3
+strict-negative-slack queries are `unsat`. This is not a new mechanism or a
+welfare result. In fact, the large synthetic offsets are negative evidence
+against interpreting scalar feasibility repair as economically useful design.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -306,6 +325,8 @@ python3 scripts/run_relu_benchmark.py
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-verification.txt
 .venv/bin/python scripts/verify_relu_benchmark_z3.py
+python3 scripts/run_uniform_repair_study.py
+.venv/bin/python scripts/verify_uniform_repair_z3.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim

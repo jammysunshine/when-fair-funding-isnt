@@ -24,6 +24,8 @@ python3 scripts/verify_source_network_certificates.py
 python3 scripts/run_relu_benchmark.py
 .venv/bin/python -m pip install -r requirements-verification.txt
 .venv/bin/python scripts/verify_relu_benchmark_z3.py
+python3 scripts/run_uniform_repair_study.py
+.venv/bin/python scripts/verify_uniform_repair_z3.py
 ```
 
 Expected summary: theorem construction checks for n=1..12 (806 constructed
@@ -73,6 +75,15 @@ writes `artifacts/relu_benchmark_z3_certificate.json` (SHA-256
 `b9fb7e30792d9fe26eb7197b845a4c1ebd8a171c389713a260f574e5924f8545`). It
 records 18 `unsat` strict-improvement queries plus direct rational witness
 checks.
+The Phase-VI uniform-repair study writes
+`artifacts/uniform_repair_study.json` (SHA-256
+`6978e7d21130f62136525abfc7e00a3f3df4af3442224263028b88f5ee71d3d2`);
+the exact-real no-deficit replay writes
+`artifacts/uniform_repair_z3_certificate.json` (SHA-256
+`e074614506941fec5abd97360ce649ba1baf45d0e451ffa5f8992d703502d33d`).
+It covers the disclosed four-agent decimal control plus all six frozen fixtures;
+the scalar repair is `max(0,-s/n)` and each positive half-repair remains
+deficit-producing at the original slack witness.
 The largest frozen entry uses 22 arrangement planes, evaluates 7,315 exact
 four-plane bases, and retains 116 feasible vertices.
 
@@ -99,4 +110,6 @@ configs/relu_benchmark.json 64745342ba577353a2d4db81ebe9d67ac05a68b8a2d964b99cde
 artifacts/relu_benchmark_results.json 8589d83fb5fcd4b3c9721ff4d3c2de2d7723c71a08fb5c46a518c88f96fd5cbd
 requirements-verification.txt 137fd7f42291439e332a9f3be1055e8d593de68f83048fee673164e0c4f0dc65
 artifacts/relu_benchmark_z3_certificate.json b9fb7e30792d9fe26eb7197b845a4c1ebd8a171c389713a260f574e5924f8545
+artifacts/uniform_repair_study.json 6978e7d21130f62136525abfc7e00a3f3df4af3442224263028b88f5ee71d3d2
+artifacts/uniform_repair_z3_certificate.json e074614506941fec5abd97360ce649ba1baf45d0e451ffa5f8992d703502d33d
 ```

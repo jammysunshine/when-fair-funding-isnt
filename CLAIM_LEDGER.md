@@ -16,6 +16,10 @@
   agents), source-direct and compiler-lowered certificates agree exactly;
   exact-real Z3 returns `unsat` for all 18 recorded strict-bound queries and
   independently validates the extremum witnesses.
+- For a declared `n`-term deleted-input rational ReLU charge, the smallest
+  nonnegative uniform output-bias offset that eliminates a certified minimum
+  slack `s` is `max(0,-s/n)`. The Phase-VI seven-source corpus is certified
+  through compiled, direct-source, and Z3 exact-real routes.
 
 ## EMPIRICALLY EVALUATED
 
@@ -32,3 +36,7 @@
 - The certificate method is not established for arbitrary neural networks,
   opaque learned weights, unrestricted programs, arbitrary depth, or instances
   beyond the recorded three-to-five-agent computational envelope.
+- Uniform repair does not establish individual rationality, welfare quality,
+  budget optimality outside its scalar family, or a useful economic mechanism;
+  its synthetic large-offset cases are explicitly negative evidence against
+  treating repair feasibility as practical mechanism quality.

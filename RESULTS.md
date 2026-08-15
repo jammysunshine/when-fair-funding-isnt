@@ -84,3 +84,21 @@ that attempt to improve recorded slack or ratio bounds; every reported rational
 witness re-evaluates exactly. Artifacts: `artifacts/relu_benchmark_results.json`
 and `artifacts/relu_benchmark_z3_certificate.json`. This is a bounded source
 semantic check, not a discovered mechanism or general neural verification.
+
+## Exact uniform-repair synthesis
+
+For a source used once per omitted agent, increasing its output bias by
+`delta` increases total charge, and hence budget slack, by exactly `n*delta`
+at every report profile. The frozen seven-source study therefore synthesizes
+the smallest uniform nonnegative repair as `max(0,-s/n)` from baseline slack
+`s`. The printed four-agent decimal control gives `1/20000`, reproducing the
+published repair. Of the six frozen fixtures, five require positive offsets
+(`178/49`, `144/49`, `190/49`, `25/7`, and `23/7`) and one has zero slack and
+zero offset. All repaired slacks are exactly zero; each positive half-offset
+still fails at the original slack witness. Direct-source and compiled
+certificates agree exactly, and seven Z3 exact-real no-deficit challenges are
+`unsat`. The large synthetic offsets are an important negative result: this
+does not demonstrate an economically good repair, only a sound exact repair
+primitive within a deliberately narrow scalar family. Artifacts:
+`artifacts/uniform_repair_study.json` and
+`artifacts/uniform_repair_z3_certificate.json`.

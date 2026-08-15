@@ -56,3 +56,20 @@ lower budget slack, lower charge ratio, and higher charge ratio than the
 recorded certificate. All 18 queries are `unsat`, and the script independently
 re-evaluates all rational extremum witnesses. This is a bounded semantic
 cross-check, not a claim about arbitrary architectures or solver scalability.
+
+## Uniform-repair synthesis
+
+Let a serialized network `h` be evaluated on every deleted-input vector for
+`n` agents, and let `s` be the exact minimum budget slack of its total charge.
+Adding `delta` to the output bias of `h` adds `n*delta` to total charge at every
+profile. Thus `delta*=max(0,-s/n)` is sufficient for non-deficit; when `s<0`,
+the original minimum-slack witness proves every smaller nonnegative scalar
+offset fails. This is an exact theorem for the stated one-parameter family,
+not an optimization over mechanisms.
+
+The frozen seven-source study applies the construction to the displayed
+four-agent decimal control and all six Phase-V fixtures. Compiler and direct
+source certificates agree after each repair, and Z3 exact-real searches find
+no negative slack for any repaired source. The large offsets in the synthetic
+cases are retained as a practical limitation: correctness of a scalar repair
+does not imply individual rationality, welfare quality, or economic relevance.
