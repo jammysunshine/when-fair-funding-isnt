@@ -88,8 +88,9 @@ Phase V: the printed four-agent one-hidden-layer rational ReLU rule is now
 lowered from a serialized network specification embedded in its certificate by
 `src/mechanism_discovery/rational_relu.py`; it no longer relies solely on
 boutique affine arithmetic in the corpus transcription. The standalone replay
-also evaluates that source network independently at every certificate vertex,
-and a regression test rejects a changed source coefficient. `RESEARCH_GAP_AUDIT.md`
+also evaluates that source network independently at every vertex of the common
+ReLU/expression branch refinement, and a regression test rejects a changed
+source coefficient. `RESEARCH_GAP_AUDIT.md`
 records the decisive prior-art boundary: formal mechanism verification and
 neural mechanism design already exist, so this compiler validation is an
 incremental artifact result, not a general-AI paper claim.

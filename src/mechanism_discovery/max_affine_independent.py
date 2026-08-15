@@ -50,6 +50,40 @@ def _deleted_input_network_charge(specification: dict[str, Any], point: tuple[Fr
                 for index in range(len(point))), Fraction(0))
 
 
+def _network_break_planes(specification: dict[str, Any], dimension: int) -> tuple[tuple[Fraction, ...], ...]:
+    """Lift each deleted-input ReLU preactivation boundary to report space."""
+    planes = []
+    for deleted in range(dimension):
+        for unit in specification["hidden"]:
+            weights = tuple(_fraction(weight) for weight in unit["weights"])
+            if len(weights) != dimension - 1:
+                raise ValueError("source network input dimension disagrees with certificate")
+            iterator = iter(weights)
+            planes.append(tuple(Fraction(0) if coordinate == deleted else next(iterator)
+                                for coordinate in range(dimension))
+                          + (_fraction(unit["bias"]),))
+    return tuple(planes)
+
+
+def _canonical_plane(plane: tuple[Fraction, ...]) -> tuple[Fraction, ...]:
+    pivot = next((value for value in plane if value != 0), None)
+    if pivot is None:
+        return plane
+    return tuple(value / pivot for value in plane)
+
+
+def _feasible_vertices(planes: tuple[tuple[Fraction, ...], ...], dimension: int) -> tuple[tuple[Fraction, ...], ...]:
+    planes = tuple(dict.fromkeys(_canonical_plane(plane) for plane in planes))
+    vertices = set()
+    for basis in combinations(planes, dimension):
+        point = _solve(basis)
+        if point is not None and all(Fraction(0) <= value <= Fraction(1) for value in point) and all(
+            point[index] <= point[index + 1] for index in range(dimension - 1)
+        ):
+            vertices.add(point)
+    return tuple(sorted(vertices))
+
+
 def _difference(left: tuple[Fraction, ...], right: tuple[Fraction, ...]) -> tuple[Fraction, ...]:
     return tuple(a - b for a, b in zip(left, right))
 
@@ -92,16 +126,10 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
     dimension = int(entry["dimension"])
     specification = entry["specification"]
     planes = _planes(specification, dimension)
-    vertices = set()
     bases_examined = 0
     for basis in combinations(planes, dimension):
         bases_examined += 1
-        point = _solve(basis)
-        if point is not None and all(Fraction(0) <= value <= Fraction(1) for value in point) and all(
-            point[index] <= point[index + 1] for index in range(dimension - 1)
-        ):
-            vertices.add(point)
-    ordered = tuple(sorted(vertices))
+    ordered = _feasible_vertices(planes, dimension)
     rows = []
     for point in ordered:
         first_best = max(sum(point, Fraction(0)), Fraction(1))
@@ -127,9 +155,11 @@ def replay_entry(entry: dict[str, Any]) -> dict[str, Any]:
 def replay_payload(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
     """Replay certificates and bind declared source networks to each formula.
 
-    A source network, when present, is directly evaluated on every certified
-    arrangement vertex after deleting each agent input. This is intentionally
-    separate from the producer's compiler.
+    A source network, when present, is evaluated on every vertex of the common
+    refinement of its ReLU breakplanes and the compiled expression's planes.
+    Since both representations are affine within each refinement cell, this
+    checks semantic equality throughout the declared ordered cube without
+    reusing the producer's compiler.
     """
     replay = {name: replay_entry(entry) for name, entry in payload["entries"].items()}
     for name, network in payload.get("source_networks", {}).items():
@@ -138,12 +168,15 @@ def replay_payload(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
         entry = payload["entries"][name]
         if int(entry["dimension"]) != 4:
             raise ValueError("deleted-input source-network replay currently requires four agents")
-        for serialized_point in replay[name]["vertices"]:
-            point = tuple(_fraction(value) for value in serialized_point)
+        dimension = int(entry["dimension"])
+        source_vertices = _feasible_vertices(
+            _planes(entry["specification"], dimension) + _network_break_planes(network, dimension), dimension
+        )
+        for point in source_vertices:
             compiled_value = _expression_value(entry["specification"], point)
             source_value = _deleted_input_network_charge(network, point)
             if source_value != compiled_value:
                 raise ValueError(
-                    f"source network disagrees with compiled expression for {name} at {serialized_point}"
+                    f"source network disagrees with compiled expression for {name} at {point}"
                 )
     return replay

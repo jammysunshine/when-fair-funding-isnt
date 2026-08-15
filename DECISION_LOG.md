@@ -127,9 +127,10 @@ the artifact now preserves an exact source-network representation alongside
 its compiled expression, while refusing an ambiguous arithmetic format.
 
 2026-08-15 (Phase V independent provenance): require the standalone checker to
-evaluate each serialized source network at every certified arrangement vertex
-and compare it with the serialized max-affine expression. Rationale: this
-turns the embedded source specification into a checked claim, so a changed
-network coefficient cannot be concealed by leaving the compiled expression
-unchanged. The check is restricted to the declared symmetric four-agent,
-deleted-input form.
+evaluate each serialized source network at every vertex of the common
+source-ReLU/expression arrangement and compare it with the serialized
+max-affine expression. Rationale: equality on the common refinement checks
+the two piecewise-affine representations throughout the declared cube, so a
+changed network coefficient cannot be concealed by leaving the compiled
+expression unchanged. The check is restricted to the declared symmetric
+four-agent, deleted-input form.
