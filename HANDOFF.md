@@ -32,6 +32,18 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
   requested after task 4 ("the second part": false-name attacks, in
   preference to randomized mechanisms which would need a larger model
   change to support lottery allocation).
+- Also new this session: `scripts/verify_public_project_coalition_lemma.py`
+  proves (not searches) a closed-form sufficient condition for
+  coalition-manipulability: for every `n>=2`, `max_value=m`,
+  `cost<=(n-1)*m`, the grand-coalition "everyone reports `m`" deviation
+  builds the project at zero payment to every agent. Cross-checked against
+  all 75 baseline-audit rows with 0 false positives; a separate exhaustive
+  check (`n=3,4`, `m=2,3`, 0 counterexamples) explains why `cost=n*m` is the
+  baseline audit's sole robust exception (any successful proper-coalition
+  deviation there forces members to pay their own full report). This is the
+  "prove a general lemma instead of relying on brute-force counterexamples"
+  novelty lever discussed with the user after they asked how to make the
+  work publishable — the user replied "ok" to proceeding with it.
 
 ## Frozen configuration
 - Core domain: public-project mechanism design with anonymous monotone rules
@@ -70,6 +82,8 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
 - `scripts/verify_public_project_false_name_audit.py`
 - `artifacts/public_project_false_name_audit.json`
 - `artifacts/public_project_false_name_audit_certificate.json`
+- `scripts/verify_public_project_coalition_lemma.py`
+- `artifacts/public_project_coalition_lemma_certificate.json`
 
 ## Exact commands already expected
 ```bash
@@ -85,6 +99,7 @@ python3 scripts/run_public_project_coalition_baseline_audit.py
 python3 scripts/verify_public_project_coalition_baseline_audit.py
 python3 scripts/run_public_project_false_name_audit.py
 python3 scripts/verify_public_project_false_name_audit.py
+python3 scripts/verify_public_project_coalition_lemma.py
 python3 scripts/generate_frontier_report.py
 python3 -m unittest discover -s tests -v
 ```
@@ -100,7 +115,17 @@ python3 -m unittest discover -s tests -v
 2. ~~Re-run experiment commands from clean state and refresh `REPRODUCIBILITY_MANIFEST.md` hashes.~~ Done, all zero-failure.
 3. ~~Reconcile mismatches in `STATUS.md`, `EVIDENCE_INDEX.md`, `VERIFICATION_REPORT.md`.~~ Done.
 4. ~~Add paper-grade extension: independent baseline audit before any submission claim.~~ Done: the canonical efficient/pivotal mechanism is coalition-fragile (fails cap-2 DSIC in 66/75 rows), independently replayed with 0 mismatches.
-5. ~~Extend the coalition claim (false-name attacks or randomized mechanisms).~~ Done this session: chose false-name attacks (tractable with the existing sum-threshold rule, which is defined identically for any agent count) over randomized mechanisms (would need a larger model change to support lottery allocation). The mechanism is manipulable by fabricated fake identities: 48/72 rows, 6/9 selected checks, positive control clean, 0 independent-replay mismatches. Not yet committed as of this writing — commit `configs/public_project_false_name_audit.json`, the two new scripts, the two new artifacts (`.gitignore`d — regenerated locally, not tracked), and the doc edits (`STATUS.md`, `EVIDENCE_INDEX.md`, `VERIFICATION_REPORT.md`, `CLAIM_LEDGER.md`, `REPRODUCIBILITY_MANIFEST.md`, `PREREGISTRATION.md`, `PAPER_DRAFT.md`, this file).
+5. ~~Extend the coalition claim (false-name attacks or randomized mechanisms).~~ Done: chose false-name attacks over randomized mechanisms (would need a larger model change to support lottery allocation). The mechanism is manipulable by fabricated fake identities: 48/72 rows, 6/9 selected checks, positive control clean, 0 independent-replay mismatches. Committed as `7013278`.
+6. ~~Make the coalition/false-name results genuinely novel rather than a
+   replication of Yokoo/Sakurai/Matsubara 2004 and Green--Laffont.~~ Done
+   this session: proved a general closed-form lemma
+   (`scripts/verify_public_project_coalition_lemma.py`, `cost<=(n-1)*m` =>
+   grand-coalition zero-payment manipulation for every `n,m`, not just
+   searched cells) and used it to explain the baseline audit's one robust
+   row (`cost=n*m`). Folded into `PAPER_DRAFT.md` §4.11, positioning table,
+   abstract, contribution list, limitations, conclusion, plus
+   `CLAIM_LEDGER.md`/`STATUS.md`/`VERIFICATION_REPORT.md`/
+   `REPRODUCIBILITY_MANIFEST.md`. Not yet committed as of this writing.
 
 ## Possible further extensions (not started, optional)
 - Randomized mechanisms (lottery allocation) — would need a larger model change; not attempted.

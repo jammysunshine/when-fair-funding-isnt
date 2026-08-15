@@ -47,6 +47,22 @@
   control shows no manipulable rows anywhere; an independent closed-form
   reimplementation (no import of `public_project.py`) reproduces all 72 rows'
   manipulable counts with 0 mismatches.
+- (General theorem, not a search result.) For the sum-threshold/critical-value
+  public-project mechanism, for every integer `n>=2`, `max_value=m>=1`, and
+  `cost c<=(n-1)*m`, the grand-coalition deviation "every agent reports `m`"
+  builds the project and forces payment 0 for every agent (the other `n-1`
+  agents' reports alone already sum to `(n-1)*m>=c`), weakly Pareto-dominating
+  truthful reporting for the whole coalition and strictly so whenever some
+  agent's true value is positive. This closed-form condition is proven, not
+  searched, and holds for every `(n,m,c)` satisfying it, not only the domains
+  audited above. It has zero false positives against the baseline-audit
+  artifact's 75 rows (every row it predicts fragile is fragile in the search
+  data) and directly explains that artifact's single robust exception: at
+  `cost=n*m` exactly, `(n-1)*m<n*m` so the construction never applies, and a
+  separate closed-form argument (checked by exhaustive enumeration for
+  `n=3,4` and `m=2,3`, zero counterexamples) shows any proper-coalition
+  deviation that reaches the threshold at `cost=n*m` forces coalition members
+  to pay exactly their own report, eliminating any free-ride gain.
 
 ## EMPIRICALLY EVALUATED
 

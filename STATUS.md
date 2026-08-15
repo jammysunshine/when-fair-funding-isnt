@@ -50,6 +50,18 @@ Post-hoc finite-domain coalition robustness:
   the sum-threshold/critical-value rule from its closed-form definition
   (no import of `public_project.py`) and reproduces every row's manipulable
   count with `0` mismatches.
+- General analytical lemma (not a search result): `scripts/verify_public_project_coalition_lemma.py`
+  proves, in closed form, that for every `n>=2`, `max_value=m`, `cost c<=(n-1)*m`,
+  the grand-coalition "everyone reports `m`" deviation builds the project at
+  payment `0` for every agent. This holds for every `(n,m,c)` satisfying the
+  bound, not just audited ones. It has `0` false positives against all 75
+  baseline-audit rows and a separate exhaustive check (`n=3,4`, `m=2,3`, `0`
+  counterexamples) shows why `cost=n*m` is the one immune boundary: any
+  proper-coalition deviation that reaches that threshold forces coalition
+  members to pay exactly their own report, killing any free-ride gain. This
+  converts the empirically-found frontier from a finite search result into a
+  proven general theorem, and pinpoints exactly why the sole robust row in the
+  baseline audit is robust.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An

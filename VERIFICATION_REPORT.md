@@ -103,6 +103,32 @@ importing `public_project.py`, and reproduces every row's manipulable count
 with 0 mismatches and digest
 `9e2e5ca254dfde9b2c3987f6cf35973e836fc15e429213a5356dcb3bd1ea69d3`.
 
-All seven scripts are fully replayable from frozen config files in
+Phase X general coalition lemma (analytical, not search-based):
+`scripts/verify_public_project_coalition_lemma.py` proves a closed-form
+sufficient condition for coalition-manipulability of the sum-threshold/
+critical-value mechanism: for every integer `n>=2`, `max_value=m>=1`, and
+`cost c<=(n-1)*m`, the grand-coalition deviation "every agent reports `m`"
+builds the project and forces payment `0` for every agent, because the other
+`n-1` agents' reports alone already sum to `(n-1)*m>=c`. This is a proof by
+direct construction, holding for every `(n,m,c)` satisfying the bound, not
+only the five domains searched above. The script cross-checks the condition
+against all 75 rows of `artifacts/public_project_coalition_baseline_audit.json`:
+0 false positives (every row the condition predicts fragile is fragile in the
+search data) and 0 mismatches between the predicted zero-payment construction
+and direct simulation. It also settles the baseline audit's single robust
+exception (`value3_frontier`, `n=3`, `cost=9=n*m`): at `cost=n*m`, the
+`(n-1)*m` bound is never met, so the construction cannot apply; a separate
+argument shows any proper-coalition deviation that reaches `cost=n*m` forces
+outsiders to have true value exactly `m` (else the coalition cannot reach the
+threshold with reports capped at `m`) and forces every coalition member's
+report to `m`, at which point each member's critical-value payment equals `m`
+exactly — their own full report — eliminating any possible gain. This is
+checked by exhaustive enumeration over all truthful profiles and all proper
+coalition subsets for `n=3,4` and `m=2,3` (`0` counterexamples). Digest
+`fc030d4f60bc63f815224c070a4626b579f6c0a6efe8c91e079739d27a760db5`.
+
+All eight scripts are fully replayable from frozen config files in
 `configs/public_project_coalition_*.json` and
-`configs/public_project_false_name_audit.json`.
+`configs/public_project_false_name_audit.json`; the lemma script needs no
+config of its own since it is a direct proof cross-checked against the
+existing baseline-audit artifact.

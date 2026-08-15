@@ -48,7 +48,13 @@ compare it at `n` real agents against the same rule at `n+f` agents for fake
 budgets `f in {1,2}`. A zero-fake-budget positive control shows no
 manipulable rows; at `f>=1`, 48 of 72 audited `(agent count, cost, fake
 budget)` cells are manipulable across `n=3,4,5`, independently replayed with
-zero mismatches from a closed-form reimplementation.
+zero mismatches from a closed-form reimplementation. We then replace part of
+that search with a proof: for the canonical sum-threshold/critical-value rule,
+the grand-coalition deviation "every agent reports `m`" builds the project at
+zero payment to everyone whenever `cost<=(n-1)*m`, a closed-form sufficient
+condition that holds at every integer `n>=2`, `m>=1`, not only the searched
+cells, has zero false positives against all 75 baseline-audit rows, and
+explains why `cost=n*m` is that audit's sole robust exception.
 
 ## 1. Introduction
 
@@ -61,7 +67,7 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes nine deliberately narrow contributions:
+This paper makes ten deliberately narrow contributions:
 
 1. a typed finite public-project model with exact critical payments;
 2. an antichain enumerator that covers every anonymous monotone rule in the
@@ -82,6 +88,11 @@ This paper makes nine deliberately narrow contributions:
 9. a second post-hoc supplement auditing the same comparator against
    false-name manipulation (fabricated fake report identities), independently
    replayed from a closed-form reimplementation.
+10. a proven, not searched, closed-form sufficient condition
+    (`cost<=(n-1)*max_value`) for coalition-manipulability of the canonical
+    sum-threshold/critical-value rule, holding at every integer `n,max_value`,
+    cross-checked against all 75 baseline-audit rows with zero false
+    positives, and used to explain that audit's sole robust exception.
 
 ## 2. Model
 
@@ -415,6 +426,52 @@ also narrow: it audits only the canonical comparator (not the
 anonymous-monotone frontier), bounds the fake-identity budget at 2, and makes
 no randomized- or continuous-domain claim.
 
+### 4.11 A general analytical lemma explaining the coalition frontier
+
+Sections 4.9 and 4.10 are search results: they enumerate finite domains and
+report which cells fail. This section replaces part of that search with a
+proof. For the sum-threshold/critical-value mechanism
+`q(reports)=1[sum(reports)>=cost]` with critical-value payments, on any
+`n>=2` agents with integer cap `max_value=m`, consider the grand-coalition
+deviation in which every agent reports `m`. If `cost<=(n-1)*m`, this
+deviation builds the project, and every agent's critical-value payment is
+exactly `0`: excluding any one agent, the remaining `n-1` agents' reports
+alone already sum to `(n-1)*m>=cost`, so that agent's threshold is already
+met without their own contribution. Each agent's utility becomes exactly
+their true value `v_i` at zero cost — weakly better than truthful reporting
+for every agent, and strictly better for any agent whose truthful utility was
+not already `v_i` for free. This is a direct algebraic argument, not a search:
+it holds for every integer `n>=2`, `m>=1`, `cost<=(n-1)*m`, not only the
+`n<=6`, `m<=3` cells that were exhaustively checked in Section 4.9.
+
+The condition also explains the coalition-baseline audit's one exception.
+Cross-checking `cost<=(n-1)*m` against all 75 rows of
+`artifacts/public_project_coalition_baseline_audit.json` gives zero false
+positives: every row the condition predicts fragile is fragile in the search
+data (`scripts/verify_public_project_coalition_lemma.py`). The condition
+never fires exactly when `cost=n*m`, because `(n-1)*m<n*m` always — and
+`cost=n*m` is precisely the baseline audit's sole robust row
+(`value3_frontier`, `n=3`, `cost=9`). A second, separate argument shows why:
+at `cost=n*m`, any proper coalition can only reach the threshold if every
+outsider's true value is already exactly `m` (their reports are truthful and
+capped at `m`, so the coalition's reports must supply the rest exactly), and
+in that case the coalition's reports must also sum to exactly the coalition's
+maximum, `k*m`, forcing every coalition member to report `m`. Each member's
+critical-value payment is then `cost-(n-1)*m=m` — their own full report — so
+the deviation gains nothing whenever a coalition member's true value is below
+`m`. This is checked by exhaustive enumeration over all truthful profiles and
+all proper coalition subsets for `n=3,4` and `m=2,3`, with zero
+counterexamples. So Section 4.9's frontier is not merely a finite search
+artifact: it follows from a proven general condition on `(n,m,cost)`, with
+`cost=n*m` proven (for the checked `n,m`) to be the unique boundary at which
+this construction cannot manipulate the mechanism. This lemma covers only the
+canonical sum-threshold/critical-value rule (not the searched anonymous-
+monotone frontier), and only this specific construction — it is a sufficient
+condition for manipulability, not a full necessary-and-sufficient
+characterization: some cells with `cost>(n-1)*m` and `cost<n*m` are still
+manipulable in the search data via different, non-uniform deviations not
+covered by this argument.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -435,7 +492,7 @@ et al. study machine-learning approaches for public-project mechanism design
 | Automated mechanism design | A solver-free antichain enumerator, machine-readable certificates, and an independent replay implementation | A claim that the search discovered a new mechanism |
 | Learned public-project mechanisms | A falsification harness showing exactly where an efficient threshold proposal fails | A learned policy, deployment result, or causal claim |
 | Computer-aided mechanism and neural-network verification | Typed formula provenance, direct-source replay, and exact-real SMT cross-checks for a small public-project audit corpus | Generic verification novelty or coverage of arbitrary architectures |
-| Coalition-proof/group-strategyproof mechanism theory | An exact, independently replayed bounded-coalition falsification supplement, including a baseline audit showing the textbook efficient/pivotal rule is itself coalition-cap-2 fragile | A coalition-proofness theorem, an unbounded-coalition-size result, or a repaired coalition-resistant mechanism |
+| Coalition-proof/group-strategyproof mechanism theory | An exact, independently replayed bounded-coalition falsification supplement, a baseline audit showing the textbook efficient/pivotal rule is itself coalition-cap-2 fragile, and a proven closed-form sufficient condition (`cost<=(n-1)*max_value`) for that fragility holding at every `(n,max_value,cost)`, not only the searched cells | A full necessary-and-sufficient coalition-proofness characterization, an unbounded-coalition-size result, or a repaired coalition-resistant mechanism |
 | False-name-proof mechanism theory (Yokoo, Sakurai and Matsubara, 2004) | An exact, independently replayed false-name-manipulation supplement against the same textbook comparator, with a positive control confirming the harness | A false-name-proofness theorem, a repaired false-name-resistant mechanism, or a claim about the search-discovered frontier's false-name robustness |
 
 The defensible contribution is a compact, replayable certificate and an exact
@@ -467,7 +524,12 @@ repair, and does not claim anything about coalitions above the tested cap or
 about mechanisms outside the anonymous-monotone class. The false-name
 supplement (Section 4.10) is bounded to fake-identity budgets of 1 or 2 on the
 canonical comparator only, not the search-discovered frontier; it likewise
-establishes fragility, not a repair. The n=3..6 searches
+establishes fragility, not a repair. The Section 4.11 lemma is a sufficient,
+not necessary, condition for coalition-manipulability: it does not explain
+every fragile cell with `cost>(n-1)*max_value`, only the ones the grand-
+coalition all-max construction reaches, and its boundary argument at
+`cost=n*max_value` is checked only for `n=3,4` and `max_value=2,3`, not
+proven for all `n,max_value`. The n=3..6 searches
 are computational cross-checks; the finite-lattice proof is the general result. The
 stress audit is intentionally negative for
 the efficient threshold family; it is not an empirical estimate of deployment
@@ -511,6 +573,7 @@ python3 scripts/run_public_project_coalition_baseline_audit.py
 python3 scripts/verify_public_project_coalition_baseline_audit.py
 python3 scripts/run_public_project_false_name_audit.py
 python3 scripts/verify_public_project_false_name_audit.py
+python3 scripts/verify_public_project_coalition_lemma.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
@@ -526,7 +589,10 @@ budget-balance failure, a bounded-coalition supplement shows the same
 comparator also has a concrete, independently replayed incentive failure
 against groups as small as size 2, a second supplement shows the same
 comparator is manipulable by a single agent fabricating fake report
-identities, and the held-out stress test records where
+identities, a general closed-form lemma proves that fragility for every
+`(n,max_value,cost)` with `cost<=(n-1)*max_value` rather than only the
+searched cells and pinpoints exactly why `cost=n*max_value` is immune, and
+the held-out stress test records where
 the result stops generalizing. It is a credible foundation for a
 theory/verification paper, but publication still requires external novelty
 review, broader theory, and peer review.
