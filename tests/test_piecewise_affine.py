@@ -1,4 +1,5 @@
 from fractions import Fraction
+from copy import deepcopy
 import json
 from pathlib import Path
 import unittest
@@ -46,6 +47,23 @@ class PiecewiseAffineCertificateTest(unittest.TestCase):
         payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
         expected = {name: entry["certificate"] for name, entry in payload["entries"].items()}
         self.assertEqual(replay_payload(payload), expected)
+
+    def test_independent_replay_detects_tampered_result(self):
+        root = Path(__file__).resolve().parents[1]
+        payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
+        corrupted = deepcopy(payload)
+        corrupted["entries"]["guo_aaai_2024_printed_4_agent"]["certificate"]["minimum_budget_slack"] = "0/1"
+        expected = {name: entry["certificate"] for name, entry in corrupted["entries"].items()}
+        self.assertNotEqual(replay_payload(corrupted), expected)
+
+    def test_independent_replay_detects_tampered_formula(self):
+        root = Path(__file__).resolve().parents[1]
+        payload = json.loads((root / "artifacts" / "max_affine_certification.json").read_text())
+        corrupted = deepcopy(payload)
+        specification = corrupted["entries"]["guo_aaai_2024_printed_4_agent"]["specification"]
+        specification["affine_terms"][0][-1] = "0/1"
+        expected = {name: entry["certificate"] for name, entry in corrupted["entries"].items()}
+        self.assertNotEqual(replay_payload(corrupted), expected)
 
 
 if __name__ == "__main__":
