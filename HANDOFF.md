@@ -189,4 +189,22 @@ python3 -m unittest discover -s tests -v
 - Push fallback command if GitHub returns 403 write-access errors:
   - `env -u GH_TOKEN git -c credential.helper='!gh auth git-credential' push`
 
+## SSRN submission status (separate session, browser automation)
+- Submitted 2026-08-16. SSRN Abstract ID **7293498**, status: pending editorial screening.
+- Abstract page (live once approved): https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7293498
+- License: CC-BY. JEL codes D82/H41/C72. Classifications: "Other Microeconomics: Asymmetric & Private Information", "Public Economics: Publicly Provided Goods Alert", "Non-Cooperative Games" (SSRN's taxonomy has no literal node matching the paper's stated ERN path, so leaf-level equivalents were chosen and verified via tooltip JEL mapping).
+- Not yet done: connect ORCID to SSRN author profile (needs user, may require account creation); arXiv submission (needs an endorser); Stack Exchange post / cold-email outreach (drafted earlier, unsent — needs explicit send confirmation).
+- Note: this HANDOFF.md's other sections predate this entry and belong to a parallel research-extension session on the same repo — unrelated to SSRN submission mechanics.
+- Related/alternate identifiers field (should link to `https://github.com/jammysunshine/research-showcase/tree/main/67-when-fair-funding-isnt`, folder renamed 2026-08-16 from `67-automated-mechanism-discovery` to match this repo's name) is blocked until SSRN's editorial screening clears — no "Edit" affordance exists while status is PRELIMINARY_UPLOAD. Already user-authorized ("Yes, update it"); just needs a return visit once status changes.
+
+## Zenodo GitHub archiving access (same session)
+- Restricted to exactly two repos in Zenodo's own "Enabled Repositories" toggle (`zenodo.org/account/settings/github/`): `jammysunshine/when-fair-funding-isnt` (DOI `10.5281/zenodo.21964295`) and `jammysunshine/research-showcase` (newly enabled, no release/DOI cut yet).
+- All 8 other jammysunshine repos remain toggled OFF (never archived by Zenodo).
+- Note: GitHub's OAuth grant to Zenodo is account-wide (Zenodo is a legacy OAuth App, not a GitHub App) — GitHub itself has no per-repo restriction UI for it, only an all-or-nothing "Revoke access". Left untouched deliberately, since revoking would also kill the working `when-fair-funding-isnt` archive. Per-repo control lives entirely in Zenodo's own toggle, which now reflects the desired 2-repo state.
+
+## Evidence-artifact push fix (same session)
+- A cross-session peer flagged missing artifact citations; peer's specific 5-file list was wrong (all 5 existed locally), but the real issue was real: a blanket `artifacts/` rule in `.gitignore` had silently excluded 18 locally-generated artifact JSONs (coalition/scaling/characterization/false-name/relu-benchmark, ~20MB total) from every prior push, even though `RESULTS.md`/`VERIFICATION_REPORT.md` cite them by path.
+- Fixed: force-added and pushed all 18 as `45abd39` (confirmed on `origin/main`). `.gitignore`'s `artifacts/` rule itself was left as-is (not narrowed) — future artifact generations will need explicit `git add -f` until/unless that's revisited.
+- Not yet done: reply to the peer session confirming the fix so they can re-sync the `research-showcase` copy.
+
 SAFE FOR LUNA HANDOFF
