@@ -150,8 +150,28 @@ force (e.g. `n=20`, `max_value=8` in microseconds, versus `9^20` infeasible
 profiles). Digest
 `9dd70ad48733e6be95cd8ff4b0f37e5638e7347ccb7d044ab0a2adf80ebe7be0`.
 
-All nine scripts are fully replayable from frozen config files in
+Phase X extended cross-check and gain sizes:
+`scripts/verify_public_project_coalition_characterization_extended.py` runs
+the primary verifier's own brute-force coalition search (`max_coalition_size=3`)
+on 70 `(n,max_value,cost)` cells the original 75-row baseline audit never
+covered -- `max_value in {3,4,5}` at every previously tested agent count
+(`n=3,4,5`) -- and compares against the closed-form formula's prediction:
+`0` mismatches, extending the total independently brute-force-verified row
+count from 75 to 145. Of the 70 new cells, 65 are fragile; the script also
+computes, from the closed-form formula, the exact size of the free value gain
+the optimal coalition captures at each fragile cell (up to `5` value units at
+`n=3`, `max_value=5`, cost 5-9). A separate, explicitly formula-only sweep
+(not independently re-verified by brute force, since enumerating reports at
+these agent counts is combinatorially infeasible) evaluates 252
+`(n,max_value,cost)` triples up to `n=40`, `max_value=15` on a coarse cost
+grid and finds `99.2%` already manipulable by a coalition of size 2, with
+gains up to `15` value units. Digest
+`c10e6217b03415820f95c65fbfbab7dc159796c8099441935961ec5e796e5f48`.
+
+All ten scripts are fully replayable from frozen config files in
 `configs/public_project_coalition_*.json` and
 `configs/public_project_false_name_audit.json`; the lemma and characterization
 scripts need no config of their own since they are direct proofs
-cross-checked against the existing baseline-audit artifact.
+cross-checked against the existing baseline-audit artifact (the extended
+characterization script instead calls the primary verifier directly on new
+cells rather than reading a config file).

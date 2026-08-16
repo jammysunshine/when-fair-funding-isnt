@@ -73,6 +73,15 @@ Post-hoc finite-domain coalition robustness:
   `min_failing_coalition_size` on all `75/75` rows (closing the 14-row gap the
   Section-4.11 sufficient-only lemma left open) and evaluates at agent counts
   (e.g. `n=20`) far beyond brute-force enumeration.
+- Extended cross-check and gain sizes:
+  `scripts/verify_public_project_coalition_characterization_extended.py`
+  brute-force-verifies the same formula on 70 new `(n,max_value,cost)` cells
+  (larger value caps at every previously tested agent count), `0` mismatches,
+  taking total independently verified rows to 145. Reports the exact free-gain
+  size for each fragile cell (up to `5` value units in the new rows). A
+  formula-only sweep to `n=40`, `max_value=15` (252 triples, not brute-force
+  re-verified at that scale) finds `99.2%` already fragile at coalition size
+  2, gains up to `15` value units -- the phenomenon does not shrink at scale.
 
 Current Phase II evidence: the initial finite-grid oracle is a negative
 control—it returns the ordinary VCG charge rule on the three-agent grid. An

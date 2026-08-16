@@ -101,6 +101,8 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
 - `artifacts/public_project_coalition_lemma_certificate.json`
 - `scripts/verify_public_project_coalition_characterization.py`
 - `artifacts/public_project_coalition_characterization_certificate.json`
+- `scripts/verify_public_project_coalition_characterization_extended.py`
+- `artifacts/public_project_coalition_characterization_extended_certificate.json`
 
 ## Exact commands already expected
 ```bash
@@ -118,6 +120,7 @@ python3 scripts/run_public_project_false_name_audit.py
 python3 scripts/verify_public_project_false_name_audit.py
 python3 scripts/verify_public_project_coalition_lemma.py
 python3 scripts/verify_public_project_coalition_characterization.py
+python3 scripts/verify_public_project_coalition_characterization_extended.py
 python3 scripts/generate_frontier_report.py
 python3 -m unittest discover -s tests -v
 ```
@@ -151,12 +154,22 @@ python3 -m unittest discover -s tests -v
    exact minimum-payment and worst-case-truthful-payment formulas by
    convexity, reproduces `min_failing_coalition_size` exactly on all 75
    baseline-audit rows, and scales to `n=20` in microseconds. Folded into
-   `PAPER_DRAFT.md` §4.12 plus all other tracking docs. Not yet committed as
-   of this writing.
+   `PAPER_DRAFT.md` §4.12 plus all other tracking docs. Committed as `7c8ac0b`.
+8. ~~Extend the characterization beyond 75 rows, quantify cheating gains in
+   value units, and generalize/stress-test further.~~ Done this session:
+   `scripts/verify_public_project_coalition_characterization_extended.py`
+   brute-force-verifies 70 new `(n,max_value,cost)` cells (larger value caps
+   at every previously tested agent count), 0 mismatches, total 145
+   independently verified rows; computes exact free-gain size per fragile
+   cell (up to 5 value units in the new rows); and runs a formula-only sweep
+   to `n=40`, `max_value=15` (not brute-force re-verified — infeasible at
+   that scale) finding 99.2% fragility at coalition size 2, gains up to 15
+   value units. Folded into `PAPER_DRAFT.md` §4.13 plus all other tracking
+   docs. Not yet committed as of this writing.
 
 ## Possible further extensions (not started, optional)
 - Randomized mechanisms (lottery allocation) — would need a larger model change; not attempted.
-- Stronger benchmarks: larger `n`/`max_value` scaling beyond current `n<=6`.
+- Brute-force verification of the large-scale formula-only sweep (`n>6`) would need a faster (non-Python-loop) reimplementation to be feasible.
 
 ## Commit practice
 - Preserve commit identity:

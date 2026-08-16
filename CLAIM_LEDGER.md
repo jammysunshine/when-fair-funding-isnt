@@ -75,6 +75,16 @@
   audit's exact `min_failing_coalition_size` on all 75 rows (`75/75` exact
   matches, not merely zero false positives) and evaluates at agent counts
   (e.g. `n=20`) far beyond brute-force reach.
+- (Extended cross-check.) The same closed-form characterization is
+  brute-force-verified against 70 further `(n,max_value,cost)` cells not in
+  the original 75-row baseline audit -- larger value caps at every
+  previously tested agent count -- with `0` mismatches, bringing total
+  independently brute-force-verified rows to 145. It is fragile on 65 of the
+  70 new rows, with the exact free-gain size computed for each (up to `5`
+  value units at `n=3`, `max_value=5`). A formula-only sweep (not
+  independently re-verified, since brute force is infeasible at this scale)
+  of 252 triples up to `n=40`, `max_value=15` finds `99.2%` already
+  manipulable by a size-2 coalition, gains up to `15` value units.
 
 ## EMPIRICALLY EVALUATED
 

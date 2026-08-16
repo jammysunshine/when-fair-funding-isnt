@@ -64,8 +64,9 @@ this yields a full necessary-and-sufficient characterization of coalition-cap-`k
 manipulability that requires no report-level search at all -- only a bounded
 sweep over integer value sums. It reproduces the baseline audit's
 `min_failing_coalition_size` exactly on all 75 rows (not merely without false
-positives), and evaluates in microseconds at agent counts (e.g. `n=20`)
-far beyond brute-force reach.
+positives), extends to 70 further brute-force-verified `(n,max_value,cost)`
+cells with 0 mismatches (145 rows total), and evaluates in microseconds at
+agent counts (e.g. `n=20`) far beyond brute-force reach.
 
 ## 1. Introduction
 
@@ -538,6 +539,28 @@ repair, and not a claim about the searched anonymous-monotone frontier, only
 about this one canonical comparator. Digest
 `9dd70ad48733e6be95cd8ff4b0f37e5638e7347ccb7d044ab0a2adf80ebe7be0`.
 
+### 4.13 Extended cross-check and gain sizes
+
+`scripts/verify_public_project_coalition_characterization_extended.py`
+extends the Section 4.12 cross-check to 70 new `(n,max_value,cost)` cells the
+original 75-row baseline audit never covered -- larger value caps (`max_value`
+3, 4, 5) at every previously tested agent count (`n=3,4,5`), brute-force
+verified by the primary verifier at coalition cap 3. The closed-form formula
+again matches exactly on all 70 new rows (`0` mismatches), bringing the total
+independently brute-force-verified row count to 145. It is also fragile on 65
+of the 70 new rows, and the closed-form formula gives the exact size of the
+free gain a coalition captures, in the mechanism's own value units: up to `5`
+units of value for free at `n=3`, `max_value=5`. A separate, explicitly
+formula-only sweep (not independently re-verified by brute force, since brute
+force is combinatorially infeasible at this scale) evaluates 252
+`(n,max_value,cost)` triples up to `n=40`, `max_value=15` and finds `99.2%`
+are already manipulable by a coalition of size 2, with gains up to `15` value
+units -- the phenomenon does not shrink as the domain grows; if anything it
+becomes more prevalent, consistent with the closed-form condition
+`cost<=(n-1)*max_value` becoming easier to satisfy as `n` grows for fixed
+`max_value`. Digest
+`c10e6217b03415820f95c65fbfbab7dc159796c8099441935961ec5e796e5f48`.
+
 ## 5. Positioning and contribution boundary
 
 The study is deliberately positioned against established theory and automated
@@ -644,6 +667,7 @@ python3 scripts/run_public_project_false_name_audit.py
 python3 scripts/verify_public_project_false_name_audit.py
 python3 scripts/verify_public_project_coalition_lemma.py
 python3 scripts/verify_public_project_coalition_characterization.py
+python3 scripts/verify_public_project_coalition_characterization_extended.py
 ```
 
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
