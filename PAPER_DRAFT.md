@@ -723,7 +723,31 @@ section adds is what the earlier sections do not: a direct line from an
 exact mathematical formula to a checklist a real designer can run before,
 not after, deployment.
 
-## 9. Reproduction
+## 9. Author contribution and AI-assistance disclosure
+
+Mohit Mendiratta is the sole author. He posed the research question, set and
+enforced the certificate-first / independent-replay methodology that governs
+every claim in this paper (Section 3, Section 6), decided the scope boundary
+in Section 5 (what this paper does and does not claim), selected which
+results were strong enough to keep and which exploratory branches to cut
+(e.g. the withdrawn constrained-synthesis pilot noted in the decision log),
+and reviewed and takes responsibility for every claim, number, and digest
+reported here.
+
+AI tooling (Claude, Anthropic) was used as an assistant throughout: deriving
+candidate formulas, writing the verification and search scripts, running the
+brute-force cross-checks, and drafting prose under direction. It did not set
+the research question, decide what counts as a valid claim, or approve any
+result for inclusion -- those were the author's decisions, made by reviewing
+the certificates and independent replays this paper's own falsification
+discipline requires (Section 6), not by trusting the tooling's output at
+face value. This disclosure is made in the interest of transparency and
+because AI assistance in research writing is increasingly the norm rather
+than the exception; it does not change the correctness of the mathematical
+claims, which stand on the independently replayed proofs and certificates,
+not on who or what typed them.
+
+## 10. Reproduction
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -764,7 +788,7 @@ python3 scripts/verify_public_project_coalition_characterization_extended.py
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
 ledger are committed under `artifacts/`, `reports/`, and the repository root.
 
-## 10. Conclusion
+## 11. Conclusion
 
 Exact search does not magically produce a universally optimal mechanism. This
 study does provide a finite-lattice characterization that a skeptical reader
