@@ -165,7 +165,18 @@ python3 -m unittest discover -s tests -v
    to `n=40`, `max_value=15` (not brute-force re-verified — infeasible at
    that scale) finding 99.2% fragility at coalition size 2, gains up to 15
    value units. Folded into `PAPER_DRAFT.md` §4.13 plus all other tracking
-   docs. Not yet committed as of this writing.
+   docs. Committed as `0e369ef`.
+9. ~~Add a practical/policy-implications section, a catchy subtitle, and an
+   editorial "de-AI" pass.~~ Done this session: `PAPER_DRAFT.md` gained a
+   subtitle under the H1 title and a new §8 "Practical and policy
+   implications" (real-world analogues, explicit non-audit caveats, what
+   changes for a designer, the concrete risk pattern, a designer checklist,
+   and a closing disclaimer that this is not a repair or behavioral claim);
+   old §8 Reproduction and §9 Conclusion renumbered to §9/§10. Ran a
+   diagnostic grep for classic AI-writing tells (moreover, furthermore, in
+   conclusion, delve into, tapestry, landscape, etc.) across the whole file:
+   zero matches, so no rewrite was needed. No new script/artifact, so
+   `REPRODUCIBILITY_MANIFEST.md` is unchanged.
 
 ## Possible further extensions (not started, optional)
 - Randomized mechanisms (lottery allocation) — would need a larger model change; not attempted.

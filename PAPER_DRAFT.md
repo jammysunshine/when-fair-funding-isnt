@@ -1,5 +1,7 @@
 # Certificate-first exact frontiers and executable audits for public-project mechanisms
 
+### When the "fair" funding rule isn't: an exact map of how coalitions break threshold public-goods mechanisms, and by how much
+
 ## Abstract
 
 Automated mechanism design is only scientifically useful when proposed rules
@@ -632,7 +634,96 @@ value domains and broader mechanisms, compare unrestricted transfers and
 subsidies, evaluate a broader independently sourced formula corpus, and obtain
 an external replication.
 
-## 8. Reproduction
+## 8. Practical and policy implications
+
+The mechanism studied here is not a hypothetical curiosity. "Decide on a
+binary project once enough value has been pledged, then charge each
+supporter their critical contribution" is the textbook prescription for a
+class of real coordination problems: participatory-budgeting platforms
+choosing which proposal to fund, condominium and HOA boards voting on a
+capital assessment, crowdfunded neighborhood infrastructure (playgrounds,
+footbridges, shared solar installations), and the pivotal-mechanism
+experiments that some DAOs and quadratic-funding platforms have piloted for
+allocating a shared grant pool. Anywhere a group decides, together, whether
+to build something and how to split the bill by "what you were pivotal for,"
+this is the rule in question.
+
+Two caveats first, stated as plainly as the rest of this paper's claims. This
+work does not audit a named platform, and it does not claim any real system
+currently deploys the exact critical-value rule studied here at production
+scale -- most crowdfunding platforms use simpler all-or-nothing pledge
+thresholds without critical-value payments at all, precisely because payment
+mechanics like this one are hard to explain to users. And the domain is
+still finite integer values on a chosen `(n, m)` grid, not continuous money.
+What follows is what the exact result licenses a designer to conclude, not
+an empirical claim about any deployed system.
+
+**What changes for a designer.** Before this result, the honest advice was
+qualitative: "critical-value payments are known to be exploitable by
+coalitions in general quasi-linear settings" (Green-Laffont 1979 and the
+false-name literature already established that). That advice does not tell
+a designer building a specific platform -- fixed group size, fixed cost,
+fixed pledge cap -- whether *their* configuration is at risk, or how much a
+colluding subgroup stands to gain. The closed-form characterization in
+Sections 4.11-4.13 answers exactly that, for this rule, from three numbers:
+group size `n`, project cost, and the maximum pledge `m`. Plugged into
+`min_payment(k,S_O,cost)=k*max(0,(cost-S_O)-(k-1)*m)`, a designer can check,
+before launch, whether any coalition of a given size can profit, and read
+off the exact amount at stake -- an audit checklist, not a proof that
+collusion is merely theoretically possible somewhere.
+
+**The concrete risk pattern.** The formula makes the qualitative risk factor
+precise: the mechanism is guaranteed manipulable by the full group whenever
+`cost<=(n-1)*m` -- that is, whenever the project could plausibly be funded
+even leaving out any single participant. Practically, that condition is
+easiest to satisfy in exactly the settings where this kind of mechanism gets
+proposed: small, well-acquainted groups (an HOA board, a five-person DAO
+multisig, a neighborhood association) where a modest cost relative to the
+group's combined pledge capacity is the whole point of pooling funds in the
+first place, and where members can and do coordinate outside the mechanism.
+The large-scale sweep in Section 4.13 shows this is not a narrow corner
+case: across a broad range of group sizes and pledge caps, the large
+majority of configurations are already vulnerable to a coalition of just
+two.
+
+**What a designer can do about it**, in decreasing order of how much it
+costs to implement:
+1. *Check the number first.* Before adopting the textbook rule, compute
+   `min_payment` for the actual `(n, m, cost)` the platform will use. If the
+   condition `cost<=(n-1)*m` holds, the rule is manipulable by construction,
+   full stop -- no amount of platform trust or terms-of-service language
+   changes that.
+2. *Raise the stakes-to-pledge ratio.* Pushing `cost` closer to `n*m` --
+   requiring the project to need close to everyone's maximum pledge --
+   shrinks the fragile region, though Section 4.11's boundary argument shows
+   even `cost=n*m` is only immune to this specific construction, not
+   collusion in general.
+3. *Seal or randomize report order and identity.* Coalitions need to
+   coordinate their reports; anything that makes coordinated reporting
+   harder (sealed-bid submission with no revision, randomized reveal order,
+   participation caps per real-world identity to blunt false-name attacks
+   per Section 4.10) raises the practical, if not the theoretical, cost of
+   collusion.
+4. *Do not use this rule for small, socially connected groups without
+   compensating controls.* The formula's own terms say the risk is worst
+   exactly there. A platform serving thousands of mutually unacquainted
+   backers with small individual pledge caps is structurally safer under
+   this rule than one serving five board members deciding on a shared
+   capital expense.
+5. *Consider it a documented reason to look at alternatives*, not a reason
+   to abandon threshold public-goods funding altogether -- budget-balanced
+   or randomized alternatives exist in the literature and are explicit
+   future work here (Section 7), not something this paper builds or
+   recommends by default.
+
+None of this is a repaired mechanism, and none of it is a claim that
+collusion happens in practice on any specific platform -- that is a
+behavioral and empirical question this paper does not touch. What this
+section adds is what the earlier sections do not: a direct line from an
+exact mathematical formula to a checklist a real designer can run before,
+not after, deployment.
+
+## 9. Reproduction
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -673,7 +764,7 @@ python3 scripts/verify_public_project_coalition_characterization_extended.py
 The main JSON, cross-agent CSV, certificate, plot, specification, and claim
 ledger are committed under `artifacts/`, `reports/`, and the repository root.
 
-## 9. Conclusion
+## 10. Conclusion
 
 Exact search does not magically produce a universally optimal mechanism. This
 study does provide a finite-lattice characterization that a skeptical reader
