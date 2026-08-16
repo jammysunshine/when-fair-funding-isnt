@@ -56,8 +56,12 @@ the grand-coalition deviation "every agent reports `m`" builds the project at
 zero payment to everyone whenever `cost<=(n-1)*m`, a closed-form sufficient
 condition that holds at every integer `n>=2`, `m>=1`, not only the searched
 cells, has zero false positives against all 75 baseline-audit rows, and
-explains why `cost=n*m` is that audit's sole robust exception. We then close
-the remaining gap: an exact closed-form formula for the minimum total payment
+explains why `cost=n*m` is that audit's sole robust exception. That the
+pivotal mechanism is not group-strategyproof is textbook knowledge; a
+literature search found no prior closed-form quantification of the exact
+minimum coalition size or exact free-ride gain for this rule, which is the
+contribution below. We then close the remaining gap: an exact closed-form
+formula for the minimum total payment
 any coalition of size `k` can achieve, `k*max(0,(cost-S_O)-(k-1)*m)` where
 `S_O` is the outsiders' true-value sum, derived from the convexity of the
 critical-value payment in the coalition's report sum. Combined with a matching
