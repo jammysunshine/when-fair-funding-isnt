@@ -80,7 +80,7 @@ Deliver specification language/data model, exact verifiers, canonical baselines,
 - `NEGATIVE_RESULTS.md`
 - `LIMITATIONS.md`
 - `TECHNICAL_REPORT.md`
-- `PAPER_DRAFT.md`
+- `PAPER.md`
 - `REPLICATION_GUIDE.md`
 - `NEXT_STEPS.md`
 

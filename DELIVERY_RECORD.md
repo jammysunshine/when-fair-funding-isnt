@@ -47,7 +47,7 @@ git diff --check
   `src/mechanism_discovery/public_project_independent.py`,
   `scripts/run_public_project_study.py`,
   `scripts/verify_public_project_certificate.py`
-- Manuscript and interpretation: `PAPER_DRAFT.md`, `RESULTS.md`,
+- Manuscript and interpretation: `PAPER.md`, `RESULTS.md`,
   `VERIFICATION_REPORT.md`, `CLAIM_LEDGER.md`, `LIMITATIONS.md`
 
 ## Verified result

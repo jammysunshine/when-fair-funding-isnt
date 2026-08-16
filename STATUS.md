@@ -83,7 +83,7 @@ Post-hoc finite-domain coalition robustness:
   re-verified at that scale) finds `99.2%` already fragile at coalition size
   2, gains up to `15` value units -- the phenomenon does not shrink at scale.
 
-`PAPER_DRAFT.md` now includes a subtitle and a "Practical and policy
+`PAPER.md` now includes a subtitle and a "Practical and policy
 implications" section (real-world analogues, a designer checklist, and an
 explicit disclaimer that no named platform is audited and this is not a
 repair). This is prose framing only, not a new formal claim.

@@ -19,7 +19,7 @@ theorem, a universal mechanism, or a learned deployment system.
 
 ## Submission package
 
-1. Convert `PAPER_DRAFT.md` to the target journal template and add author,
+1. Convert `PAPER.md` to the target journal template and add author,
    affiliation, funding, conflict, and data/code-availability statements.
 2. Include the repository commit, `REPRODUCIBILITY_MANIFEST.md`, certificates,
    raw frontier tables, and the independent replay instructions as a supplement.

@@ -56,7 +56,7 @@ Continue Experiment 67 / public-project frontier work: complete reproducible, pu
   microseconds, far beyond brute-force reach. This is the full
   necessary-and-sufficient characterization the user asked for after "can you
   turn it into from a modest contribution to a fantastic contribution."
-  Folded into `PAPER_DRAFT.md` (new §4.12, abstract, contribution 11,
+  Folded into `PAPER.md` (new §4.12, abstract, contribution 11,
   positioning table, limitations, conclusion), `CLAIM_LEDGER.md`, `STATUS.md`,
   `VERIFICATION_REPORT.md`, `REPRODUCIBILITY_MANIFEST.md`.
 
@@ -143,7 +143,7 @@ python3 -m unittest discover -s tests -v
    (`scripts/verify_public_project_coalition_lemma.py`, `cost<=(n-1)*m` =>
    grand-coalition zero-payment manipulation for every `n,m`, not just
    searched cells) and used it to explain the baseline audit's one robust
-   row (`cost=n*m`). Folded into `PAPER_DRAFT.md` §4.11, positioning table,
+   row (`cost=n*m`). Folded into `PAPER.md` §4.11, positioning table,
    abstract, contribution list, limitations, conclusion, plus
    `CLAIM_LEDGER.md`/`STATUS.md`/`VERIFICATION_REPORT.md`/
    `REPRODUCIBILITY_MANIFEST.md`. Committed as `976d753`.
@@ -154,7 +154,7 @@ python3 -m unittest discover -s tests -v
    exact minimum-payment and worst-case-truthful-payment formulas by
    convexity, reproduces `min_failing_coalition_size` exactly on all 75
    baseline-audit rows, and scales to `n=20` in microseconds. Folded into
-   `PAPER_DRAFT.md` §4.12 plus all other tracking docs. Committed as `7c8ac0b`.
+   `PAPER.md` §4.12 plus all other tracking docs. Committed as `7c8ac0b`.
 8. ~~Extend the characterization beyond 75 rows, quantify cheating gains in
    value units, and generalize/stress-test further.~~ Done this session:
    `scripts/verify_public_project_coalition_characterization_extended.py`
@@ -164,10 +164,10 @@ python3 -m unittest discover -s tests -v
    cell (up to 5 value units in the new rows); and runs a formula-only sweep
    to `n=40`, `max_value=15` (not brute-force re-verified — infeasible at
    that scale) finding 99.2% fragility at coalition size 2, gains up to 15
-   value units. Folded into `PAPER_DRAFT.md` §4.13 plus all other tracking
+   value units. Folded into `PAPER.md` §4.13 plus all other tracking
    docs. Committed as `0e369ef`.
 9. ~~Add a practical/policy-implications section, a catchy subtitle, and an
-   editorial "de-AI" pass.~~ Done this session: `PAPER_DRAFT.md` gained a
+   editorial "de-AI" pass.~~ Done this session: `PAPER.md` gained a
    subtitle under the H1 title and a new §8 "Practical and policy
    implications" (real-world analogues, explicit non-audit caveats, what
    changes for a designer, the concrete risk pattern, a designer checklist,
