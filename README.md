@@ -1,5 +1,7 @@
 # Automated Mechanism Discovery — Experiment 67
 
+Public showcase (paper, results, PDF deck): https://github.com/jammysunshine/research-showcase/tree/main/67-when-fair-funding-isnt
+
 The headline artifact is a finite public-project study grounded in the
 efficiency/budget-balance literature. In the declared ternary anonymous
 monotone class, a human-checkable argument gives the exact frontier for every
