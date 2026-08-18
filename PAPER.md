@@ -152,7 +152,7 @@ is:
 | 5 | 1 | 0 | 0.0370 |
 | 6 | 1 | 0 | 0.0000 |
 
-![Figure 1. Exact DSIC/IR/budget-balance frontier, three agents, max_value=2](artifacts/figures/fig1_frontier.png)
+![Figure 1. Exact DSIC/IR/budget-balance frontier, three agents, max_value=2](figures/fig1_frontier.png)
 
 At cost three, the four accepted tables are nested upper sets in the sorted
 state poset. Their minimum active states move from `(2,2,2)` down through the
@@ -188,7 +188,7 @@ Finite exhaustive searches independently cross-check the theorem:
 | 5 | 64 | 6,6,6,6,6,1,1,1,1,1 | 6,7,8,9,10 |
 | 6 | 128 | 7,7,7,7,7,7,1,1,1,1,1,1 | 7,8,9,10,11,12 |
 
-![Figure 2. Accepted-rule count by cost, n=3..6](artifacts/figures/fig2_scaling.png)
+![Figure 2. Accepted-rule count by cost, n=3..6](figures/fig2_scaling.png)
 
 The serialized accepted rows total 122 (74 through five agents and 48 in the
 six-agent extension), and all pass the standalone checker. The six-agent run
@@ -380,7 +380,7 @@ The 11 preregistered-style selected spot checks span these four domains; 10
 are fragile (the sole survivor is `n=3`, cost `9` on the `value3_frontier`
 domain).
 
-![Figure 3. Coalition-cap-2 fragility of the canonical efficient/pivotal comparator, by domain](artifacts/figures/fig3_coalition_fragility.png)
+![Figure 3. Coalition-cap-2 fragility of the canonical efficient/pivotal comparator, by domain](figures/fig3_coalition_fragility.png)
 
 Every coalition claim above is replayed by a standalone implementation
 (`public_project_independent.py`) that reconstructs allocation tables and
@@ -449,7 +449,7 @@ count.
 | 1 | 24 | 24 | | 4 | 24 | 16 |
 | 2 | 24 | 24 | | 5 | 30 | 20 |
 
-![Figure 4. False-name manipulability of the canonical comparator](artifacts/figures/fig4_false_name.png)
+![Figure 4. False-name manipulability of the canonical comparator](figures/fig4_false_name.png)
 
 Every cell is replayed by a standalone implementation
 (`scripts/verify_public_project_false_name_audit.py`) that recomputes the
@@ -557,7 +557,7 @@ search (Sections 4.12-4.13).
 | Extended cells (`max_value in {3,4,5}`, Section 4.13) | 70 | 70 | 0 |
 | **Total brute-force-verified** | **145** | **145** | **0** |
 
-![Figure 5. Closed-form characterization vs. brute-force search](artifacts/figures/fig5_characterization_crosscheck.png)
+![Figure 5. Closed-form characterization vs. brute-force search](figures/fig5_characterization_crosscheck.png)
 
 This is a full necessary-and-sufficient characterization of coalition-cap-`k`
 manipulability for the canonical sum-threshold/critical-value rule under the
