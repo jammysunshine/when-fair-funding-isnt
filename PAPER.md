@@ -11,74 +11,30 @@ Mohit Mendiratta
 ## Abstract
 
 Automated mechanism design is only scientifically useful when proposed rules
-can be checked exhaustively rather than judged by sampled performance. We
-develop a certificate-first study for deterministic public-project mechanisms.
-Agents have integer values in a finite lattice `{0,...,m}` for a binary project
-with a known cost. We enumerate every anonymous monotone allocation rule over
-the sorted report states and attach normalized discrete critical payments.
-Each candidate is checked for dominant-strategy incentive compatibility (DSIC),
-ex-post individual rationality, feasibility, anonymity, no subsidy when the
-project is absent, and weak budget balance. On the preregistered three-agent
-domain, 16 rules are enumerated at each cost. The number satisfying all
-constraints is `4,4,4,1,1,1` for costs `1,...,6`; at cost three the best
-accepted rule has worst-case welfare regret one. An efficient sum-threshold
-rule is DSIC and individually rational but fails budget balance at a concrete
-profile. We prove a finite-lattice characterization in this declared class:
-writing `k=ceil(c/n)`, accepted rules are exactly the nonempty upward-closed
-sets inside `{k,...,m}^n`, and none exists for `c>nm`. The original ternary
-suffix result is its `m=2` corollary. A preregistered untouched
-`n=3,m=4,c=1..12` confirmation reproduces every accepted rule set by full
-enumeration and independently replays all 255 accepted rules with zero
-failures. Exact searches for three through six ternary agents independently
-cross-check that corollary. A value-magnitude stress test finds
-207 failures for the efficient threshold family on held-out `{0,1,2,3}`
-profiles. A post-hoc exact `m=3` precursor finds 66 rules and 60 independently
-replayed accepted rows. The result is a reproducible finite theorem and
-falsifiable benchmark, not a theorem for
-continuous values or a claim of unrestricted mechanism-design novelty. As a
-separate source-integrity study, six preregistered rational one-hidden-layer
-ReLU fixtures with three to five agents have identical direct-source and
-compiled certificates; an exact-real Z3 cross-check returns `unsat` for all
-18 strict-bound counterexample queries. This is bounded verification evidence,
-not a newly discovered mechanism or a generic neural-verification result.
-Finally, as a post-hoc falsification supplement, we extend the certificate to
-bounded-size coalitions. Cap-2 coalition deviations shrink the cost-3 DSIC
-frontier from 4 to 2 accepted rules, and the canonical efficient/pivotal
-comparator itself -- single-agent DSIC by construction -- fails coalition-cap-2
-DSIC in 66 of 75 audited `(domain, agent count, cost)` cells spanning
-`n=3..6` on the `{0,1,2}` value domain and `n=3` on the wider `{0,1,2,3}`
-value domain. All coalition claims are independently replayed with zero
-mismatches. A second post-hoc supplement audits a different attack on the
-same comparator: false-name manipulation, where one real agent fabricates
-extra fake report identities instead of a coalition of distinct agents.
-Because the sum-threshold rule is defined identically at any agent count, we
-compare it at `n` real agents against the same rule at `n+f` agents for fake
-budgets `f in {1,2}`. A zero-fake-budget positive control shows no
-manipulable rows; at `f>=1`, 48 of 72 audited `(agent count, cost, fake
-budget)` cells are manipulable across `n=3,4,5`, independently replayed with
-zero mismatches from a closed-form reimplementation. We then replace part of
-that search with a proof: for the canonical sum-threshold/critical-value rule,
-the grand-coalition deviation "every agent reports `m`" builds the project at
-zero payment to everyone whenever `cost<=(n-1)*m`, a closed-form sufficient
-condition that holds at every integer `n>=2`, `m>=1`, not only the searched
-cells, has zero false positives against all 75 baseline-audit rows, and
-explains why `cost=n*m` is that audit's sole robust exception. That the
-pivotal mechanism is not group-strategyproof is textbook knowledge; a
-literature search found no prior closed-form quantification of the exact
-minimum coalition size or exact free-ride gain for this rule, which is the
-contribution below. We then close the remaining gap: an exact closed-form
-formula for the minimum total payment
-any coalition of size `k` can achieve, `k*max(0,(cost-S_O)-(k-1)*m)` where
-`S_O` is the outsiders' true-value sum, derived from the convexity of the
-critical-value payment in the coalition's report sum. Combined with a matching
-closed-form extremal argument for the coalition's worst-case truthful payment,
-this yields a full necessary-and-sufficient characterization of coalition-cap-`k`
-manipulability that requires no report-level search at all -- only a bounded
-sweep over integer value sums. It reproduces the baseline audit's
-`min_failing_coalition_size` exactly on all 75 rows (not merely without false
-positives), extends to 70 further brute-force-verified `(n,max_value,cost)`
-cells with 0 mismatches (145 rows total), and evaluates in microseconds at
-agent counts (e.g. `n=20`) far beyond brute-force reach.
+are checked exhaustively, not sampled. We give a certificate-first, fully
+enumerated study of deterministic public-project mechanisms on a finite
+integer value lattice `{0,...,m}`: every anonymous monotone allocation rule is
+enumerated, checked against DSIC, individual rationality, feasibility,
+anonymity, and budget balance, and reproduced by a standalone verifier that
+never imports the primary code. Three results anchor the paper. First, an
+exact frontier: on the preregistered three-agent domain the number of
+acceptable rules collapses from 4 to 1 as cost rises from low to high
+(Figure 1), and we prove the general finite-lattice characterization behind
+it -- accepted rules are exactly the nonempty upward-closed sets above
+`k=ceil(cost/n)` -- confirmed on an untouched larger lattice (255/255 rules
+match, Figure 2). Second, a falsification: the textbook efficient/pivotal
+comparator, single-agent DSIC by construction, fails coalition-cap-2 DSIC in
+66 of 75 audited cells (Figure 3) and is manipulable by a single agent
+fabricating fake identities in 48 of 72 cells (Figure 4) -- both independently
+replayed with zero mismatches. Third, a closed-form repair for the search: an
+exact, convexity-proved formula for the minimum payment any size-`k` coalition
+needs to profit reproduces the entire searched coalition frontier exactly
+(145/145 rows, Figure 5) and evaluates at agent counts brute-force search
+cannot reach. Section 8 translates the closed form into a pre-launch audit
+checklist for designers of participatory-budgeting, HOA-assessment, and
+DAO-style threshold funding rules. The results are scoped to a declared
+finite-value, bounded-coalition class; no claim is made for continuous values,
+unbounded coalitions, or generic mechanism-design novelty.
 
 **Data and code availability.** All enumeration scripts, verification harnesses,
 serialized certificates, and independent-replay implementations are archived at
@@ -196,6 +152,8 @@ is:
 | 5 | 1 | 0 | 0.0370 |
 | 6 | 1 | 0 | 0.0000 |
 
+![Figure 1. Exact DSIC/IR/budget-balance frontier, three agents, max_value=2](artifacts/figures/fig1_frontier.png)
+
 At cost three, the four accepted tables are nested upper sets in the sorted
 state poset. Their minimum active states move from `(2,2,2)` down through the
 highest-value states, while the normalized critical payments continue to cover
@@ -229,6 +187,8 @@ Finite exhaustive searches independently cross-check the theorem:
 | 4 | 32 | 5,5,5,5,1,1,1,1 | 5,6,7,8 |
 | 5 | 64 | 6,6,6,6,6,1,1,1,1,1 | 6,7,8,9,10 |
 | 6 | 128 | 7,7,7,7,7,7,1,1,1,1,1,1 | 7,8,9,10,11,12 |
+
+![Figure 2. Accepted-rule count by cost, n=3..6](artifacts/figures/fig2_scaling.png)
 
 The serialized accepted rows total 122 (74 through five agents and 48 in the
 six-agent extension), and all pass the standalone checker. The six-agent run
@@ -420,6 +380,8 @@ The 11 preregistered-style selected spot checks span these four domains; 10
 are fragile (the sole survivor is `n=3`, cost `9` on the `value3_frontier`
 domain).
 
+![Figure 3. Coalition-cap-2 fragility of the canonical efficient/pivotal comparator, by domain](artifacts/figures/fig3_coalition_fragility.png)
+
 Every coalition claim above is replayed by a standalone implementation
 (`public_project_independent.py`) that reconstructs allocation tables and
 payments from serialized JSON without importing the primary verifier: 0
@@ -486,6 +448,8 @@ count.
 | 0 (positive control) | 24 | 0 | | 3 | 18 | 12 |
 | 1 | 24 | 24 | | 4 | 24 | 16 |
 | 2 | 24 | 24 | | 5 | 30 | 20 |
+
+![Figure 4. False-name manipulability of the canonical comparator](artifacts/figures/fig4_false_name.png)
 
 Every cell is replayed by a standalone implementation
 (`scripts/verify_public_project_false_name_audit.py`) that recomputes the
@@ -592,6 +556,8 @@ search (Sections 4.12-4.13).
 | Baseline audit (`min_failing_coalition_size`, Section 4.12) | 75 | 75 | 0 |
 | Extended cells (`max_value in {3,4,5}`, Section 4.13) | 70 | 70 | 0 |
 | **Total brute-force-verified** | **145** | **145** | **0** |
+
+![Figure 5. Closed-form characterization vs. brute-force search](artifacts/figures/fig5_characterization_crosscheck.png)
 
 This is a full necessary-and-sufficient characterization of coalition-cap-`k`
 manipulability for the canonical sum-threshold/critical-value rule under the
