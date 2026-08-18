@@ -53,38 +53,38 @@ shows how finite search can discover or reproduce rules. The practical gap is
 an auditable benchmark in which the entire candidate class, verifier, negative
 examples, and independent replay are shipped together.
 
-This paper makes eleven deliberately narrow contributions:
+This paper's contribution is deliberately narrow and comes in three parts.
 
-1. a typed finite public-project model with exact critical payments;
-2. an antichain enumerator that covers every anonymous monotone rule in the
-   chosen finite domain;
-3. a cost-indexed welfare frontier and explicit efficient-rule counterexample;
-4. serialized certificates replayed by an implementation that does not import
-   the primary mechanism code.
-5. a human-checkable finite-lattice proof, with a construction independent of
-   full-domain search and a preregistered full-domain confirmation.
-6. an executable-specification audit layer for published shallow max-affine
-   VCG-redistribution formulas, with a standalone replay from serialized
-   rational expressions.
-7. a preregistered source-to-certificate cross-check for rational shallow ReLU
-   fixtures, independently challenged by exact-real SMT queries;
-8. a post-hoc bounded-coalition falsification supplement, including an
-   independent audit of whether the canonical single-agent-DSIC comparator
-   itself resists coalitions, with a standalone replay of every claim;
-9. a second post-hoc supplement auditing the same comparator against
-   false-name manipulation (fabricated fake report identities), independently
-   replayed from a closed-form reimplementation.
-10. a proven, not searched, closed-form sufficient condition
-    (`cost<=(n-1)*max_value`) for coalition-manipulability of the canonical
-    sum-threshold/critical-value rule, holding at every integer `n,max_value`,
-    cross-checked against all 75 baseline-audit rows with zero false
-    positives, and used to explain that audit's sole robust exception.
-11. a closed-form necessary-and-sufficient characterization of coalition-cap-`k`
-    manipulability for the same rule, derived from an exact minimum-coalition-
-    payment formula and an exact worst-case truthful-payment formula, both
-    proved by convexity rather than searched; it reproduces the baseline
-    audit's exact `min_failing_coalition_size` on all 75 rows and computes at
-    agent counts far beyond brute-force enumeration.
+The first is a finite-lattice characterization of the public-project problem
+itself. We give a typed finite model with exact critical payments, an
+antichain enumerator that covers every anonymous monotone rule in the chosen
+domain, and a cost-indexed welfare frontier with an explicit counterexample
+showing the efficient rule fails budget balance. Every serialized certificate
+is replayed by an implementation that does not import the primary mechanism
+code. On top of this we prove a human-checkable finite-lattice theorem --
+independent of, and confirmed by, full-domain search on a preregistered
+untouched lattice.
+
+The second part extends the same certificate-and-independent-replay discipline
+to two audit layers outside the core theorem: an executable-specification
+audit of published shallow max-affine VCG-redistribution formulas, with a
+standalone replay from serialized rational expressions, and a preregistered
+source-to-certificate cross-check for rational shallow ReLU fixtures,
+independently challenged by exact-real SMT queries.
+
+The third part is a post-hoc falsification program showing that single-agent
+DSIC -- the acceptance bar used throughout the first part -- is not
+sufficient for robustness. We audit whether the canonical efficient/pivotal
+comparator resists coalitions and false-name manipulation, both independently
+replayed from standalone reimplementations. We then replace part of that
+search with proof: a closed-form sufficient condition for
+coalition-manipulability (`cost<=(n-1)*max_value`) that holds at every
+integer `n,max_value` and explains the one robust exception in the searched
+data, followed by a full closed-form necessary-and-sufficient characterization
+of coalition-cap-`k` manipulability, derived from exact minimum-payment and
+worst-case-truthful-payment formulas proved by convexity. This
+characterization reproduces the searched coalition frontier exactly and
+computes at agent counts far beyond brute-force enumeration.
 
 ## 2. Model
 
